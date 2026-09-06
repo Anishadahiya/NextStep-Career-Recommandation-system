@@ -1,10 +1,12 @@
+import os
+
 DB_CONFIG = {
-    "host": "127.0.0.1",
-    "port": 3306,
-    "user": "root",
-    "password": "1234",
-    "database": "career_ai",
-    "connection_timeout": 5
+    "host": os.getenv("DB_HOST"),
+    "port": int(os.getenv("DB_PORT", "3306")),
+    "user": os.getenv("DB_USER"),
+    "password": os.getenv("DB_PASSWORD"),
+    "database": os.getenv("DB_NAME", "career_ai"),
+    "connection_timeout": 10
 }
 
-SECRET_KEY = "career_ai_secret_key"
+SECRET_KEY = os.getenv("SECRET_KEY")
