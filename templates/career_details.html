@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Career Details</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f6f9;
+            color: #1f2937;
+        }
+
+        .navbar {
+            background: #1f2937;
+            color: white;
+            padding: 18px 30px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .career {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .skill {
+            display: inline-block;
+            background: #e5e7eb;
+            padding: 8px 12px;
+            margin: 5px;
+            border-radius: 20px;
+        }
+
+        .roadmap li {
+            margin: 10px 0;
+        }
+
+        .button {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="navbar">
+
+        <a href="/">
+            🏠 Home
+        </a>
+
+        <a href="/assessment">
+            🎯 Assessment
+        </a>
+
+        <a href="/dashboard">
+            📊 Dashboard
+        </a>
+
+        <a href="/logout">
+            🚪 Logout
+        </a>
+
+    </div>
+
+
+    <div class="container">
+
+
+        {% if recommendation %}
+
+            <div class="card">
+
+                <h1>
+                    🎯 Career Recommendation
+                </h1>
+
+                <p class="career">
+                    {{ recommendation.career }}
+                </p>
+
+                <p>
+                    This career was recommended based on
+                    your skills and interests.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>
+                    💡 Why This Career?
+                </h2>
+
+                <p>
+                    {{ recommendation.explanation }}
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>
+                    ✅ Matching Skills
+                </h2>
+
+                {% if recommendation.matched_skills %}
+
+                    {% for skill in recommendation.matched_skills %}
+
+                        <span class="skill">
+                            {{ skill }}
+                        </span>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <p>
+                        No matching skills found.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>
+                    📚 Learning Roadmap
+                </h2>
+
+                <div class="roadmap">
+
+                    {% for roadmap in recommendation.learning_roadmap %}
+
+                        <h3>
+                            {{ roadmap.skill }}
+                        </h3>
+
+                        <ol>
+
+                            {% for step in roadmap.steps %}
+
+                                <li>
+                                    {{ step }}
+                                </li>
+
+                            {% endfor %}
+
+                        </ol>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="/assessment"
+                class="button"
+            >
+                🚀 Take Another Assessment
+            </a>
+
+
+        {% else %}
+
+            <div class="card">
+
+                <h2>
+                    No recommendation found.
+                </h2>
+
+                <p>
+                    Please complete an assessment first.
+                </p>
+
+                <a
+                    href="/assessment"
+                    class="button"
+                >
+                    Start Assessment
+                </a>
+
+            </div>
+
+        {% endif %}
+
+
+    </div>
+
+</body>
+
+</html>

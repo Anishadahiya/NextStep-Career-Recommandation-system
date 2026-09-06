@@ -1,0 +1,1156 @@
+{% extends "base.html" %}
+
+{% block title %}
+NextStep | Career Assessment
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- =====================================================
+         ASSESSMENT HEADER
+         ===================================================== -->
+
+    <section class="assessment-wrapper">
+
+        <div class="assessment-header">
+
+            <div class="modern-badge">
+                🎯 NextStep Career Assessment
+            </div>
+
+            <h1>
+                Discover Your Career Path 🚀
+            </h1>
+
+            <p>
+                Answer each question and rate yourself from
+                <strong>1 to 10</strong>.
+                Be honest with your ratings so NextStep can
+                provide better career recommendations.
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             PROGRESS
+             ================================================= -->
+
+        <div class="assessment-progress-wrapper">
+
+            <div
+                style="
+                    display:flex;
+                    justify-content:space-between;
+                    margin-bottom:7px;
+                    font-size:0.82rem;
+                    font-weight:700;
+                "
+            >
+
+                <span>
+                    🎯 Assessment Progress
+                </span>
+
+                <span
+                    id="assessment-progress-text"
+                    style="color:var(--muted);"
+                >
+                    0 / 12 answered
+                </span>
+
+            </div>
+
+            <div class="assessment-progress-track">
+
+                <div
+                    id="assessment-progress-bar"
+                    class="assessment-progress-bar"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             FORM
+             ================================================= -->
+
+        <form
+            method="POST"
+            action="{{ url_for('assessment') }}"
+        >
+
+
+            <!-- QUESTION 1 -->
+
+            <div class="question-card">
+
+                <div class="question-text">
+
+                    <span class="question-number">
+                        1
+                    </span>
+
+                    How comfortable are you with Python programming?
+
+                </div>
+
+                <div class="rating-input-box">
+
+                    <input
+                        type="number"
+                        name="python_score"
+                        min="1"
+                        max="10"
+                        step="1"
+                        placeholder="Enter rating"
+                        required
+                    >
+
+                    <span>/ 10</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUESTION 2 -->
+
+            <div class="question-card">
+
+                <div class="question-text">
+
+                    <span class="question-number">
+                        2
+                    </span>
+
+                    How comfortable are you with SQL and databases?
+
+                </div>
+
+                <div class="rating-input-box">
+
+                    <input
+                        type="number"
+                        name="sql_score"
+                        min="1"
+                        max="10"
+                        step="1"
+                        placeholder="Enter rating"
+                        required
+                    >
+
+                    <span>/ 10</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUESTION 3 -->
+
+            <div class="question-card">
+
+                <div class="question-text">
+
+                    <span class="question-number">
+                        3
+                    </span>
+
+                    How interested are you in Web Development?
+
+                </div>
+
+                <div class="rating-input-box">
+
+                    <input
+                        type="number"
+                        name="web_score"
+                        min="1"
+                        max="10"
+                        step="1"
+                        placeholder="Enter rating"
+                        required
+                    >
+
+                    <span>/ 10</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUESTION 4 -->
+
+            <div class="question-card">
+
+                <div class="question-text">
+
+                    <span class="question-number">
+                        4
+                    </span>
+
+                    How interested are you in Data Analysis?
+
+                </div>
+
+                <div class="rating-input-box">
+
+                    <input
+                        type="number"
+                        name="data_score"
+                        min="1"
+                        max="10"
+                        step="1"
+                        placeholder="Enter rating"
+                        required
+                    >
+
+                    <span>/ 10</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUESTION 5 -->
+
+            <div class="question-card">
+
+                <div class="question-text">
+
+                    <span class="question-number">
+                        5
+                    </span>
+
+                    How interested are you in Artificial Intelligence
+                    and Machine Learning?
+
+                </div>
+
+                <div class="rating-input-box">
+
+                    <input
+                        type="number"
+                        name="ai_score"
+                        min="1"
+                        max="10"
+                        step="1"
+                        placeholder="Enter rating"
+                        required
+                    >
+
+                    <span>/ 10</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUESTION 6 -->
+
+            <div class="question-card">
+
+                <div class="question-text">
+
+                    <span class="question-number">
+                        6
+                    </span>
+
+                    How would you rate your Communication Skills?
+
+                </div>
+
+                <div class="rating-input-box">
+
+                    <input
+                        type="number"
+                        name="communication_score"
+                        min="1"
+                        max="10"
+                        step="1"
+                        placeholder="Enter rating"
+                        required
+                    >
+
+                    <span>/ 10</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUESTION 7 -->
+
+            <div class="question-card">
+
+                <div class="question-text">
+
+                    <span class="question-number">
+                        7
+                    </span>
+
+                    How interested are you in Mathematics,
+                    Statistics and Analytical Thinking?
+
+                </div>
+
+                <div class="rating-input-box">
+
+                    <input
+                        type="number"
+                        name="statistics_interest"
+                        min="1"
+                        max="10"
+                        step="1"
+                        placeholder="Enter rating"
+                        required
+                    >
+
+                    <span>/ 10</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUESTION 8 -->
+
+            <div class="question-card">
+
+                <div class="question-text">
+
+                    <span class="question-number">
+                        8
+                    </span>
+
+                    How interested are you in UI/UX
+                    and Creative Design?
+
+                </div>
+
+                <div class="rating-input-box">
+
+                    <input
+                        type="number"
+                        name="design_interest"
+                        min="1"
+                        max="10"
+                        step="1"
+                        placeholder="Enter rating"
+                        required
+                    >
+
+                    <span>/ 10</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUESTION 9 -->
+
+            <div class="question-card">
+
+                <div class="question-text">
+
+                    <span class="question-number">
+                        9
+                    </span>
+
+                    How interested are you in Cybersecurity
+                    and Digital Security?
+
+                </div>
+
+                <div class="rating-input-box">
+
+                    <input
+                        type="number"
+                        name="security_interest"
+                        min="1"
+                        max="10"
+                        step="1"
+                        placeholder="Enter rating"
+                        required
+                    >
+
+                    <span>/ 10</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUESTION 10 -->
+
+            <div class="question-card">
+
+                <div class="question-text">
+
+                    <span class="question-number">
+                        10
+                    </span>
+
+                    How interested are you in Cloud Computing
+                    and Cloud Technologies?
+
+                </div>
+
+                <div class="rating-input-box">
+
+                    <input
+                        type="number"
+                        name="cloud_interest"
+                        min="1"
+                        max="10"
+                        step="1"
+                        placeholder="Enter rating"
+                        required
+                    >
+
+                    <span>/ 10</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUESTION 11 -->
+
+            <div class="question-card">
+
+                <div class="question-text">
+
+                    <span class="question-number">
+                        11
+                    </span>
+
+                    How interested are you in Programming
+                    and Software Development?
+
+                </div>
+
+                <div class="rating-input-box">
+
+                    <input
+                        type="number"
+                        name="programming_interest"
+                        min="1"
+                        max="10"
+                        step="1"
+                        placeholder="Enter rating"
+                        required
+                    >
+
+                    <span>/ 10</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUESTION 12 -->
+
+            <div class="question-card">
+
+                <div class="question-text">
+
+                    <span class="question-number">
+                        12
+                    </span>
+
+                    How strong are you at Logical Thinking
+                    and Problem Solving?
+
+                </div>
+
+                <div class="rating-input-box">
+
+                    <input
+                        type="number"
+                        name="problem_solving"
+                        min="1"
+                        max="10"
+                        step="1"
+                        placeholder="Enter rating"
+                        required
+                    >
+
+                    <span>/ 10</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 RATING GUIDE
+                 ================================================= -->
+
+            <div
+                class="card"
+                style="
+                    padding:24px;
+                    margin:25px 0;
+                    text-align:center;
+                "
+            >
+
+                <h3>
+                    📌 Rating Guide
+                </h3>
+
+                <div
+                    style="
+                        display:flex;
+                        justify-content:center;
+                        gap:12px;
+                        flex-wrap:wrap;
+                        margin-top:15px;
+                    "
+                >
+
+                    <span class="tag">
+                        1–2 Very Low
+                    </span>
+
+                    <span class="tag">
+                        3–4 Low
+                    </span>
+
+                    <span class="tag">
+                        5–6 Average
+                    </span>
+
+                    <span class="tag">
+                        7–8 Good
+                    </span>
+
+                    <span class="tag">
+                        9–10 Excellent
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SUBMIT
+                 ================================================= -->
+
+            <div
+                style="
+                    text-align:center;
+                    margin:30px 0 55px;
+                "
+            >
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    style="
+                        min-width:270px;
+                        padding:15px 25px;
+                        font-size:1rem;
+                    "
+                >
+                    🚀 Get My Career Recommendation
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- =====================================================
+         RESULTS
+         ===================================================== -->
+
+    {% if recommendations %}
+
+    {% set top = recommendations[0] %}
+
+    <section class="results-section">
+
+        <!-- RESULT HEADER -->
+
+        <div class="result-hero">
+
+            <div class="modern-badge">
+                ✨ AI Analysis Complete
+            </div>
+
+            <h2>
+                Your Career Recommendations
+            </h2>
+
+            <p>
+                NextStep has analyzed your skills,
+                interests and assessment ratings.
+            </p>
+
+        </div>
+
+
+        <!-- TOP CAREERS -->
+
+        <div class="section-header">
+
+            <div class="section-label">
+                Career Matches
+            </div>
+
+            <h2>
+                Your Top Career Paths 🎯
+            </h2>
+
+            <p>
+                These are the career paths that best match
+                your current profile.
+            </p>
+
+        </div>
+
+
+        <div class="recommendation-grid">
+
+            {% for recommendation in recommendations %}
+
+            <div class="card card-hover recommendation-card">
+
+                <span class="rank-badge">
+
+                    {% if loop.index == 1 %}
+                        🥇 Top Match
+                    {% elif loop.index == 2 %}
+                        🥈 Second Match
+                    {% elif loop.index == 3 %}
+                        🥉 Third Match
+                    {% else %}
+                        #{{ loop.index }} Match
+                    {% endif %}
+
+                </span>
+
+
+                <h3>
+                    {{ recommendation.career }}
+                </h3>
+
+
+                <div
+                    style="
+                        display:flex;
+                        justify-content:space-between;
+                        align-items:center;
+                        margin-top:12px;
+                    "
+                >
+
+                    <span class="score-label">
+                        Match Score
+                    </span>
+
+                    <strong>
+                        {{ recommendation.score }}
+                    </strong>
+
+                </div>
+
+
+                <div class="score-bar">
+
+                    <div
+                        class="score-bar-fill"
+                        style="
+                            width:
+                            {{ [recommendation.score, 100] | min }}%;
+                        "
+                    ></div>
+
+                </div>
+
+
+                {% if recommendation.matched_skills %}
+
+                <div style="margin-top:15px;">
+
+                    <strong style="font-size:0.83rem;">
+                        ✅ Matching Skills
+                    </strong>
+
+                    <div class="tag-list">
+
+                        {% for skill in recommendation.matched_skills %}
+
+                            <span class="tag">
+                                {{ skill }}
+                            </span>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if recommendation.matched_interests %}
+
+                <div style="margin-top:15px;">
+
+                    <strong style="font-size:0.83rem;">
+                        💡 Matching Interests
+                    </strong>
+
+                    <div class="tag-list">
+
+                        {% for interest in recommendation.matched_interests %}
+
+                            <span class="tag">
+                                {{ interest }}
+                            </span>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if loop.index == 1 %}
+
+                <div style="margin-top:20px;">
+
+                    <a
+                        href="{{ url_for(
+                            'career_details',
+                            career_name=recommendation.career
+                        ) }}"
+                        class="btn btn-primary"
+                    >
+                        Explore Career →
+                    </a>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- WHY THIS CAREER -->
+
+        <div
+            class="card"
+            style="
+                padding:30px;
+                margin-top:28px;
+            "
+        >
+
+            <div class="section-label">
+                AI Explanation
+            </div>
+
+            <h2
+                style="
+                    margin:8px 0 12px;
+                    font-size:1.45rem;
+                "
+            >
+                🤖 Why NextStep Recommended
+                {{ top.career }}?
+            </h2>
+
+            <p
+                style="
+                    color:var(--muted);
+                    line-height:1.8;
+                "
+            >
+                {{ top.explanation }}
+            </p>
+
+        </div>
+
+
+        <!-- SKILL GAP -->
+
+        {% if top.missing_skills %}
+
+        <section class="resource-section">
+
+            <div class="section-header">
+
+                <div class="section-label">
+                    Skill Gap Analysis
+                </div>
+
+                <h2>
+                    🔍 Skills You Should Develop
+                </h2>
+
+                <p>
+                    Improve these skills to strengthen
+                    your profile for your target career.
+                </p>
+
+            </div>
+
+
+            <div
+                class="card"
+                style="padding:28px;"
+            >
+
+                <div class="tag-list">
+
+                    {% for skill in top.missing_skills %}
+
+                    <span
+                        class="tag"
+                        style="
+                            background:#fff1ed;
+                            color:#d3543d;
+                        "
+                    >
+                        ⚠ {{ skill }}
+                    </span>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+
+        <!-- LEARNING ROADMAP -->
+
+        {% if top.learning_roadmap %}
+
+        <section class="resource-section">
+
+            <div class="section-header">
+
+                <div class="section-label">
+                    Personalized Learning
+                </div>
+
+                <h2>
+                    🗺️ Your Learning Roadmap
+                </h2>
+
+            </div>
+
+
+            <div
+                class="card"
+                style="padding:30px;"
+            >
+
+                <div class="roadmap">
+
+                    {% for item in top.learning_roadmap %}
+
+                    <div class="roadmap-item">
+
+                        <div class="roadmap-dot">
+                            {{ loop.index }}
+                        </div>
+
+                        <div class="roadmap-content">
+
+                            <h4>
+                                {{ item.skill }}
+                            </h4>
+
+                            {% for step in item.steps %}
+
+                            <p style="margin-top:6px;">
+                                ✅ {{ step }}
+                            </p>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+
+        <!-- LEARNING RESOURCES -->
+
+        {% if top.learning_resources %}
+
+        <section class="resource-section">
+
+            <div class="section-header">
+
+                <div class="section-label">
+                    Learning Hub
+                </div>
+
+                <h2>
+                    📚 Recommended Courses & Resources
+                </h2>
+
+                <p>
+                    Learn the skills identified in your
+                    personalized skill-gap analysis.
+                </p>
+
+            </div>
+
+
+            {% for skill_group in top.learning_resources %}
+
+            <div style="margin-bottom:35px;">
+
+                <h3 style="margin-bottom:15px;">
+                    🎯 {{ skill_group.skill }}
+                </h3>
+
+
+                <div class="resource-grid">
+
+                    {% for resource in skill_group.resources %}
+
+                    <div class="resource-card">
+
+                        <div class="resource-icon">
+
+                            {% if resource.type == "Course" %}
+                                🎓
+                            {% elif resource.type == "Practice" %}
+                                💻
+                            {% elif resource.type == "Documentation" %}
+                                📖
+                            {% elif resource.type == "Interactive" %}
+                                🧩
+                            {% else %}
+                                📚
+                            {% endif %}
+
+                        </div>
+
+
+                        <span class="resource-type">
+                            {{ resource.type }}
+                        </span>
+
+
+                        <h3>
+                            {{ resource.title }}
+                        </h3>
+
+
+                        <p>
+                            {{ resource.description }}
+                        </p>
+
+
+                        <span class="resource-level">
+                            {{ resource.level }}
+                        </span>
+
+                        <br>
+
+
+                        <a
+                            href="{{ resource.url }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="resource-button"
+                        >
+                            Start Learning →
+                        </a>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </section>
+
+        {% endif %}
+
+
+        <!-- ML PREDICTION -->
+
+        <section class="resource-section">
+
+            <div
+                class="card"
+                style="padding:30px;"
+            >
+
+                <div class="section-label">
+                    Machine Learning
+                </div>
+
+                <h2
+                    style="
+                        margin:8px 0 18px;
+                        font-size:1.45rem;
+                    "
+                >
+                    🧠 ML Career Prediction
+                </h2>
+
+
+                <div class="features-grid">
+
+                    <div
+                        style="
+                            padding:20px;
+                            border-radius:16px;
+                            background:#f7f6ff;
+                        "
+                    >
+
+                        <div
+                            style="
+                                font-size:0.78rem;
+                                color:var(--muted);
+                                margin-bottom:7px;
+                            "
+                        >
+                            Predicted Career
+                        </div>
+
+                        <strong>
+                            {{ top.ml_career }}
+                        </strong>
+
+                    </div>
+
+
+                    <div
+                        style="
+                            padding:20px;
+                            border-radius:16px;
+                            background:#eefbf7;
+                        "
+                    >
+
+                        <div
+                            style="
+                                font-size:0.78rem;
+                                color:var(--muted);
+                                margin-bottom:7px;
+                            "
+                        >
+                            Prediction Confidence
+                        </div>
+
+                        <strong>
+                            {{ top.ml_confidence }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DASHBOARD ACTION -->
+
+        <section class="section">
+
+            <div
+                class="arcade-header"
+                style="text-align:center;"
+            >
+
+                <div style="font-size:2.5rem;">
+                    🎉
+                </div>
+
+                <h2>
+                    Your Assessment Is Complete!
+                </h2>
+
+                <p>
+                    View your assessment history and
+                    career journey from your dashboard.
+                </p>
+
+
+                <div
+                    style="
+                        margin-top:22px;
+                        display:flex;
+                        justify-content:center;
+                        gap:12px;
+                        flex-wrap:wrap;
+                    "
+                >
+
+                    <a
+                        href="{{ url_for('dashboard') }}"
+                        class="btn btn-secondary"
+                    >
+                        📊 View My Dashboard
+                    </a>
+
+
+                    <a
+                        href="{{ url_for(
+                            'career_details',
+                            career_name=top.career
+                        ) }}"
+                        class="btn btn-secondary"
+                    >
+                        🎯 Explore My Career
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </section>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

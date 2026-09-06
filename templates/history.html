@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div class="history-container">
+
+    <h1>
+        📜 Your Career Assessment History
+    </h1>
+
+
+    <table>
+
+        <tr>
+
+            <th>Date</th>
+
+            <th>Recommended Career</th>
+
+            <th>Match Score</th>
+
+        </tr>
+
+
+        {% for item in history %}
+
+        <tr>
+
+            <td>
+
+                {{ item.created_at }}
+
+            </td>
+
+
+            <td>
+
+                {{ item.recommended_career }}
+
+            </td>
+
+
+            <td>
+
+                {{ item.match_score }}%
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+{% endblock %}

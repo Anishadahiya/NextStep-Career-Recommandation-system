@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}
+NextStep | Career Match
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="quiz-box">
+
+        <div class="modern-badge">
+            🧩 Career Match
+        </div>
+
+        <h1 style="margin-top: 12px;">
+            Match Skills to Careers
+        </h1>
+
+        <p style="color: var(--muted);">
+            Choose the career that best matches each technical skill.
+            Complete the challenge to earn XP and unlock badges.
+        </p>
+
+
+        <form
+            method="POST"
+            action="{{ url_for('career_match') }}"
+        >
+
+            {% for item in questions %}
+
+            {% set question_index = loop.index0 %}
+
+            <div style="margin-top: 30px;">
+
+                <div
+                    style="
+                        font-weight: 800;
+                        margin-bottom: 14px;
+                    "
+                >
+                    {{ loop.index }}.
+                    Which career is most closely associated
+                    with <strong>{{ item.skill }}</strong>?
+                </div>
+
+
+                {% for career in [
+                    "Data Scientist",
+                    "UI/UX Designer",
+                    "Cybersecurity Analyst",
+                    "Web Developer",
+                    "AI / Machine Learning Engineer",
+                    "Database Administrator"
+                ] %}
+
+                <label class="quiz-option">
+
+                    <input
+                        type="radio"
+                        name="match_{{ question_index }}"
+                        value="{{ career }}"
+                        required
+                        style="margin-right: 9px;"
+                    >
+
+                    {{ career }}
+
+                </label>
+
+                {% endfor %}
+
+            </div>
+
+            {% endfor %}
+
+
+            <div
+                style="
+                    text-align: center;
+                    margin-top: 35px;
+                "
+            >
+
+                <button
+                    type="submit"
+                    class="game-play-button"
+                >
+                    🧩 Check My Matches
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

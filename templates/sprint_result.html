@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}
+NextStep | Sprint Result
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div
+        class="quiz-box"
+        style="text-align: center;"
+    >
+
+        <div style="font-size: 4rem;">
+            ⚡
+        </div>
+
+        <h1>
+            Career Sprint Complete!
+        </h1>
+
+        <p style="color: var(--muted);">
+            You answered
+            <strong>
+                {{ score }}/{{ total }}
+            </strong>
+            questions correctly.
+        </p>
+
+
+        <div
+            style="
+                font-size: 3rem;
+                font-weight: 800;
+                margin: 20px 0;
+            "
+        >
+            {{ percentage }}%
+        </div>
+
+
+        {% if percentage >= 80 %}
+
+        <p
+            style="
+                color: #00a884;
+                font-weight: 800;
+            "
+        >
+            🏆 Amazing! You're a Career Sprint Champion!
+        </p>
+
+        {% elif percentage >= 60 %}
+
+        <p
+            style="
+                color: var(--primary);
+                font-weight: 800;
+            "
+        >
+            🌟 Great job! Keep improving your knowledge.
+        </p>
+
+        {% else %}
+
+        <p
+            style="
+                color: var(--muted);
+                font-weight: 700;
+            "
+        >
+            💪 Keep practicing. Your next attempt can be better!
+        </p>
+
+        {% endif %}
+
+
+        <div
+            class="xp-card"
+            style="margin-top: 25px;"
+        >
+
+            <div class="xp-number">
+                +{{ earned_xp }} XP
+            </div>
+
+            <div class="xp-label">
+                Experience Earned
+            </div>
+
+        </div>
+
+
+        <div style="margin-top: 25px;">
+
+            <a
+                href="{{ url_for('arcade') }}"
+                class="btn btn-primary"
+            >
+                🎮 Back to Arcade
+            </a>
+
+            <a
+                href="{{ url_for('career_sprint') }}"
+                class="btn btn-secondary"
+            >
+                🔄 Try Again
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

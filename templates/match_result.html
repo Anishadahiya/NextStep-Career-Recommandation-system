@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}
+NextStep | Match Result
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div
+        class="quiz-box"
+        style="text-align: center;"
+    >
+
+        <div style="font-size: 4rem;">
+            🧩
+        </div>
+
+        <h1>
+            Career Match Complete!
+        </h1>
+
+        <p style="color: var(--muted);">
+            You matched
+            <strong>
+                {{ score }}/{{ total }}
+            </strong>
+            careers correctly.
+        </p>
+
+
+        <div
+            style="
+                font-size: 3rem;
+                font-weight: 800;
+                margin: 20px 0;
+            "
+        >
+            {{ percentage }}%
+        </div>
+
+
+        {% if percentage >= 80 %}
+
+        <p style="color: #00a884; font-weight: 700;">
+            🏆 Excellent career knowledge!
+        </p>
+
+        {% elif percentage >= 60 %}
+
+        <p style="color: var(--primary); font-weight: 700;">
+            🌟 Great job! Keep learning.
+        </p>
+
+        {% else %}
+
+        <p style="color: var(--muted); font-weight: 700;">
+            💪 Keep practicing. You are improving!
+        </p>
+
+        {% endif %}
+
+
+        <div
+            class="xp-card"
+            style="margin-top: 25px;"
+        >
+
+            <div class="xp-number">
+                +{{ earned_xp }} XP
+            </div>
+
+            <div class="xp-label">
+                Experience Earned
+            </div>
+
+        </div>
+
+
+        <div style="margin-top: 25px;">
+
+            <a
+                href="{{ url_for('arcade') }}"
+                class="btn btn-primary"
+            >
+                🎮 Back to Arcade
+            </a>
+
+            <a
+                href="{{ url_for('career_match') }}"
+                class="btn btn-secondary"
+            >
+                🔄 Play Again
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

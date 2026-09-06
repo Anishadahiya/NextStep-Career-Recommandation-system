@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}
+NextStep | Skill Quiz
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="quiz-box">
+
+        <div class="modern-badge">
+            🧠 Skill Quiz
+        </div>
+
+        <h1 style="margin-top: 12px;">
+            Test Your Tech Knowledge
+        </h1>
+
+        <p style="color: var(--muted);">
+            Answer all 8 questions and earn XP.
+            Choose the option you think is correct.
+        </p>
+
+
+        <!-- =========================
+             QUIZ FORM
+             ========================= -->
+
+        <form
+            method="POST"
+            action="{{ url_for('skill_quiz') }}"
+            id="skill-quiz-form"
+        >
+
+            {% for question in questions %}
+
+                {% set question_index = loop.index0 %}
+
+                <div
+                    style="
+                        margin-top: 30px;
+                        padding-top: 10px;
+                    "
+                >
+
+                    <div
+                        style="
+                            font-size: 1rem;
+                            font-weight: 800;
+                            margin-bottom: 14px;
+                        "
+                    >
+
+                        <span
+                            style="
+                                display: inline-flex;
+                                align-items: center;
+                                justify-content: center;
+                                width: 30px;
+                                height: 30px;
+                                border-radius: 50%;
+                                background: rgba(108, 92, 231, 0.10);
+                                color: #6c5ce7;
+                                font-size: 0.8rem;
+                                margin-right: 7px;
+                            "
+                        >
+                            {{ loop.index }}
+                        </span>
+
+                        {{ question.question }}
+
+                    </div>
+
+
+                    <!-- OPTIONS -->
+
+                    {% for option in question.options %}
+
+                        <label class="quiz-option">
+
+                            <input
+                                type="radio"
+                                name="question_{{ question_index }}"
+                                value="{{ option }}"
+                                required
+                            >
+
+                            <span>
+                                {{ option }}
+                            </span>
+
+                        </label>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endfor %}
+
+
+            <!-- =========================
+                 SUBMIT BUTTON
+                 ========================= -->
+
+            <div
+                style="
+                    text-align: center;
+                    margin-top: 35px;
+                "
+            >
+
+                <button
+                    type="submit"
+                    class="game-play-button"
+                >
+                    🚀 Submit Quiz
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

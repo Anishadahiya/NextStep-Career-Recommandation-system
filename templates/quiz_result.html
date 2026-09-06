@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}
+NextStep | Quiz Result
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div
+        class="quiz-box"
+        style="text-align: center;"
+    >
+
+        <div style="font-size: 4rem;">
+            {% if percentage >= 80 %}
+                🏆
+            {% elif percentage >= 60 %}
+                🌟
+            {% else %}
+                💪
+            {% endif %}
+        </div>
+
+        <h1>
+            Quiz Complete!
+        </h1>
+
+        <p style="color: var(--muted);">
+            You scored
+            <strong>
+                {{ score }}/{{ total }}
+            </strong>
+        </p>
+
+        <div
+            style="
+                font-size: 3rem;
+                font-weight: 800;
+                margin: 20px 0;
+            "
+        >
+            {{ percentage }}%
+        </div>
+
+        <div class="xp-card">
+
+            <div class="xp-number">
+                +{{ earned_xp }} XP
+            </div>
+
+            <div class="xp-label">
+                Experience Earned
+            </div>
+
+        </div>
+
+        <div style="margin-top: 25px;">
+
+            <a
+                href="{{ url_for('arcade') }}"
+                class="btn btn-primary"
+            >
+                🎮 Back to Arcade
+            </a>
+
+            <a
+                href="{{ url_for('skill_quiz') }}"
+                class="btn btn-secondary"
+            >
+                🔄 Play Again
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="NextStep - AI-powered career recommendation and skill development platform"
+    >
+
+    <title>
+        {% block title %}
+        NextStep
+        {% endblock %}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         NAVBAR
+         ===================================================== -->
+
+    <header class="navbar">
+
+        <div class="navbar-container">
+
+            <!-- LOGO -->
+
+            <a
+                href="{{ url_for('home') }}"
+                class="logo"
+            >
+
+                <span class="logo-icon">
+                    🚀
+                </span>
+
+                Next<span>Step</span>
+
+            </a>
+
+
+            <!-- NAVIGATION -->
+
+            <nav class="nav-links">
+
+                <a
+                    href="{{ url_for('home') }}"
+                >
+                    Home
+                </a>
+
+
+                {% if session.get("user_id") %}
+
+                    <a
+                        href="{{ url_for('assessment') }}"
+                    >
+                        🎯 Assessment
+                    </a>
+
+
+                    <a
+                        href="{{ url_for('arcade') }}"
+                    >
+                        🎮 Arcade
+                    </a>
+
+
+                    <a
+                        href="{{ url_for('dashboard') }}"
+                    >
+                        📊 Dashboard
+                    </a>
+
+
+                    <a
+                        href="{{ url_for('logout') }}"
+                    >
+                        Logout
+                    </a>
+
+                {% else %}
+
+                    <a
+                        href="{{ url_for('login') }}"
+                    >
+                        Login
+                    </a>
+
+
+                    <a
+                        href="{{ url_for('register') }}"
+                        class="nav-cta"
+                    >
+                        Get Started
+                    </a>
+
+                {% endif %}
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         FLASH MESSAGES
+         ===================================================== -->
+
+    {% with messages = get_flashed_messages() %}
+
+        {% if messages %}
+
+            <div class="flash-container">
+
+                {% for message in messages %}
+
+                    <div class="alert">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
+    <main>
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <!-- ABOUT -->
+
+                <div>
+
+                    <h3>
+                        🚀 NextStep
+                    </h3>
+
+                    <p>
+                        Discover your career direction,
+                        understand your skill gaps, and
+                        build your next step.
+                    </p>
+
+                </div>
+
+
+                <!-- PLATFORM -->
+
+                <div>
+
+                    <h3>
+                        Platform
+                    </h3>
+
+                    <p>
+                        <a
+                            href="{{ url_for('assessment') }}"
+                        >
+                            Career Assessment
+                        </a>
+                    </p>
+
+                    {% if session.get("user_id") %}
+
+                    <p>
+                        <a
+                            href="{{ url_for('arcade') }}"
+                        >
+                            🎮 Career Arcade
+                        </a>
+                    </p>
+
+                    <p>
+                        <a
+                            href="{{ url_for('dashboard') }}"
+                        >
+                            📊 Dashboard
+                        </a>
+                    </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- FEATURES -->
+
+                <div>
+
+                    <h3>
+                        Features
+                    </h3>
+
+                    <p>
+                        🤖 Career Recommendation
+                    </p>
+
+                    <p>
+                        🔍 Skill Gap Analysis
+                    </p>
+
+                    <p>
+                        🗺️ Learning Roadmap
+                    </p>
+
+                    <p>
+                        📚 Learning Resources
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- FOOTER BOTTOM -->
+
+            <div class="footer-bottom">
+
+                ©
+                <span data-current-year>
+                    2026
+                </span>
+
+                NextStep
+                · Career Recommendation Platform
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script
+        src="{{ url_for('static', filename='js/main.js') }}"
+    ></script>
+
+</body>
+
+</html>

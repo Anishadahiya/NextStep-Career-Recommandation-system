@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+
+{% block title %}
+NextStep | Career Sprint
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="quiz-box">
+
+        <!-- HEADER -->
+
+        <div
+            class="modern-badge"
+            style="
+                background: #fff1ed;
+                color: #e17055;
+            "
+        >
+            ⚡ Career Sprint
+        </div>
+
+        <h1 style="margin-top: 12px;">
+            Rapid Career Challenge
+        </h1>
+
+        <p style="color: var(--muted);">
+            Answer the questions before the timer reaches zero.
+            The faster you complete the challenge, the better!
+        </p>
+
+
+        <!-- TIMER -->
+
+        <div
+            style="
+                text-align: center;
+                margin: 25px 0;
+            "
+        >
+
+            <div
+                style="
+                    font-size: 0.78rem;
+                    color: var(--muted);
+                    font-weight: 700;
+                    margin-bottom: 5px;
+                "
+            >
+                TIME REMAINING
+            </div>
+
+            <div
+                id="timer"
+                style="
+                    font-size: 3rem;
+                    font-weight: 800;
+                    color: #e17055;
+                "
+            >
+                30
+            </div>
+
+        </div>
+
+
+        <!-- PROGRESS -->
+
+        <div class="quiz-progress">
+
+            <div
+                id="timer-bar"
+                class="quiz-progress-bar"
+                style="width: 100%;"
+            ></div>
+
+        </div>
+
+
+        <!-- QUIZ FORM -->
+
+        <form
+            method="POST"
+            action="{{ url_for('career_sprint_result') }}"
+            id="sprint-form"
+        >
+
+            {% for question in questions %}
+
+            {% set question_index = loop.index0 %}
+
+            <div
+                style="
+                    margin-top: 28px;
+                "
+            >
+
+                <div
+                    style="
+                        font-weight: 800;
+                        margin-bottom: 14px;
+                    "
+                >
+                    {{ loop.index }}.
+                    {{ question.question }}
+                </div>
+
+
+                {% for option in question.options %}
+
+                <label class="quiz-option">
+
+                    <input
+                        type="radio"
+                        name="question_{{ question_index }}"
+                        value="{{ option }}"
+                        required
+                        style="margin-right: 9px;"
+                    >
+
+                    {{ option }}
+
+                </label>
+
+                {% endfor %}
+
+            </div>
+
+            {% endfor %}
+
+
+            <!-- SUBMIT -->
+
+            <div
+                style="
+                    text-align: center;
+                    margin-top: 32px;
+                "
+            >
+
+                <button
+                    type="submit"
+                    class="game-play-button"
+                >
+                    ⚡ Finish Sprint
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    let timeLeft = 30;
+
+    const timer =
+        document.getElementById("timer");
+
+    const timerBar =
+        document.getElementById("timer-bar");
+
+    const form =
+        document.getElementById("sprint-form");
+
+
+    const countdown =
+        setInterval(function () {
+
+            timeLeft--;
+
+            timer.textContent =
+                timeLeft;
+
+
+            const percentage =
+                (timeLeft / 30) * 100;
+
+            timerBar.style.width =
+                percentage + "%";
+
+
+            if (timeLeft <= 10) {
+
+                timer.style.color =
+                    "#d63031";
+
+            }
+
+
+            if (timeLeft <= 0) {
+
+                clearInterval(countdown);
+
+                form.submit();
+
+            }
+
+        }, 1000);
+
+</script>
+
+{% endblock %}

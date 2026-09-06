@@ -1,0 +1,446 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Home | CareerAI
+{% endblock %}
+
+
+{% block content %}
+
+
+<!-- ========================================== -->
+<!-- HERO SECTION -->
+<!-- ========================================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            ✨ Career Guidance
+        </div>
+
+
+        <h1>
+            Discover the
+            <span>Career</span>
+            That Fits You
+        </h1>
+
+
+        <p class="hero-description">
+
+            Analyze your skills, interests and abilities
+            with our career recommendation
+            system and discover the path that's right for you.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            {% if session.get("user_id") %}
+
+                <a
+                    href="{{ url_for('assessment') }}"
+                    class="primary-button"
+                >
+                    Start Assessment
+                    <span>→</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('dashboard') }}"
+                    class="secondary-button"
+                >
+                    View Dashboard
+                </a>
+
+            {% else %}
+
+                <a
+                    href="{{ url_for('register') }}"
+                    class="primary-button"
+                >
+                    Get Started
+                    <span>→</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('login') }}"
+                    class="secondary-button"
+                >
+                    Login
+                </a>
+
+            {% endif %}
+
+        </div>
+
+
+        <div class="hero-trust">
+
+            <span>✓ Career Recommendations</span>
+
+            <span>✓ Skill Gap Analysis</span>
+
+            <span>✓ Learning Roadmap</span>
+
+        </div>
+
+    </div>
+
+
+    <!-- HERO VISUAL -->
+
+    <div class="hero-visual">
+
+        <div class="floating-card card-one">
+
+            <span class="floating-icon">
+                🎯
+            </span>
+
+            <div>
+
+                <strong>
+                    Career Match
+                </strong>
+
+                <small>
+                    Data Analyst
+                </small>
+
+            </div>
+
+            <span class="match-score">
+                92%
+            </span>
+
+        </div>
+
+
+        <div class="career-circle">
+
+            <div class="circle-inner">
+
+                <span class="robot">
+                    🤖
+                </span>
+
+                <strong>
+                  NextStep
+                </strong>
+
+                <small>
+                    Find your path
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="floating-card card-two">
+
+            <span class="floating-icon">
+                📊
+            </span>
+
+            <div>
+
+                <strong>
+                    Skill Analysis
+                </strong>
+
+                <small>
+                    8 skills matched
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="floating-card card-three">
+
+            <span class="floating-icon">
+                📚
+            </span>
+
+            <div>
+
+                <strong>
+                    Learning Roadmap
+                </strong>
+
+                <small>
+                    Personalized for you
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================== -->
+<!-- FEATURES -->
+<!-- ========================================== -->
+
+<section class="features-section">
+
+    <div class="section-heading">
+
+        <span class="section-label">
+            WHY NextStep?
+        </span>
+
+        <h2>
+            Everything You Need
+            <span>in One Place</span>
+        </h2>
+
+        <p>
+            From career discovery to skill development,
+            get a complete roadmap for your future.
+        </p>
+
+    </div>
+
+
+    <div class="features-grid">
+
+
+        <!-- FEATURE 1 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🤖
+            </div>
+
+            <h3>
+                Career Recommendation
+            </h3>
+
+            <p>
+                Get career recommendations based on
+                your skills, interests and assessment results.
+            </p>
+
+        </div>
+
+
+        <!-- FEATURE 2 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📊
+            </div>
+
+            <h3>
+                Skill Analysis
+            </h3>
+
+            <p>
+                Understand your strengths and identify
+                the technical skills you need to improve.
+            </p>
+
+        </div>
+
+
+        <!-- FEATURE 3 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🗺️
+            </div>
+
+            <h3>
+                Learning Roadmap
+            </h3>
+
+            <p>
+                Follow a personalized learning path
+                based on the career you want to pursue.
+            </p>
+
+        </div>
+
+
+        <!-- FEATURE 4 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📈
+            </div>
+
+            <h3>
+                Performance Dashboard
+            </h3>
+
+            <p>
+                Track your assessments, skill scores
+                and career recommendations in one dashboard.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================== -->
+<!-- HOW IT WORKS -->
+<!-- ========================================== -->
+
+<section class="how-section">
+
+    <div class="section-heading">
+
+        <span class="section-label">
+            SIMPLE PROCESS
+        </span>
+
+        <h2>
+            How It <span>Works</span>
+        </h2>
+
+    </div>
+
+
+    <div class="steps-grid">
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <h3>
+                Create Account
+            </h3>
+
+            <p>
+                Register and create your personal
+                CareerAI profile.
+            </p>
+
+        </div>
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <h3>
+                Take Assessment
+            </h3>
+
+            <p>
+                Enter your skills, interests and
+                rate your current abilities.
+            </p>
+
+        </div>
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                03
+            </div>
+
+            <h3>
+                Get Recommendation
+            </h3>
+
+            <p>
+                Our system analyzes your information
+                and recommends suitable careers.
+            </p>
+
+        </div>
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                04
+            </div>
+
+            <h3>
+                Follow Your Roadmap
+            </h3>
+
+            <p>
+                Identify skill gaps and follow a
+                personalized learning roadmap.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================== -->
+<!-- CALL TO ACTION -->
+<!-- ========================================== -->
+
+<section class="cta-section">
+
+    <div class="cta-content">
+
+        <h2>
+            Ready to Discover Your Career?
+        </h2>
+
+        <p>
+            Take the assessment and find out
+            where your skills can take you.
+        </p>
+
+
+        {% if session.get("user_id") %}
+
+            <a
+                href="{{ url_for('assessment') }}"
+                class="primary-button"
+            >
+                Start My Assessment →
+            </a>
+
+        {% else %}
+
+            <a
+                href="{{ url_for('register') }}"
+                class="primary-button"
+            >
+                Start My Journey →
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+{% endblock %}
