@@ -34,7 +34,7 @@ from utils.recommendation import (
     CAREER_DATA
 )
 
-from utils.skill_gap import get_skill_gap
+from utils.skill_gap import get_missing_skills
 
 from utils.learning_roadmap import get_learning_roadmap
 
@@ -52,7 +52,10 @@ from ml.career_model import (
 
 app = Flask(__name__)
 
-app.secret_key = SECRET_KEY
+app.secret_key = os.environ.get(
+    "SECRET_KEY",
+    "NextStep_Career_2026_9xK7!pQ2#Lm8@Rz"
+)
 
 
 # =========================================================
@@ -1296,14 +1299,31 @@ def assessment():
     )
 
     # =====================================================
+    # BUILD USER SCORE DICTIONARY
+    # =====================================================
+
+    user_scores = {
+        "python_score": python_score,
+        "sql_score": sql_score,
+        "web_score": web_score,
+        "data_score": data_score,
+        "ai_score": ai_score,
+        "communication_score": communication_score,
+        "statistics_interest": statistics_score,
+        "design_interest": design_score,
+        "security_interest": security_score,
+        "cloud_interest": cloud_score,
+        "programming_interest": programming_score,
+        "problem_solving": problem_solving_score
+    }
+
+    # =====================================================
     # CAREER RECOMMENDATION
     # =====================================================
 
-    recommendations = (
-        get_career_recommendations(
-            skills_text,
-            interests_text
-        )
+    recommendations = get_career_recommendations(
+        user_scores,
+        interests_text
     )
 
     # =====================================================
@@ -1319,15 +1339,13 @@ def assessment():
         communication_score
     )
 
-    ml_confidence = (
-        get_prediction_confidence(
-            python_score,
-            sql_score,
-            web_score,
-            data_score,
-            ai_score,
-            communication_score
-        )
+    ml_confidence = get_prediction_confidence(
+        python_score,
+        sql_score,
+        web_score,
+        data_score,
+        ai_score,
+        communication_score
     )
 
     # =====================================================
@@ -1336,13 +1354,9 @@ def assessment():
 
     if recommendations:
 
-        top_recommendation = (
-            recommendations[0]
-        )
+        top_recommendation = recommendations[0]
 
-        top_career = (
-            top_recommendation["career"]
-        )
+        top_career = top_recommendation["career"]
 
         career_info = None
 
@@ -1361,70 +1375,80 @@ def assessment():
 
         if career_info:
 
-            required_skills = (
-                career_info["skills"]
-            )
+            required_skills = career_info["skills"]
 
-        matched_skills = (
+        matched_skills = top_recommendation.get(
+            "matched_skills",
+            []
+        )
+
+        # -------------------------------------------------
+        # SKILL GAP
+        # -------------------------------------------------
+
+        missing_skills = get_missing_skills(
+            top_career,
+            user_scores
+        )
+
+        # -------------------------------------------------
+        # EXPLANATION
+        # -------------------------------------------------
+
+        explanation = get_recommendation_explanation(
+            top_career,
+            matched_skills,
             top_recommendation.get(
-                "matched_skills",
+                "matched_interests",
                 []
             )
         )
 
-        missing_skills = get_skill_gap(
-            skills_text,
-            ",".join(
-                required_skills
-            )
+        # -------------------------------------------------
+        # LEARNING ROADMAP
+        # -------------------------------------------------
+
+        learning_roadmap = get_learning_roadmap(
+            top_career,
+            missing_skills
         )
 
-        explanation = (
-            get_recommendation_explanation(
-                top_career,
-                matched_skills,
-                top_recommendation.get(
-                    "matched_interests",
-                    []
-                )
-            )
+        # -------------------------------------------------
+        # LEARNING RESOURCES
+        # -------------------------------------------------
+
+        learning_resources = get_learning_resources(
+            top_career,
+            missing_skills
         )
 
-        learning_roadmap = (
-            get_learning_roadmap(
-                missing_skills
-            )
+        # -------------------------------------------------
+        # ADD RESULTS TO RECOMMENDATION
+        # -------------------------------------------------
+
+        recommendations[0]["missing_skills"] = (
+            missing_skills
         )
 
-        learning_resources = (
-            get_learning_resources(
-                missing_skills
-            )
+        recommendations[0]["explanation"] = (
+            explanation
         )
 
-        recommendations[0][
-            "missing_skills"
-        ] = missing_skills
+        recommendations[0]["learning_roadmap"] = (
+            learning_roadmap
+        )
 
-        recommendations[0][
-            "explanation"
-        ] = explanation
+        recommendations[0]["learning_resources"] = (
+            learning_resources
+        )
 
-        recommendations[0][
-            "learning_roadmap"
-        ] = learning_roadmap
+        recommendations[0]["ml_career"] = (
+            ml_career
+        )
 
-        recommendations[0][
-            "learning_resources"
-        ] = learning_resources
-
-        recommendations[0][
-            "ml_career"
-        ] = ml_career
-
-        recommendations[0][
-            "ml_confidence"
-        ] = ml_confidence
+        recommendations[0]["ml_confidence"] = (
+            ml_confidence
+        )
 
         # =================================================
         # SAVE ASSESSMENT TO MYSQL
