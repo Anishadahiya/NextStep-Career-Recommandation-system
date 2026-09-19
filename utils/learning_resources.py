@@ -1,508 +1,345 @@
 # utils/learning_resources.py
 
-
-# =========================================================
-# NEXTSTEP LEARNING RESOURCES
-# =========================================================
-
 LEARNING_RESOURCES = {
-
-    "python": [
+    "Python": [
         {
-            "title": "Python Official Tutorial",
-            "type": "Documentation",
-            "level": "Beginner",
-            "description": "Learn Python fundamentals, functions, modules and programming.",
-            "url": "https://docs.python.org/3/tutorial/"
-        },
-        {
-            "title": "Python for Everybody",
             "type": "Course",
+            "title": "Python Programming Fundamentals",
+            "description": "Learn Python syntax, variables, functions, loops and data structures.",
             "level": "Beginner",
-            "description": "A beginner-friendly Python learning path.",
-            "url": "https://www.coursera.org/specializations/python"
+            "url": "https://www.python.org/about/gettingstarted/"
         },
         {
-            "title": "Python Practice",
-            "type": "Practice",
+            "type": "Documentation",
+            "title": "Python Official Documentation",
+            "description": "Official Python documentation and language reference.",
             "level": "Beginner",
-            "description": "Practice Python programming with coding problems.",
-            "url": "https://www.hackerrank.com/domains/python"
+            "url": "https://docs.python.org/3/"
         }
     ],
 
-    "sql": [
+    "SQL": [
         {
-            "title": "SQLBolt",
-            "type": "Interactive",
-            "level": "Beginner",
-            "description": "Learn SQL using interactive lessons and exercises.",
-            "url": "https://sqlbolt.com/"
-        },
-        {
+            "type": "Practice",
             "title": "SQL Practice",
-            "type": "Practice",
+            "description": "Practice SQL queries, filtering, joins and database operations.",
             "level": "Beginner",
-            "description": "Practice SQL queries and database problems.",
-            "url": "https://www.hackerrank.com/domains/sql"
-        }
-    ],
-
-    "javascript": [
-        {
-            "title": "MDN JavaScript Guide",
-            "type": "Documentation",
-            "level": "Beginner",
-            "description": "Learn JavaScript fundamentals, DOM and browser programming.",
-            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+            "url": "https://www.w3schools.com/sql/"
         },
         {
-            "title": "JavaScript Practice",
-            "type": "Practice",
-            "level": "Beginner",
-            "description": "Practice JavaScript programming challenges.",
-            "url": "https://www.hackerrank.com/domains/javascript"
-        }
-    ],
-
-    "html": [
-        {
-            "title": "MDN HTML",
             "type": "Documentation",
-            "level": "Beginner",
-            "description": "Learn HTML structure, forms and semantic elements.",
-            "url": "https://developer.mozilla.org/en-US/docs/Web/HTML"
-        },
-        {
-            "title": "Responsive Web Design",
-            "type": "Course",
-            "level": "Beginner",
-            "description": "Learn the fundamentals of responsive web development.",
-            "url": "https://www.freecodecamp.org/learn/2022/responsive-web-design/"
-        }
-    ],
-
-    "css": [
-        {
-            "title": "MDN CSS",
-            "type": "Documentation",
-            "level": "Beginner",
-            "description": "Learn CSS, Flexbox, Grid and responsive layouts.",
-            "url": "https://developer.mozilla.org/en-US/docs/Web/CSS"
-        },
-        {
-            "title": "Responsive Web Design",
-            "type": "Course",
-            "level": "Beginner",
-            "description": "Practice modern responsive CSS layouts.",
-            "url": "https://www.freecodecamp.org/learn/2022/responsive-web-design/"
-        }
-    ],
-
-    "data analysis": [
-        {
-            "title": "Pandas Documentation",
-            "type": "Documentation",
+            "title": "MySQL Documentation",
+            "description": "Learn MySQL database concepts and SQL syntax.",
             "level": "Intermediate",
-            "description": "Learn data cleaning, manipulation and analysis using Pandas.",
+            "url": "https://dev.mysql.com/doc/"
+        }
+    ],
+
+    "Data Analysis": [
+        {
+            "type": "Tutorial",
+            "title": "Pandas Documentation",
+            "description": "Learn how to load, clean and analyze structured data with Pandas.",
+            "level": "Beginner",
             "url": "https://pandas.pydata.org/docs/"
         },
         {
-            "title": "Data Analysis with Python",
-            "type": "Course",
+            "type": "Tutorial",
+            "title": "NumPy Documentation",
+            "description": "Learn numerical computing and array operations with NumPy.",
             "level": "Beginner",
-            "description": "Learn practical data analysis using Python.",
-            "url": "https://www.coursera.org/learn/data-analysis-with-python"
-        },
-        {
-            "title": "Kaggle Learn",
-            "type": "Practice",
-            "level": "Beginner",
-            "description": "Practice data analysis with real datasets.",
-            "url": "https://www.kaggle.com/learn"
+            "url": "https://numpy.org/doc/"
         }
     ],
 
-    "statistics": [
+    "Statistics": [
         {
-            "title": "Khan Academy Statistics",
-            "type": "Course",
+            "type": "Learning",
+            "title": "Statistics Fundamentals",
+            "description": "Study descriptive statistics, probability and statistical concepts.",
             "level": "Beginner",
-            "description": "Learn probability and statistics through guided lessons.",
             "url": "https://www.khanacademy.org/math/statistics-probability"
-        },
-        {
-            "title": "Basic Statistics",
-            "type": "Course",
-            "level": "Beginner",
-            "description": "Build a strong foundation in descriptive statistics.",
-            "url": "https://www.coursera.org/learn/basic-statistics"
         }
     ],
 
-    "machine learning": [
+    "Machine Learning": [
         {
-            "title": "Machine Learning",
-            "type": "Course",
-            "level": "Beginner",
-            "description": "Learn the fundamentals of machine learning and practical algorithms.",
-            "url": "https://www.coursera.org/learn/machine-learning"
-        },
-        {
-            "title": "Scikit-learn User Guide",
             "type": "Documentation",
+            "title": "Scikit-learn User Guide",
+            "description": "Learn machine-learning algorithms and model evaluation using scikit-learn.",
             "level": "Intermediate",
-            "description": "Learn how to build machine learning models with Scikit-learn.",
             "url": "https://scikit-learn.org/stable/user_guide.html"
         },
         {
-            "title": "Kaggle Learn",
-            "type": "Practice",
-            "level": "Beginner",
-            "description": "Practice machine learning with interactive exercises.",
-            "url": "https://www.kaggle.com/learn"
-        }
-    ],
-
-    "data visualization": [
-        {
-            "title": "Matplotlib Documentation",
-            "type": "Documentation",
-            "level": "Beginner",
-            "description": "Learn to create charts and visualizations with Python.",
-            "url": "https://matplotlib.org/stable/users/index.html"
-        },
-        {
-            "title": "Kaggle Learn",
-            "type": "Practice",
-            "level": "Beginner",
-            "description": "Practice data visualization using real datasets.",
-            "url": "https://www.kaggle.com/learn"
-        }
-    ],
-
-    "cybersecurity": [
-        {
-            "title": "Cisco Introduction to Cybersecurity",
-            "type": "Course",
-            "level": "Beginner",
-            "description": "Learn cybersecurity fundamentals and common threats.",
-            "url": "https://www.netacad.com/courses/cybersecurity/introduction-cybersecurity"
-        },
-        {
-            "title": "OWASP Top 10",
-            "type": "Documentation",
+            "type": "Tutorial",
+            "title": "Machine Learning Tutorials",
+            "description": "Explore practical machine-learning concepts and examples.",
             "level": "Intermediate",
-            "description": "Understand common web application security risks.",
-            "url": "https://owasp.org/www-project-top-ten/"
+            "url": "https://developers.google.com/machine-learning"
+        }
+    ],
+
+    "Artificial Intelligence": [
+        {
+            "type": "Learning",
+            "title": "AI Fundamentals",
+            "description": "Learn fundamental concepts behind artificial intelligence.",
+            "level": "Beginner",
+            "url": "https://developers.google.com/machine-learning"
+        }
+    ],
+
+    "Web Development": [
+        {
+            "type": "Tutorial",
+            "title": "MDN Web Development",
+            "description": "Learn HTML, CSS and JavaScript for modern web development.",
+            "level": "Beginner",
+            "url": "https://developer.mozilla.org/en-US/docs/Learn"
         },
         {
-            "title": "TryHackMe",
+            "type": "Reference",
+            "title": "W3Schools Web Tutorials",
+            "description": "Practice HTML, CSS and JavaScript with interactive examples.",
+            "level": "Beginner",
+            "url": "https://www.w3schools.com/"
+        }
+    ],
+
+    "HTML/CSS": [
+        {
+            "type": "Tutorial",
+            "title": "MDN HTML and CSS",
+            "description": "Learn the fundamentals of building and styling webpages.",
+            "level": "Beginner",
+            "url": "https://developer.mozilla.org/en-US/docs/Learn"
+        }
+    ],
+
+    "JavaScript": [
+        {
+            "type": "Tutorial",
+            "title": "JavaScript Guide",
+            "description": "Learn JavaScript fundamentals, functions, objects and browser programming.",
+            "level": "Beginner",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        }
+    ],
+
+    "Programming": [
+        {
             "type": "Practice",
+            "title": "Programming Practice",
+            "description": "Practice programming concepts and problem-solving techniques.",
             "level": "Beginner",
-            "description": "Practice cybersecurity through interactive labs.",
-            "url": "https://tryhackme.com/"
+            "url": "https://www.hackerrank.com/domains/tutorials/10-days-of-javascript"
         }
     ],
 
-    "design": [
+    "Software Development": [
         {
-            "title": "Figma Learn",
-            "type": "Course",
-            "level": "Beginner",
-            "description": "Learn UI design and prototyping with Figma.",
-            "url": "https://help.figma.com/hc/en-us/categories/360002051613-Learn-design"
-        },
-        {
-            "title": "Google UX Design",
-            "type": "Course",
-            "level": "Beginner",
-            "description": "Learn user research, wireframing and UX design.",
-            "url": "https://www.coursera.org/professional-certificates/google-ux-design"
-        }
-    ],
-
-    "ui": [
-        {
-            "title": "Figma Learn",
-            "type": "Course",
-            "level": "Beginner",
-            "description": "Learn interface design and prototyping.",
-            "url": "https://help.figma.com/hc/en-us/categories/360002051613-Learn-design"
-        }
-    ],
-
-    "ux": [
-        {
-            "title": "Google UX Design",
-            "type": "Course",
-            "level": "Beginner",
-            "description": "Learn user research, wireframes, prototypes and UX principles.",
-            "url": "https://www.coursera.org/professional-certificates/google-ux-design"
-        }
-    ],
-
-    "cloud": [
-        {
-            "title": "AWS Cloud Practitioner Essentials",
-            "type": "Course",
-            "level": "Beginner",
-            "description": "Learn the fundamentals of cloud computing and AWS services.",
-            "url": "https://aws.amazon.com/training/digital/aws-cloud-practitioner-essentials/"
-        },
-        {
-            "title": "Azure Fundamentals",
-            "type": "Course",
-            "level": "Beginner",
-            "description": "Learn cloud concepts and Microsoft Azure services.",
-            "url": "https://learn.microsoft.com/en-us/training/paths/azure-fundamentals-describe-cloud-concepts/"
-        }
-    ],
-
-    "communication": [
-        {
-            "title": "Communication Skills",
-            "type": "Course",
-            "level": "Beginner",
-            "description": "Improve professional communication, speaking and workplace skills.",
-            "url": "https://www.coursera.org/courses?query=communication%20skills"
-        }
-    ],
-
-    "problem solving": [
-        {
-            "title": "Problem Solving Practice",
-            "type": "Practice",
-            "level": "Beginner",
-            "description": "Strengthen logical thinking and problem-solving skills.",
-            "url": "https://www.hackerrank.com/"
-        }
-    ],
-
-    "programming": [
-        {
-            "title": "Programming Fundamentals",
-            "type": "Course",
-            "level": "Beginner",
-            "description": "Build programming fundamentals and logical thinking.",
-            "url": "https://www.freecodecamp.org/learn/"
-        }
-    ],
-
-    "git": [
-        {
+            "type": "Learning",
             "title": "Git Documentation",
-            "type": "Documentation",
+            "description": "Learn version control and Git workflows used in software development.",
             "level": "Beginner",
-            "description": "Learn version control and Git fundamentals.",
             "url": "https://git-scm.com/doc"
         }
     ],
 
-    "java": [
+    "Database": [
         {
-            "title": "Java Documentation",
             "type": "Documentation",
+            "title": "MySQL Documentation",
+            "description": "Learn relational databases, SQL and MySQL.",
             "level": "Beginner",
-            "description": "Learn Java syntax, classes, objects and programming fundamentals.",
-            "url": "https://dev.java/learn/"
+            "url": "https://dev.mysql.com/doc/"
         }
     ],
 
-    "flask": [
+    "Cybersecurity": [
         {
-            "title": "Flask Documentation",
-            "type": "Documentation",
+            "type": "Learning",
+            "title": "OWASP Learning",
+            "description": "Learn fundamental web application security concepts.",
+            "level": "Beginner",
+            "url": "https://owasp.org/"
+        }
+    ],
+
+    "Networking": [
+        {
+            "type": "Learning",
+            "title": "Cisco Networking Basics",
+            "description": "Learn fundamental networking concepts and terminology.",
+            "level": "Beginner",
+            "url": "https://www.cisco.com/c/en/us/solutions/small-business/resource-center/networking/networking-basics.html"
+        }
+    ],
+
+    "Security Analysis": [
+        {
+            "type": "Learning",
+            "title": "OWASP Resources",
+            "description": "Explore application security concepts and security resources.",
             "level": "Intermediate",
-            "description": "Learn how to build web applications with Flask.",
-            "url": "https://flask.palletsprojects.com/"
+            "url": "https://owasp.org/www-project-top-ten/"
         }
     ],
 
-    "pandas": [
+    "Cloud Computing": [
         {
-            "title": "Pandas Documentation",
-            "type": "Documentation",
+            "type": "Learning",
+            "title": "AWS Training",
+            "description": "Learn cloud computing fundamentals and AWS services.",
             "level": "Beginner",
-            "description": "Learn data manipulation and analysis with Pandas.",
-            "url": "https://pandas.pydata.org/docs/"
+            "url": "https://aws.amazon.com/training/"
+        },
+        {
+            "type": "Learning",
+            "title": "Microsoft Learn Azure",
+            "description": "Explore cloud concepts and Azure learning paths.",
+            "level": "Beginner",
+            "url": "https://learn.microsoft.com/en-us/training/azure/"
         }
     ],
 
-    "numpy": [
+    "Linux": [
         {
-            "title": "NumPy Documentation",
-            "type": "Documentation",
+            "type": "Learning",
+            "title": "Linux Documentation",
+            "description": "Learn Linux commands, files, permissions and system concepts.",
             "level": "Beginner",
-            "description": "Learn numerical computing with NumPy.",
-            "url": "https://numpy.org/doc/stable/"
+            "url": "https://www.linux.org/"
         }
     ],
 
-    "ai": [
+    "UI Design": [
         {
-            "title": "Machine Learning Course",
-            "type": "Course",
+            "type": "Learning",
+            "title": "Figma Learn",
+            "description": "Learn interface design and prototyping fundamentals.",
             "level": "Beginner",
-            "description": "Build a foundation in artificial intelligence and machine learning.",
-            "url": "https://www.coursera.org/learn/machine-learning"
+            "url": "https://help.figma.com/hc/en-us/categories/360002051613"
         }
     ],
 
-    "artificial intelligence": [
+    "UX Design": [
         {
-            "title": "AI Foundations",
-            "type": "Course",
+            "type": "Learning",
+            "title": "Nielsen Norman Group",
+            "description": "Explore user experience research and usability principles.",
             "level": "Beginner",
-            "description": "Learn fundamental artificial intelligence concepts.",
-            "url": "https://www.coursera.org/courses?query=artificial%20intelligence"
+            "url": "https://www.nngroup.com/articles/"
         }
     ],
 
-    "database": [
+    "Creativity": [
         {
-            "title": "SQLBolt",
-            "type": "Interactive",
+            "type": "Learning",
+            "title": "Design Principles",
+            "description": "Explore fundamental principles for creating effective designs.",
             "level": "Beginner",
-            "description": "Learn SQL and database fundamentals interactively.",
-            "url": "https://sqlbolt.com/"
+            "url": "https://www.interaction-design.org/literature/topics/design-principles"
         }
     ],
 
-    "database management": [
+    "Communication": [
         {
-            "title": "Database Fundamentals",
-            "type": "Course",
+            "type": "Learning",
+            "title": "Communication Skills",
+            "description": "Develop communication and presentation skills for professional environments.",
             "level": "Beginner",
-            "description": "Learn database design, SQL and database management.",
-            "url": "https://www.coursera.org/courses?query=database%20management"
+            "url": "https://www.coursera.org/articles/communication-skills"
         }
     ]
 }
 
 
-# =========================================================
-# ALIASES
-# =========================================================
+def get_learning_resources(career, missing_skills=None):
+    """
+    Return learning resources relevant to the recommended career.
 
-SKILL_ALIASES = {
+    Missing skills are prioritized first.
+    """
 
-    "coding": "programming",
-    "software development": "programming",
+    roadmap_skills = []
 
-    "web": "javascript",
-    "web development": "javascript",
-    "frontend": "javascript",
-    "backend": "flask",
+    if missing_skills:
+        for item in missing_skills:
+            if isinstance(item, dict):
+                skill = item.get("skill")
+            else:
+                skill = str(item)
 
-    "data": "data analysis",
-    "analytics": "data analysis",
+            if skill:
+                roadmap_skills.append(skill)
 
-    "mathematics": "statistics",
+    # Add common skills for the selected career.
+    career_skills = {
+        "Data Analyst": [
+            "SQL",
+            "Python",
+            "Data Analysis",
+            "Statistics"
+        ],
+        "Data Scientist": [
+            "Python",
+            "Statistics",
+            "Machine Learning",
+            "Data Analysis"
+        ],
+        "AI/ML Engineer": [
+            "Python",
+            "Machine Learning",
+            "Artificial Intelligence",
+            "Statistics"
+        ],
+        "Web Developer": [
+            "HTML/CSS",
+            "JavaScript",
+            "Web Development",
+            "Programming"
+        ],
+        "Software Developer": [
+            "Programming",
+            "Software Development",
+            "Database",
+            "Problem Solving"
+        ],
+        "Cybersecurity Analyst": [
+            "Cybersecurity",
+            "Networking",
+            "Security Analysis",
+            "Python"
+        ],
+        "Cloud Engineer": [
+            "Cloud Computing",
+            "Linux",
+            "Networking",
+            "Programming"
+        ],
+        "UI/UX Designer": [
+            "UI Design",
+            "UX Design",
+            "Creativity",
+            "Communication"
+        ]
+    }
 
-    "deep learning": "machine learning",
-    "tensorflow": "machine learning",
-    "pytorch": "machine learning",
+    for skill in career_skills.get(career, []):
+        if skill not in roadmap_skills:
+            roadmap_skills.append(skill)
 
-    "artificial intelligence": "artificial intelligence",
+    resources = []
 
-    "security": "cybersecurity",
-    "ethical hacking": "cybersecurity",
-    "networking": "cybersecurity",
-    "linux": "cybersecurity",
+    for skill in roadmap_skills:
 
-    "figma": "design",
+        skill_resources = LEARNING_RESOURCES.get(skill, [])
 
-    "mysql": "sql",
-    "postgresql": "sql",
-    "oracle": "sql",
+        if skill_resources:
+            resources.append({
+                "skill": skill,
+                "resources": skill_resources
+            })
 
-    "visualization": "data visualization",
-
-    "object oriented programming": "programming",
-
-    "problem-solving": "problem solving",
-    "problem_solving": "problem solving",
-
-    "git/github": "git",
-    "github": "git"
-}
-
-
-# =========================================================
-# GET LEARNING RESOURCES
-# =========================================================
-
-def get_learning_resources(missing_skills):
-
-    recommendations = []
-
-    if not missing_skills:
-        return recommendations
-
-    used_urls = set()
-
-    for skill in missing_skills:
-
-        original_skill = str(
-            skill
-        ).strip()
-
-        if not original_skill:
-            continue
-
-        normalized_skill = (
-            original_skill.lower()
-        )
-
-        # Exact match
-        resource_key = normalized_skill
-
-        # Alias match
-        if resource_key not in LEARNING_RESOURCES:
-
-            resource_key = SKILL_ALIASES.get(
-                normalized_skill
-            )
-
-        # Nothing found
-        if not resource_key:
-
-            continue
-
-        resources = LEARNING_RESOURCES.get(
-            resource_key,
-            []
-        )
-
-        selected_resources = []
-
-        for resource in resources:
-
-            url = resource.get(
-                "url",
-                ""
-            )
-
-            if not url:
-                continue
-
-            if url in used_urls:
-                continue
-
-            used_urls.add(url)
-
-            selected_resources.append(
-                resource
-            )
-
-        if selected_resources:
-
-            recommendations.append(
-                {
-                    "skill": original_skill,
-                    "resources": selected_resources
-                }
-            )
-
-    return recommendations
+    return resources
