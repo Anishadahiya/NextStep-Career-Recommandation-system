@@ -2886,18 +2886,42 @@ input[type="submit"]:hover {
     .footer {
         padding: 50px 20px 22px;
     }
+}
+/* =====================================================
+   NEXTSTEP FOOTER - FINAL OVERRIDE
+   ===================================================== */
 
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        padding-bottom: 35px;
-    }
+footer.footer {
+    background: linear-gradient(
+        135deg,
+        #172554 0%,
+        #312e81 50%,
+        #1e3a8a 100%
+    ) !important;
 
-    .footer-grid > div:first-child p {
-        max-width: 100%;
-    }
+    color: #ffffff !important;
 
-    .footer-bottom {
-        line-height: 1.7;
-    }
+    border-top: 3px solid #6366f1 !important;
+}
+
+footer.footer h3 {
+    color: #ffffff !important;
+}
+
+footer.footer p {
+    color: #dbeafe !important;
+}
+
+footer.footer a {
+    color: #dbeafe !important;
+    text-decoration: none !important;
+}
+
+footer.footer a:hover {
+    color: #ffffff !important;
+}
+
+footer.footer .footer-bottom {
+    color: #bfdbfe !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
 }

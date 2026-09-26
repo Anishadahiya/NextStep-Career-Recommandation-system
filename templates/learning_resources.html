@@ -1,0 +1,1432 @@
+{% extends "base.html" %}
+
+{% block title %}NextStep | Learning Resources{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* =====================================================
+       LEARNING RESOURCES PAGE
+       ===================================================== */
+
+    .resources-page {
+        background: #f6f8fc;
+        min-height: 100vh;
+        padding-bottom: 70px;
+    }
+
+    /* Hero */
+    .resources-hero {
+        background:
+            radial-gradient(circle at 85% 20%, rgba(99, 102, 241, 0.25), transparent 35%),
+            linear-gradient(135deg, #111827, #1e293b);
+        color: white;
+        padding: 70px 20px;
+    }
+
+    .resources-hero-content {
+        max-width: 1150px;
+        margin: auto;
+        text-align: center;
+    }
+
+    .resources-badge {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 30px;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.15);
+        font-size: 14px;
+        margin-bottom: 18px;
+    }
+
+    .resources-hero h1 {
+        font-size: clamp(32px, 5vw, 52px);
+        margin: 0 0 15px;
+        font-weight: 800;
+    }
+
+    .resources-hero p {
+        max-width: 720px;
+        margin: auto;
+        color: #d1d5db;
+        font-size: 17px;
+        line-height: 1.7;
+    }
+
+    /* Main */
+    .resources-container {
+        max-width: 1150px;
+        margin: -30px auto 0;
+        padding: 0 20px;
+        position: relative;
+    }
+
+    /* Search */
+    .resource-toolbar {
+        background: white;
+        padding: 22px;
+        border-radius: 18px;
+        box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+        margin-bottom: 35px;
+    }
+
+    .search-box {
+        position: relative;
+    }
+
+    .search-box span {
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 20px;
+    }
+
+    .search-box input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 16px 18px 16px 50px;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        font-size: 15px;
+        outline: none;
+        transition: 0.2s ease;
+    }
+
+    .search-box input:focus {
+        border-color: #6366f1;
+        box-shadow: 0 0 0 4px rgba(99,102,241,0.1);
+    }
+
+    /* Category buttons */
+    .category-filter {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+    }
+
+    .filter-btn {
+        border: 1px solid #e5e7eb;
+        background: #f8fafc;
+        color: #374151;
+        padding: 9px 15px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: 0.2s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+        background: #4f46e5;
+        color: white;
+        border-color: #4f46e5;
+    }
+
+    /* Section */
+    .resource-section {
+        margin-bottom: 42px;
+    }
+
+    .section-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 18px;
+    }
+
+    .section-heading h2 {
+        margin: 0;
+        color: #111827;
+        font-size: 24px;
+    }
+
+    .section-count {
+        font-size: 13px;
+        color: #64748b;
+        background: #eef2ff;
+        padding: 7px 12px;
+        border-radius: 20px;
+    }
+
+    /* Cards */
+    .resource-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+    }
+
+    .resource-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 22px;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .resource-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 35px rgba(15, 23, 42, 0.09);
+    }
+
+    .resource-icon {
+        width: 46px;
+        height: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: #eef2ff;
+        font-size: 23px;
+        margin-bottom: 16px;
+    }
+
+    .resource-card h3 {
+        margin: 0 0 8px;
+        color: #111827;
+        font-size: 18px;
+    }
+
+    .resource-card p {
+        margin: 0 0 18px;
+        color: #64748b;
+        line-height: 1.6;
+        font-size: 14px;
+        flex: 1;
+    }
+
+    .resource-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-top: auto;
+    }
+
+    .level {
+        font-size: 12px;
+        font-weight: 600;
+        color: #475569;
+        background: #f1f5f9;
+        padding: 6px 10px;
+        border-radius: 20px;
+    }
+
+    .resource-link {
+        text-decoration: none;
+        color: #4f46e5;
+        font-weight: 700;
+        font-size: 13px;
+    }
+
+    .resource-link:hover {
+        text-decoration: underline;
+    }
+
+    /* No results */
+    .no-results {
+        display: none;
+        text-align: center;
+        background: white;
+        padding: 50px 20px;
+        border-radius: 18px;
+        color: #64748b;
+    }
+
+    .no-results h3 {
+        color: #111827;
+        margin-bottom: 8px;
+    }
+
+    /* Responsive */
+    @media (max-width: 950px) {
+        .resource-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 650px) {
+        .resources-hero {
+            padding: 50px 18px;
+        }
+
+        .resources-container {
+            padding: 0 14px;
+        }
+
+        .resource-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .section-heading {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .resource-toolbar {
+            padding: 16px;
+        }
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="resources-page">
+
+    <!-- HERO -->
+    <section class="resources-hero">
+
+        <div class="resources-hero-content">
+
+            <div class="resources-badge">
+                📚 Computer Applications Learning Hub
+            </div>
+
+            <h1>Learn. Practice. Build.</h1>
+
+            <p>
+                Explore useful learning resources for programming,
+                databases, web development, networking, cybersecurity,
+                cloud computing, AI, software development and more.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- MAIN -->
+    <div class="resources-container">
+
+        <!-- SEARCH / FILTER -->
+        <div class="resource-toolbar">
+
+            <div class="search-box">
+
+                <span>🔎</span>
+
+                <input
+                    type="text"
+                    id="resourceSearch"
+                    placeholder="Search topics like Python, SQL, Java, AI..."
+                    onkeyup="searchResources()"
+                >
+
+            </div>
+
+
+            <div class="category-filter">
+
+                <button
+                    class="filter-btn active"
+                    onclick="filterCategory('all', this)">
+                    All
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterCategory('programming', this)">
+                    Programming
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterCategory('web', this)">
+                    Web Development
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterCategory('database', this)">
+                    Database
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterCategory('system', this)">
+                    Systems
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterCategory('security', this)">
+                    Cybersecurity
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterCategory('data', this)">
+                    Data & AI
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             PROGRAMMING
+             ================================================= -->
+
+        <section
+            class="resource-section"
+            data-category="programming">
+
+            <div class="section-heading">
+
+                <h2>💻 Programming</h2>
+
+                <span class="section-count">
+                    Core Programming
+                </span>
+
+            </div>
+
+
+            <div class="resource-grid">
+
+                <article class="resource-card"
+                         data-search="python programming">
+
+                    <div class="resource-icon">🐍</div>
+
+                    <h3>Python</h3>
+
+                    <p>
+                        Learn Python programming, variables, functions,
+                        data structures, modules and object-oriented programming.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Beginner → Advanced
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://docs.python.org/3/tutorial/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Learn →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="resource-card"
+                         data-search="c programming">
+
+                    <div class="resource-icon">⚙️</div>
+
+                    <h3>C Programming</h3>
+
+                    <p>
+                        Study C syntax, pointers, arrays, functions,
+                        memory management and structured programming.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Beginner
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://en.cppreference.com/w/c"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Learn →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="resource-card"
+                         data-search="c++ cpp programming">
+
+                    <div class="resource-icon">🔧</div>
+
+                    <h3>C++</h3>
+
+                    <p>
+                        Learn C++ programming, STL, classes,
+                        templates and modern C++ concepts.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Beginner → Advanced
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://en.cppreference.com/w/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Learn →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="resource-card"
+                         data-search="java programming">
+
+                    <div class="resource-icon">☕</div>
+
+                    <h3>Java</h3>
+
+                    <p>
+                        Learn Java syntax, classes, objects,
+                        collections, exceptions and application development.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Beginner → Advanced
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://dev.java/learn/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Learn →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="resource-card"
+                         data-search="data structures algorithms dsa">
+
+                    <div class="resource-icon">🧩</div>
+
+                    <h3>Data Structures & Algorithms</h3>
+
+                    <p>
+                        Practice arrays, linked lists, stacks, queues,
+                        trees, graphs, sorting and searching algorithms.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Beginner → Advanced
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://www.geeksforgeeks.org/data-structures/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Practice →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="resource-card"
+                         data-search="object oriented programming oop">
+
+                    <div class="resource-icon">🧱</div>
+
+                    <h3>Object-Oriented Programming</h3>
+
+                    <p>
+                        Understand classes, objects, inheritance,
+                        polymorphism, abstraction and encapsulation.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Intermediate
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://docs.python.org/3/tutorial/classes.html"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Learn →
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             WEB DEVELOPMENT
+             ================================================= -->
+
+        <section
+            class="resource-section"
+            data-category="web">
+
+            <div class="section-heading">
+
+                <h2>🌐 Web Development</h2>
+
+                <span class="section-count">
+                    Frontend + Backend
+                </span>
+
+            </div>
+
+
+            <div class="resource-grid">
+
+                <article class="resource-card"
+                         data-search="html web development">
+
+                    <div class="resource-icon">🌐</div>
+
+                    <h3>HTML</h3>
+
+                    <p>
+                        Learn semantic HTML, page structure,
+                        forms, links, tables and accessibility.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Beginner
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://developer.mozilla.org/en-US/docs/Learn_web_development"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Learn →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="resource-card"
+                         data-search="css web design">
+
+                    <div class="resource-icon">🎨</div>
+
+                    <h3>CSS</h3>
+
+                    <p>
+                        Learn selectors, box model, Flexbox, Grid,
+                        responsive design and modern layouts.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Beginner → Advanced
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://developer.mozilla.org/en-US/docs/Web/CSS"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Learn →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="resource-card"
+                         data-search="javascript js frontend">
+
+                    <div class="resource-icon">⚡</div>
+
+                    <h3>JavaScript</h3>
+
+                    <p>
+                        Learn variables, functions, DOM manipulation,
+                        events, APIs, objects and asynchronous programming.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Beginner → Advanced
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Learn →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="resource-card"
+                         data-search="react frontend framework">
+
+                    <div class="resource-icon">⚛️</div>
+
+                    <h3>React</h3>
+
+                    <p>
+                        Learn components, props, state, hooks and
+                        modern frontend application development.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Intermediate
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://react.dev/learn"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Learn →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="resource-card"
+                         data-search="flask python backend">
+
+                    <div class="resource-icon">🧪</div>
+
+                    <h3>Flask</h3>
+
+                    <p>
+                        Learn Python-based web development,
+                        routes, templates, forms and APIs.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Intermediate
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://flask.palletsprojects.com/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Learn →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="resource-card"
+                         data-search="api rest web services">
+
+                    <div class="resource-icon">🔗</div>
+
+                    <h3>APIs & Web Services</h3>
+
+                    <p>
+                        Understand REST APIs, HTTP methods, JSON,
+                        requests, responses and API integration.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Intermediate
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://developer.mozilla.org/en-US/docs/Web/HTTP"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Learn →
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DATABASE
+             ================================================= -->
+
+        <section
+            class="resource-section"
+            data-category="database">
+
+            <div class="section-heading">
+
+                <h2>🗄️ Database & SQL</h2>
+
+                <span class="section-count">
+                    Data Management
+                </span>
+
+            </div>
+
+
+            <div class="resource-grid">
+
+                <article class="resource-card"
+                         data-search="sql database">
+
+                    <div class="resource-icon">🗃️</div>
+
+                    <h3>SQL</h3>
+
+                    <p>
+                        Learn SELECT, INSERT, UPDATE, DELETE,
+                        joins, grouping, subqueries and database queries.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Beginner → Advanced
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://www.w3schools.com/sql/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Learn →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="resource-card"
+                         data-search="mysql database">
+
+                    <div class="resource-icon">🐬</div>
+
+                    <h3>MySQL</h3>
+
+                    <p>
+                        Learn relational database design,
+                        tables, indexes, queries and administration.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Beginner → Advanced
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://dev.mysql.com/doc/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Documentation →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="resource-card"
+                         data-search="postgresql database">
+
+                    <div class="resource-icon">🐘</div>
+
+                    <h3>PostgreSQL</h3>
+
+                    <p>
+                        Learn relational database concepts,
+                        SQL queries and PostgreSQL features.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Intermediate
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://www.postgresql.org/docs/current/tutorial.html"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Learn →
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SYSTEMS
+             ================================================= -->
+
+        <section
+            class="resource-section"
+            data-category="system">
+
+            <div class="section-heading">
+
+                <h2>🖥️ Operating Systems & Linux</h2>
+
+                <span class="section-count">
+                    Computer Systems
+                </span>
+
+            </div>
+
+
+            <div class="resource-grid">
+
+                <article class="resource-card"
+                         data-search="operating system os">
+
+                    <div class="resource-icon">🖥️</div>
+
+                    <h3>Operating Systems</h3>
+
+                    <p>
+                        Learn processes, threads, memory management,
+                        scheduling, file systems and deadlocks.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Intermediate
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://www.geeksforgeeks.org/operating-systems/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Study →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="resource-card"
+                         data-search="linux operating system">
+
+                    <div class="resource-icon">🐧</div>
+
+                    <h3>Linux</h3>
+
+                    <p>
+                        Learn Linux commands, file systems,
+                        permissions, processes and shell basics.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Beginner → Advanced
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://linuxjourney.com/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Learn →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="resource-card"
+                         data-search="computer architecture">
+
+                    <div class="resource-icon">🔩</div>
+
+                    <h3>Computer Architecture</h3>
+
+                    <p>
+                        Understand CPU, memory, instruction sets,
+                        storage and computer organization.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Intermediate
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://www.geeksforgeeks.org/computer-organization-and-architecture/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Study →
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             NETWORKING
+             ================================================= -->
+
+        <section
+            class="resource-section"
+            data-category="system">
+
+            <div class="section-heading">
+
+                <h2>🌐 Computer Networks</h2>
+
+                <span class="section-count">
+                    Networking Fundamentals
+                </span>
+
+            </div>
+
+
+            <div class="resource-grid">
+
+                <article class="resource-card"
+                         data-search="computer networks networking">
+
+                    <div class="resource-icon">🌐</div>
+
+                    <h3>Computer Networks</h3>
+
+                    <p>
+                        Study OSI and TCP/IP models, protocols,
+                        IP addressing, routing and network devices.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Beginner → Advanced
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://www.geeksforgeeks.org/computer-network-tutorials/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Study →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="resource-card"
+                         data-search="network security cybersecurity">
+
+                    <div class="resource-icon">🔐</div>
+
+                    <h3>Network Security</h3>
+
+                    <p>
+                        Learn network threats, secure communication,
+                        authentication and basic security concepts.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Intermediate
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://www.cisco.com/site/us/en/learn/topics/cybersecurity.html"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Learn →
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CYBERSECURITY
+             ================================================= -->
+
+        <section
+            class="resource-section"
+            data-category="security">
+
+            <div class="section-heading">
+
+                <h2>🔐 Cybersecurity</h2>
+
+                <span class="section-count">
+                    Security & Protection
+                </span>
+
+            </div>
+
+
+            <div class="resource-grid">
+
+                <article class="resource-card"
+                         data-search="cybersecurity information security">
+
+                    <div class="resource-icon">🛡️</div>
+
+                    <h3>Cybersecurity Fundamentals</h3>
+
+                    <p>
+                        Learn common security concepts, threats,
+                        vulnerabilities, authentication and protection.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Beginner
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://www.cisa.gov/topics/cybersecurity-best-practices"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Learn →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="resource-card"
+                         data-search="owasp web security">
+
+                    <div class="resource-icon">🔎</div>
+
+                    <h3>OWASP Web Security</h3>
+
+                    <p>
+                        Study common web application security risks
+                        and secure development practices.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Intermediate
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://top10.owasp.org/2025/en/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Study →
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DATA & AI
+             ================================================= -->
+
+        <section
+            class="resource-section"
+            data-category="data">
+
+            <div class="section-heading">
+
+                <h2>🤖 Data Science & AI</h2>
+
+                <span class="section-count">
+                    Data + Artificial Intelligence
+                </span>
+
+            </div>
+
+
+            <div class="resource-grid">
+
+                <article class="resource-card"
+                         data-search="data analytics data science">
+
+                    <div class="resource-icon">📊</div>
+
+                    <h3>Data Analytics</h3>
+
+                    <p>
+                        Learn data cleaning, analysis, visualization,
+                        statistics and business insights.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Beginner → Advanced
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://www.kaggle.com/learn"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Learn →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="resource-card"
+                         data-search="machine learning ml">
+
+                    <div class="resource-icon">🧠</div>
+
+                    <h3>Machine Learning</h3>
+
+                    <p>
+                        Learn supervised learning, unsupervised learning,
+                        model evaluation and machine learning workflows.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Intermediate
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://scikit-learn.org/stable/user_guide.html"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Learn →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="resource-card"
+                         data-search="artificial intelligence ai">
+
+                    <div class="resource-icon">🤖</div>
+
+                    <h3>Artificial Intelligence</h3>
+
+                    <p>
+                        Explore AI concepts, intelligent systems,
+                        machine learning and modern AI applications.
+                    </p>
+
+                    <div class="resource-meta">
+
+                        <span class="level">
+                            Beginner → Advanced
+                        </span>
+
+                        <a
+                            class="resource-link"
+                            href="https://developers.google.com/machine-learning"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Learn →
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- NO RESULTS -->
+        <div id="noResults" class="no-results">
+
+            <h3>No resources found</h3>
+
+            <p>
+                Try searching for another topic such as Python,
+                SQL, JavaScript, AI or cybersecurity.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    let currentCategory = "all";
+
+
+    function filterCategory(category, button) {
+
+        currentCategory = category;
+
+        document
+            .querySelectorAll(".filter-btn")
+            .forEach(btn => btn.classList.remove("active"));
+
+        button.classList.add("active");
+
+        searchResources();
+    }
+
+
+    function searchResources() {
+
+        const searchText =
+            document
+                .getElementById("resourceSearch")
+                .value
+                .toLowerCase()
+                .trim();
+
+        const sections =
+            document.querySelectorAll(".resource-section");
+
+        let totalVisible = 0;
+
+
+        sections.forEach(section => {
+
+            const sectionCategory =
+                section.dataset.category;
+
+            const cards =
+                section.querySelectorAll(".resource-card");
+
+            let visibleCards = 0;
+
+
+            cards.forEach(card => {
+
+                const searchData =
+                    card.dataset.search.toLowerCase();
+
+                const matchesSearch =
+                    searchText === "" ||
+                    searchData.includes(searchText);
+
+                const matchesCategory =
+                    currentCategory === "all" ||
+                    sectionCategory === currentCategory;
+
+                if (matchesSearch && matchesCategory) {
+
+                    card.style.display = "flex";
+                    visibleCards++;
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+
+            if (visibleCards > 0) {
+
+                section.style.display = "block";
+                totalVisible += visibleCards;
+
+            } else {
+
+                section.style.display = "none";
+
+            }
+
+        });
+
+
+        document.getElementById("noResults").style.display =
+            totalVisible === 0 ? "block" : "none";
+    }
+
+</script>
+
+{% endblock %}
