@@ -1305,128 +1305,128 @@
 
                         <a
                             class="resource-link"
-                            href="https://developers.google.com/machine-learning"
-                            target="_blank"
-                            rel="noopener noreferrer">
-                            Learn →
-                        </a>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- NO RESULTS -->
-        <div id="noResults" class="no-results">
-
-            <h3>No resources found</h3>
-
-            <p>
-                Try searching for another topic such as Python,
-                SQL, JavaScript, AI or cybersecurity.
-            </p>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<script>
-
-    let currentCategory = "all";
-
-
-    function filterCategory(category, button) {
-
-        currentCategory = category;
-
-        document
-            .querySelectorAll(".filter-btn")
-            .forEach(btn => btn.classList.remove("active"));
-
-        button.classList.add("active");
-
-        searchResources();
-    }
-
-
-    function searchResources() {
-
-        const searchText =
-            document
-                .getElementById("resourceSearch")
-                .value
-                .toLowerCase()
-                .trim();
-
-        const sections =
-            document.querySelectorAll(".resource-section");
-
-        let totalVisible = 0;
-
-
-        sections.forEach(section => {
-
-            const sectionCategory =
-                section.dataset.category;
-
-            const cards =
-                section.querySelectorAll(".resource-card");
-
-            let visibleCards = 0;
-
-
-            cards.forEach(card => {
-
-                const searchData =
-                    card.dataset.search.toLowerCase();
-
-                const matchesSearch =
-                    searchText === "" ||
-                    searchData.includes(searchText);
-
-                const matchesCategory =
-                    currentCategory === "all" ||
-                    sectionCategory === currentCategory;
-
-                if (matchesSearch && matchesCategory) {
-
-                    card.style.display = "flex";
-                    visibleCards++;
-
-                } else {
-
-                    card.style.display = "none";
-
-                }
-
-            });
-
-
-            if (visibleCards > 0) {
-
-                section.style.display = "block";
-                totalVisible += visibleCards;
-
-            } else {
-
-                section.style.display = "none";
-
-            }
-
-        });
-
-
-        document.getElementById("noResults").style.display =
-            totalVisible === 0 ? "block" : "none";
-    }
-
-</script>
-
-{% endblock %}
+                            href="https://developers.google.com/machine-learning" 
+                            target="_blank" 
+                            rel="noopener noreferrer"> 
+                            Learn → 
+                        </a> 
+ 
+                    </div> 
+ 
+                </article> 
+ 
+            </div> 
+ 
+        </section> 
+ 
+ 
+        <!-- NO RESULTS --> 
+        <div id="noResults" class="no-results"> 
+ 
+            <h3>No resources found</h3> 
+ 
+            <p> 
+                Try searching for another topic such as Python, 
+                SQL, JavaScript, AI or cybersecurity. 
+            </p> 
+ 
+        </div> 
+ 
+    </div> 
+ 
+</div> 
+ 
+ 
+<script> 
+ 
+    let currentCategory = "all"; 
+ 
+ 
+    function filterCategory(category, button) { 
+ 
+        currentCategory = category; 
+ 
+        document 
+            .querySelectorAll(".filter-btn") 
+            .forEach(btn => btn.classList.remove("active")); 
+ 
+        button.classList.add("active"); 
+ 
+        searchResources(); 
+    } 
+ 
+ 
+    function searchResources() { 
+ 
+        const searchText = 
+            document 
+                .getElementById("resourceSearch") 
+                .value 
+                .toLowerCase() 
+                .trim(); 
+ 
+        const sections = 
+            document.querySelectorAll(".resource-section"); 
+ 
+        let totalVisible = 0; 
+ 
+ 
+        sections.forEach(section => { 
+ 
+            const sectionCategory = 
+                section.dataset.category; 
+ 
+            const cards = 
+                section.querySelectorAll(".resource-card"); 
+ 
+            let visibleCards = 0; 
+ 
+ 
+            cards.forEach(card => { 
+ 
+                const searchData = 
+                    card.dataset.search.toLowerCase(); 
+ 
+                const matchesSearch = 
+                    searchText === "" || 
+                    searchData.includes(searchText); 
+ 
+                const matchesCategory = 
+                    currentCategory === "all" || 
+                    sectionCategory === currentCategory; 
+ 
+                if (matchesSearch && matchesCategory) { 
+ 
+                    card.style.display = "flex"; 
+                    visibleCards++; 
+ 
+                } else { 
+ 
+                    card.style.display = "none"; 
+ 
+                } 
+ 
+            }); 
+ 
+ 
+            if (visibleCards > 0) { 
+ 
+                section.style.display = "block"; 
+                totalVisible += visibleCards; 
+ 
+            } else { 
+ 
+                section.style.display = "none"; 
+ 
+            } 
+ 
+        }); 
+ 
+ 
+        document.getElementById("noResults").style.display = 
+            totalVisible === 0 ? "block" : "none"; 
+    } 
+ 
+</script> 
+ 
+{% endblock %} give me this code again but there is heavy css styling make the page beautiful and simple
