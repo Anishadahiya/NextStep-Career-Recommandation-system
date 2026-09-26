@@ -1,295 +1,634 @@
-<!DOCTYPE html> 
-<html lang="en"> 
- 
-<head> 
- 
-    <meta charset="UTF-8"> 
- 
-    <meta 
-        name="viewport" 
-        content="width=device-width, initial-scale=1.0" 
-    > 
- 
-    <meta 
-        name="description" 
-        content="NextStep - AI-powered career recommendation and skill development platform" 
-    > 
- 
-    <title> 
-        {% block title %} 
-        NextStep 
-        {% endblock %} 
-    </title> 
- 
-    <link 
-        rel="stylesheet" 
-        href="{{ url_for('static', filename='css/style.css') }}" 
-    > 
-      
-     {% block extra_css %} 
- {% endblock %}  
- 
-</head> 
- 
- 
-<body> 
- 
-    <!-- ===================================================== 
-         NAVBAR 
-         ===================================================== --> 
- 
-    <header class="navbar"> 
- 
-        <div class="navbar-container"> 
- 
-            <!-- LOGO --> 
- 
-            <a 
-                href="{{ url_for('home') }}" 
-                class="logo" 
-            > 
- 
-                <span class="logo-icon">  
-                    🧭 
-                </span> 
- 
-                Next<span>Step</span> 
- 
-            </a> 
- 
- 
-            <!-- NAVIGATION --> 
- 
-            <nav class="nav-links"> 
- 
-                <a 
-                    href="{{ url_for('home') }}" 
-                > 
-                    Home 
-                </a> 
- 
-                <a  
-                     href="{{ url_for('learning_resources') }}"  
->  
-                    📚 Resources  
-                </a> 
- 
- 
-                {% if session.get("user_id") %} 
- 
-                    <a 
-                        href="{{ url_for('assessment') }}" 
-                    > 
-                        🎯 Assessment 
-                    </a> 
- 
- 
-                    <a 
-                        href="{{ url_for('arcade') }}" 
-                    > 
-                        🎮 Arcade 
-                    </a> 
- 
- 
-                    <a 
-                        href="{{ url_for('dashboard') }}" 
-                    > 
-                        📊 Dashboard 
-                    </a> 
- 
- 
-                    <a 
-                        href="{{ url_for('logout') }}" 
-                    > 
-                        Logout 
-                    </a> 
- 
-                {% else %} 
- 
-                    <a 
-                        href="{{ url_for('login') }}" 
-                    > 
-                        Login 
-                    </a> 
- 
- 
-                    <a 
-                        href="{{ url_for('register') }}" 
-                        class="nav-cta" 
-                    > 
-                        Get Started 
-                    </a> 
- 
-                {% endif %} 
- 
-            </nav> 
- 
-        </div> 
- 
-    </header> 
- 
- 
-    <!-- ===================================================== 
-         FLASH MESSAGES 
-         ===================================================== --> 
- 
-    {% with messages = get_flashed_messages() %} 
- 
-        {% if messages %} 
- 
-            <div class="flash-container"> 
- 
-                {% for message in messages %} 
- 
-                    <div class="alert"> 
-                        {{ message }} 
-                    </div> 
- 
-                {% endfor %} 
- 
-            </div> 
- 
-        {% endif %} 
- 
-    {% endwith %} 
- 
- 
-    <!-- ===================================================== 
-         MAIN CONTENT 
-         ===================================================== --> 
- 
-    <main> 
- 
-        {% block content %} 
- 
-        {% endblock %} 
- 
-    </main> 
- 
- 
-    <!-- ===================================================== 
-         FOOTER 
-         ===================================================== --> 
- 
-    <footer class="footer"> 
- 
-        <div class="container"> 
- 
-            <div class="footer-grid"> 
- 
-                <!-- ABOUT --> 
- 
-                <div> 
- 
-                    <h3> 
-                         NextStep 
-                    </h3> 
- 
-                    <p> 
-                        Discover your career direction, 
-                        understand your skill gaps, and 
-                        build your next step. 
-                    </p> 
- 
-                </div> 
- 
- 
-                <!-- PLATFORM --> 
- 
-                <div> 
- 
-                    <h3> 
-                        Platform 
-                    </h3> 
- 
-                    <p> 
-                        <a 
-                            href="{{ url_for('assessment') }}" 
-                        > 
-                            Career Assessment 
-                        </a> 
-                    </p> 
- 
-                    {% if session.get("user_id") %} 
- 
-                    <p> 
-                        <a 
-                            href="{{ url_for('arcade') }}" 
-                        > 
-                            🎮 Career Arcade 
-                        </a> 
-                    </p> 
- 
-                    <p> 
-                        <a 
-                            href="{{ url_for('dashboard') }}" 
-                        > 
-                            📊 Dashboard 
-                        </a> 
-                    </p> 
- 
-                    {% endif %} 
- 
-                </div> 
- 
- 
-                <!-- FEATURES --> 
- 
-                <div> 
- 
-                    <h3> 
-                        Features 
-                    </h3> 
- 
-                    <p> 
-                        🤖 Career Recommendation 
-                    </p> 
- 
-                    <p> 
-                        🔍 Skill Gap Analysis 
-                    </p> 
- 
-                    <p> 
-                        🗺️ Learning Roadmap 
-                    </p> 
- 
-                 <p> 
-                  📚 Learning Resources 
-               </p> 
-                 
- 
-                </div> 
- 
-            </div> 
- 
- 
-            <!-- FOOTER BOTTOM --> 
- 
-            <div class="footer-bottom"> 
- 
-                © 
-                <span data-current-year> 
-                    2026 
-                </span> 
- 
-                NextStep 
-                · Career Recommendation Platform 
- 
-            </div> 
- 
-        </div> 
- 
-    </footer> 
- 
- 
-    <!-- ===================================================== 
-         JAVASCRIPT 
-         ===================================================== --> 
- 
-    <script 
-        src="{{ url_for('static', filename='js/main.js') }}" 
-    ></script> 
- 
-</body> 
- 
-</html> this is my base.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="NextStep - AI-powered career recommendation and skill development platform"
+    >
+
+    <title>
+        {% block title %}
+        NextStep
+        {% endblock %}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    {% block extra_css %}
+    {% endblock %}
+
+
+    {% if session.get("user_id") %}
+
+    <style>
+
+        /* =====================================================
+           LOGGED-IN SIDEBAR
+           ===================================================== */
+
+        .nextstep-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+
+            width: 240px;
+            height: 100vh;
+
+            background: #ffffff;
+
+            border-right: 1px solid #e5e7eb;
+
+            z-index: 9999;
+
+            display: flex;
+            flex-direction: column;
+
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.04);
+        }
+
+
+        /* LOGO */
+
+        .nextstep-sidebar-logo {
+            height: 75px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 22px;
+
+            border-bottom: 1px solid #eeeeee;
+
+            text-decoration: none;
+
+            color: #222222;
+
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+
+        .nextstep-sidebar-logo-icon {
+            margin-right: 9px;
+
+            font-size: 23px;
+        }
+
+
+        /* NAVIGATION */
+
+        .nextstep-sidebar-nav {
+            padding: 22px 12px;
+        }
+
+
+        .nextstep-sidebar-title {
+            padding: 0 12px;
+
+            margin-bottom: 10px;
+
+            color: #999999;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+
+        .nextstep-sidebar-link {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding: 12px 13px;
+
+            margin-bottom: 5px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            color: #555555;
+
+            font-size: 14px;
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease;
+        }
+
+
+        .nextstep-sidebar-link:hover {
+            background: #f3f4f6;
+
+            color: #111111;
+        }
+
+
+        .nextstep-sidebar-icon {
+            width: 24px;
+
+            text-align: center;
+
+            font-size: 17px;
+        }
+
+
+        /* LOGOUT */
+
+        .nextstep-sidebar-logout {
+            position: absolute;
+
+            bottom: 20px;
+
+            left: 12px;
+
+            right: 12px;
+
+            border-top: 1px solid #eeeeee;
+
+            padding-top: 12px;
+        }
+
+
+        /* MAIN CONTENT */
+
+        body.nextstep-logged-in main {
+            margin-left: 240px;
+        }
+
+
+        body.nextstep-logged-in .footer {
+            margin-left: 240px;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .nextstep-sidebar {
+                width: 210px;
+            }
+
+
+            body.nextstep-logged-in main {
+                margin-left: 0;
+            }
+
+
+            body.nextstep-logged-in .footer {
+                margin-left: 0;
+            }
+
+        }
+
+    </style>
+
+    {% endif %}
+
+</head>
+
+
+<body class="{% if session.get('user_id') %}nextstep-logged-in{% endif %}">
+
+
+    <!-- =====================================================
+         LOGGED-IN SIDEBAR
+         ===================================================== -->
+
+    {% if session.get("user_id") %}
+
+    <aside class="nextstep-sidebar">
+
+
+        <!-- LOGO -->
+
+        <a
+            href="{{ url_for('home') }}"
+            class="nextstep-sidebar-logo"
+        >
+
+            <span class="nextstep-sidebar-logo-icon">
+                🧭
+            </span>
+
+            NextStep
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="nextstep-sidebar-nav">
+
+
+            <div class="nextstep-sidebar-title">
+                Menu
+            </div>
+
+
+            <!-- HOME -->
+
+            <a
+                href="{{ url_for('home') }}"
+                class="nextstep-sidebar-link"
+            >
+
+                <span class="nextstep-sidebar-icon">
+                    🏠
+                </span>
+
+                <span>
+                    Home
+                </span>
+
+            </a>
+
+
+            <!-- LEARNING -->
+
+            <a
+                href="{{ url_for('learning_resources') }}"
+                class="nextstep-sidebar-link"
+            >
+
+                <span class="nextstep-sidebar-icon">
+                    📚
+                </span>
+
+                <span>
+                    Learning
+                </span>
+
+            </a>
+
+
+            <!-- ASSESSMENT -->
+
+            <a
+                href="{{ url_for('assessment') }}"
+                class="nextstep-sidebar-link"
+            >
+
+                <span class="nextstep-sidebar-icon">
+                    🎯
+                </span>
+
+                <span>
+                    Assessment
+                </span>
+
+            </a>
+
+
+            <!-- ARCADE -->
+
+            <a
+                href="{{ url_for('arcade') }}"
+                class="nextstep-sidebar-link"
+            >
+
+                <span class="nextstep-sidebar-icon">
+                    🎮
+                </span>
+
+                <span>
+                    Arcade
+                </span>
+
+            </a>
+
+
+            <!-- DASHBOARD -->
+
+            <a
+                href="{{ url_for('dashboard') }}"
+                class="nextstep-sidebar-link"
+            >
+
+                <span class="nextstep-sidebar-icon">
+                    📊
+                </span>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+        </nav>
+
+
+        <!-- LOGOUT -->
+
+        <div class="nextstep-sidebar-logout">
+
+            <a
+                href="{{ url_for('logout') }}"
+                class="nextstep-sidebar-link"
+            >
+
+                <span class="nextstep-sidebar-icon">
+                    🚪
+                </span>
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+        </div>
+
+
+    </aside>
+
+    {% endif %}
+
+
+
+    <!-- =====================================================
+         BEFORE LOGIN NAVBAR
+         ===================================================== -->
+
+    {% if not session.get("user_id") %}
+
+    <header class="navbar">
+
+        <div class="navbar-container">
+
+
+            <!-- LOGO -->
+
+            <a
+                href="{{ url_for('home') }}"
+                class="logo"
+            >
+
+                <span class="logo-icon">
+                    🧭
+                </span>
+
+                Next<span>Step</span>
+
+            </a>
+
+
+            <!-- NAVIGATION -->
+
+            <nav class="nav-links">
+
+
+                <a
+                    href="{{ url_for('home') }}"
+                >
+                    Home
+                </a>
+
+
+                <a
+                    href="{{ url_for('learning_resources') }}"
+                >
+                    📚 Resources
+                </a>
+
+
+                <a
+                    href="{{ url_for('login') }}"
+                >
+                    Login
+                </a>
+
+
+                <a
+                    href="{{ url_for('register') }}"
+                    class="nav-cta"
+                >
+                    Get Started
+                </a>
+
+
+            </nav>
+
+        </div>
+
+    </header>
+
+    {% endif %}
+
+
+
+    <!-- =====================================================
+         FLASH MESSAGES
+         ===================================================== -->
+
+    {% with messages = get_flashed_messages() %}
+
+        {% if messages %}
+
+            <div class="flash-container">
+
+                {% for message in messages %}
+
+                    <div class="alert">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+    {% endwith %}
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
+    <main>
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+
+                <!-- ABOUT -->
+
+                <div>
+
+                    <h3>
+                        NextStep
+                    </h3>
+
+                    <p>
+                        Discover your career direction,
+                        understand your skill gaps, and
+                        build your next step.
+                    </p>
+
+                </div>
+
+
+                <!-- PLATFORM -->
+
+                <div>
+
+                    <h3>
+                        Platform
+                    </h3>
+
+                    <p>
+
+                        <a
+                            href="{{ url_for('assessment') }}"
+                        >
+                            Career Assessment
+                        </a>
+
+                    </p>
+
+
+                    {% if session.get("user_id") %}
+
+                    <p>
+
+                        <a
+                            href="{{ url_for('learning_resources') }}"
+                        >
+                            📚 Learning Resources
+                        </a>
+
+                    </p>
+
+
+                    <p>
+
+                        <a
+                            href="{{ url_for('arcade') }}"
+                        >
+                            🎮 Career Arcade
+                        </a>
+
+                    </p>
+
+
+                    <p>
+
+                        <a
+                            href="{{ url_for('dashboard') }}"
+                        >
+                            📊 Dashboard
+                        </a>
+
+                    </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- FEATURES -->
+
+                <div>
+
+                    <h3>
+                        Features
+                    </h3>
+
+                    <p>
+                        🤖 Career Recommendation
+                    </p>
+
+                    <p>
+                        🔍 Skill Gap Analysis
+                    </p>
+
+                    <p>
+                        🗺️ Learning Roadmap
+                    </p>
+
+                    <p>
+                        📚 Learning Resources
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- FOOTER BOTTOM -->
+
+            <div class="footer-bottom">
+
+                ©
+
+                <span data-current-year>
+                    2026
+                </span>
+
+                NextStep
+                · Career Recommendation Platform
+
+            </div>
+
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script
+        src="{{ url_for('static', filename='js/main.js') }}"
+    ></script>
+
+
+</body>
+
+</html>
