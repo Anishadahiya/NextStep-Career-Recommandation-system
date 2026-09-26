@@ -8,249 +8,228 @@ NextStep | Career Arcade
 
 <link
     rel="stylesheet"
-    href="{{ url_for('static', filename='css/arcade.css') }}"
+    href="{{ url_for('static', filename='css/arcade.css') }}?v=3"
 >
 
 {% endblock %}
 
+
 {% block content %}
 
-<div class="container">
-
-<div class="container">
+<div class="arcade-page">
 
     <!-- =====================================================
-         ARCADE HEADER
+         HERO SECTION
          ===================================================== -->
 
-    <section class="arcade-section">
+    <section class="arcade-hero">
 
-        <div class="arcade-header">
+        <div class="hero-content">
 
-            <div
-                style="
-                    font-size: 3rem;
-                    margin-bottom: 10px;
-                "
-            >
-                🎮
+            <div class="hero-badge">
+                🎮 Career Arcade
             </div>
 
-            <h2>
-                Welcome to the NextStep Career Arcade
-            </h2>
+            <h1>
+                <span>Level Up</span>
+                <span>Your Future</span>
+            </h1>
 
             <p>
-                Learn career skills, test your knowledge,
-                earn XP and unlock achievements.
+                Play, learn and earn XP! Complete fun career games,
+                build new skills and unlock achievements on your
+                journey to the right career.
             </p>
 
         </div>
+
+
+        <div class="hero-visual">
+
+            <div class="hero-stars">
+                <span>✦</span>
+                <span>★</span>
+                <span>✦</span>
+            </div>
+
+            <div class="game-controller">
+                🎮
+            </div>
+
+            <div class="hero-motivation">
+                <span>Small Steps</span>
+                <span>Big Dreams</span>
+
+                <div class="motivation-line"></div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
+    <main class="arcade-container">
 
 
         <!-- =================================================
              PLAYER STATS
              ================================================= -->
 
-    
-<!-- =================================================
-     PLAYER STATS
-     ================================================= -->
-
-<div class="stats-grid">
-
-    <!-- TOTAL XP -->
-
-    <div class="card stat-card">
-
-        <div class="stat-icon">
-            ⭐
-        </div>
-
-        <div class="stat-number">
-            {{ game_stats.xp }}
-        </div>
-
-        <div class="stat-label">
-            Total XP
-        </div>
-
-    </div>
+        <section class="stats-grid">
 
 
-    <!-- LEVEL -->
+            <!-- XP -->
 
-    <div class="card stat-card">
+            <div class="stat-card">
 
-        <div class="stat-icon">
-            🚀
-        </div>
-
-        <div class="stat-number">
-            {{ game_stats.level }}
-        </div>
-
-        <div class="stat-label">
-            Current Level
-        </div>
-
-    </div>
-
-
-    <!-- BADGES -->
-
-    <div class="card stat-card">
-
-        <div class="stat-icon">
-            🏆
-        </div>
-
-        <div class="stat-number">
-            {{ game_stats.badges|length }}
-        </div>
-
-        <div class="stat-label">
-            Badges Unlocked
-        </div>
-
-    </div>
-
-
-    <!-- STREAK -->
-
-    <div class="card stat-card">
-
-        <div class="stat-icon">
-            🔥
-        </div>
-
-        <div class="stat-number">
-            {{ game_stats.streak }}
-        </div>
-
-        <div class="stat-label">
-            Game Streak
-        </div>
-
-    </div>
-
-</div>
-
-
-        <!-- =================================================
-             LEVEL PROGRESS
-             ================================================= -->
-
-        <div
-            class="card"
-            style="
-                padding: 26px;
-                margin-top: 20px;
-            "
-        >
-
-            <div
-                style="
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    gap: 15px;
-                    flex-wrap: wrap;
-                    margin-bottom: 10px;
-                "
-            >
-
-                <div>
-
-                    <strong>
-                        🚀 Level {{ game_stats.level }}
-                    </strong>
-
+                <div class="stat-icon grayscale-icon">
+                    ⭐
                 </div>
 
+                <div class="stat-content">
 
-                <div
-                    style="
-                        color: var(--muted);
-                        font-size: 0.82rem;
-                    "
-                >
+                    <span class="stat-title">
+                        XP
+                    </span>
 
-                    {{ game_stats.xp_in_level }}
-                    /
-                    {{ game_stats.xp_needed }}
-                    XP
+                    <strong class="stat-number">
+                        {{ game_stats.xp }}
+                    </strong>
+
+                    <span class="stat-description">
+                        Total XP Earned
+                    </span>
 
                 </div>
 
             </div>
 
 
-         <div class="modern-progress">
+            <!-- LEVEL -->
 
-        <div
-        id="arcade-progress-bar"
-        class="modern-progress-bar"
-        data-progress="{{ game_stats.progress }}"
-        ></div>
+            <div class="stat-card">
 
-     </div>
+                <div class="stat-icon grayscale-icon">
+                    📊
+                </div>
+
+                <div class="stat-content">
+
+                    <span class="stat-title">
+                        Level
+                    </span>
+
+                    <strong class="stat-number">
+                        {{ game_stats.level }}
+                    </strong>
+
+                    <span class="stat-description">
+                        Keep going!
+                    </span>
+
+                </div>
+
+            </div>
 
 
-            <p
-                style="
-                    color: var(--muted);
-                    font-size: 0.78rem;
-                    margin-top: 10px;
-                "
-            >
-                Earn XP by completing games and challenges.
-            </p>
+            <!-- STREAK -->
 
-        </div>
+            <div class="stat-card">
+
+                <div class="stat-icon grayscale-icon">
+                    🔥
+                </div>
+
+                <div class="stat-content">
+
+                    <span class="stat-title">
+                        Current Streak
+                    </span>
+
+                    <strong class="stat-number">
+                        {{ game_stats.streak }}
+                    </strong>
+
+                    <span class="stat-description">
+                        Days in a row
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- BADGES -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon grayscale-icon">
+                    🏅
+                </div>
+
+                <div class="stat-content">
+
+                    <span class="stat-title">
+                        Badges
+                    </span>
+
+                    <strong class="stat-number">
+                        {{ game_stats.badges|length }}
+                    </strong>
+
+                    <span class="stat-description">
+                        Unlocked
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
 
 
         <!-- =================================================
-             GAME SECTION
+             FEATURED GAMES
              ================================================= -->
 
-        <section
-            style="
-                margin-top: 45px;
-            "
-        >
+        <section class="games-section">
 
-            <div class="section-header">
-
-                <div class="section-label">
-                    Play & Learn
-                </div>
+            <div class="section-heading">
 
                 <h2>
-                    Choose Your Challenge 🎯
+                    Featured Games
                 </h2>
 
                 <p>
-                    Every game helps you learn while
-                    building your career knowledge.
+                    Choose a game, test your knowledge and earn XP!
                 </p>
 
             </div>
 
 
-            <div class="game-grid">
+            <div class="games-grid">
 
 
-                <!-- ==========================================
+                <!-- =================================================
                      SKILL QUIZ
-                     ========================================== -->
+                     ================================================= -->
 
-                <div
-                    class="game-card"
-                >
+                <article class="game-card">
 
-                    <div class="game-icon">
-                        🧠
+                    <div class="game-card-top">
+
+                        <div class="game-icon grayscale-icon">
+                            🧠
+                        </div>
+
+                        <span class="xp-badge">
+                            +10–40 XP
+                        </span>
+
                     </div>
 
                     <h3>
@@ -258,41 +237,37 @@ NextStep | Career Arcade
                     </h3>
 
                     <p>
-                        Test your knowledge of Python,
-                        SQL, AI, web development and more.
+                        Test your knowledge with fun multiple
+                        choice questions and earn XP.
                     </p>
-
-                    <div
-                        style="
-                            margin-bottom: 15px;
-                            font-size: 0.76rem;
-                            font-weight: 700;
-                            color: #6c5ce7;
-                        "
-                    >
-                        ⭐ Earn up to 110 XP
-                    </div>
 
                     <a
                         href="{{ url_for('skill_quiz') }}"
-                        class="game-play-button"
+                        class="play-button"
                     >
-                        🧠 Play Quiz →
+                        Play Now
+                        <span>→</span>
                     </a>
 
-                </div>
+                </article>
 
 
-                <!-- ==========================================
+                <!-- =================================================
                      CAREER SPRINT
-                     ========================================== -->
+                     ================================================= -->
 
-                <div
-                    class="game-card"
-                >
+                <article class="game-card">
 
-                    <div class="game-icon">
-                        ⚡
+                    <div class="game-card-top">
+
+                        <div class="game-icon grayscale-icon">
+                            ⚡
+                        </div>
+
+                        <span class="xp-badge">
+                            +15–75 XP
+                        </span>
+
                     </div>
 
                     <h3>
@@ -300,41 +275,37 @@ NextStep | Career Arcade
                     </h3>
 
                     <p>
-                        Answer rapid-fire career questions
-                        before the 30-second timer ends.
+                        Quick 5-question challenge.
+                        How fast can you get it right?
                     </p>
-
-                    <div
-                        style="
-                            margin-bottom: 15px;
-                            font-size: 0.76rem;
-                            font-weight: 700;
-                            color: #e17055;
-                        "
-                    >
-                        🔥 Timed Challenge
-                    </div>
 
                     <a
                         href="{{ url_for('career_sprint') }}"
-                        class="game-play-button"
+                        class="play-button"
                     >
-                        ⚡ Start Sprint →
+                        Play Now
+                        <span>→</span>
                     </a>
 
-                </div>
+                </article>
 
 
-                <!-- ==========================================
+                <!-- =================================================
                      CAREER MATCH
-                     ========================================== -->
+                     ================================================= -->
 
-                <div
-                    class="game-card"
-                >
+                <article class="game-card">
 
-                    <div class="game-icon">
-                        🧩
+                    <div class="game-card-top">
+
+                        <div class="game-icon grayscale-icon">
+                            🧩
+                        </div>
+
+                        <span class="xp-badge">
+                            +15–75 XP
+                        </span>
+
                     </div>
 
                     <h3>
@@ -342,29 +313,19 @@ NextStep | Career Arcade
                     </h3>
 
                     <p>
-                        Match technical skills to the
-                        careers that use them.
+                        Match the skills with the right career
+                        and discover your strengths.
                     </p>
-
-                    <div
-                        style="
-                            margin-bottom: 15px;
-                            font-size: 0.76rem;
-                            font-weight: 700;
-                            color: #00a884;
-                        "
-                    >
-                        🏆 Earn XP & Badge
-                    </div>
 
                     <a
                         href="{{ url_for('career_match') }}"
-                        class="game-play-button"
+                        class="play-button"
                     >
-                        🧩 Play Match →
+                        Play Now
+                        <span>→</span>
                     </a>
 
-                </div>
+                </article>
 
             </div>
 
@@ -372,215 +333,50 @@ NextStep | Career Arcade
 
 
         <!-- =================================================
-             QUICK REWARDS
+             ACHIEVEMENTS
              ================================================= -->
 
-        <section
-            style="
-                margin-top: 45px;
-            "
-        >
+        <section class="achievements-section">
 
-            <div class="section-header">
-
-                <div class="section-label">
-                    Gamification
-                </div>
+            <div class="section-heading">
 
                 <h2>
-                    ⭐ Your NextStep Rewards
+                    Your Achievements
                 </h2>
 
                 <p>
-                    Complete challenges and unlock new
-                    achievements.
+                    Collect badges and show off your progress!
                 </p>
 
             </div>
 
 
-            <div class="features-grid">
-
-
-                <!-- XP -->
-
-                <div class="card feature-card">
-
-                    <div class="feature-icon">
-                        ⭐
-                    </div>
-
-                    <h3>
-                        Earn XP
-                    </h3>
-
-                    <p>
-                        Earn experience points by completing
-                        quizzes and career challenges.
-                    </p>
-
-                </div>
-
-
-                <!-- LEVEL -->
-
-                <div class="card feature-card">
-
-                    <div class="feature-icon">
-                        🚀
-                    </div>
-
-                    <h3>
-                        Level Up
-                    </h3>
-
-                    <p>
-                        Every 100 XP moves you toward the
-                        next career-explorer level.
-                    </p>
-
-                </div>
-
-
-                <!-- BADGES -->
-
-                <div class="card feature-card">
-
-                    <div class="feature-icon">
-                        🏆
-                    </div>
-
-                    <h3>
-                        Unlock Badges
-                    </h3>
-
-                    <p>
-                        Complete special activities to
-                        unlock achievement badges.
-                    </p>
-
-                </div>
-
-
-                <!-- STREAK -->
-
-                <div class="card feature-card">
-
-                    <div class="feature-icon">
-                        🔥
-                    </div>
-
-                    <h3>
-                        Build Your Streak
-                    </h3>
-
-                    <p>
-                        Keep completing challenges and
-                        build your Career Arcade streak.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             BADGES
-             ================================================= -->
-
-        <section
-            style="
-                margin-top: 50px;
-            "
-        >
-
-            <div class="section-header">
-
-                <div class="section-label">
-                    Achievements
-                </div>
-
-                <h2>
-                    🏆 Your Badges
-                </h2>
-
-                <p>
-                    Keep playing to unlock all achievements.
-                </p>
-
-            </div>
-
-
-            <div class="badge-grid">
+            <div class="achievement-grid">
 
                 {% for badge in all_badges %}
 
-                {% set unlocked =
-                    badge.id in game_stats.badges
-                %}
+                {% set unlocked = badge.id in game_stats.badges %}
 
 
                 <div
-                    class="achievement-badge"
-                    {% if unlocked %}
-                    style="
-                        border-color: #6c5ce7;
-                        background: #faf9ff;
-                    "
-                    {% endif %}
+                    class="achievement-card {% if unlocked %}unlocked{% endif %}"
                 >
 
-                    <div class="badge-icon">
+                    <div class="achievement-icon grayscale-icon">
                         {{ badge.icon }}
                     </div>
 
+                    <div class="achievement-content">
 
-                    <strong>
-                        {{ badge.name }}
-                    </strong>
+                        <strong>
+                            {{ badge.name }}
+                        </strong>
 
+                        <span>
+                            {{ badge.description }}
+                        </span>
 
-                    <span
-                        style="
-                            display: block;
-                            margin-top: 6px;
-                            color: var(--muted);
-                            font-size: 0.72rem;
-                            line-height: 1.4;
-                        "
-                    >
-                        {{ badge.description }}
-                    </span>
-
-
-                    {% if unlocked %}
-
-                    <div
-                        style="
-                            margin-top: 9px;
-                            color: #00a884;
-                            font-size: 0.72rem;
-                            font-weight: 800;
-                        "
-                    >
-                        ✓ UNLOCKED
                     </div>
-
-                    {% else %}
-
-                    <div
-                        style="
-                            margin-top: 9px;
-                            color: var(--muted);
-                            font-size: 0.72rem;
-                        "
-                    >
-                        🔒 Locked
-                    </div>
-
-                    {% endif %}
 
                 </div>
 
@@ -592,67 +388,42 @@ NextStep | Career Arcade
 
 
         <!-- =================================================
-             CAREER MOTIVATION
+             MOTIVATION
              ================================================= -->
 
-        <section
-            style="
-                margin: 55px 0 75px;
-            "
-        >
+        <section class="bottom-motivation">
 
-            <div
-                class="arcade-header"
-                style="
-                    text-align: center;
-                "
-            >
+            <h2>
+                Keep Going. Keep Growing.
+            </h2>
 
-                <div
-                    style="
-                        font-size: 2.4rem;
-                        margin-bottom: 10px;
-                    "
+            <p>
+                Every challenge you complete takes you
+                one step closer to your career goals.
+            </p>
+
+            <div class="bottom-buttons">
+
+                <a
+                    href="{{ url_for('assessment') }}"
+                    class="secondary-button"
                 >
-                    🚀
-                </div>
+                    Retake Assessment
+                </a>
 
-                <h2>
-                    Every Game Takes You One Step Further
-                </h2>
-
-                <p>
-                    Learn. Play. Improve. Build your career.
-                </p>
-
-
-                <div
-                    style="
-                        margin-top: 22px;
-                    "
+                <a
+                    href="{{ url_for('dashboard') }}"
+                    class="secondary-button"
                 >
-
-                    <a
-                        href="{{ url_for('assessment') }}"
-                        class="btn btn-secondary"
-                    >
-                        🎯 Retake Assessment
-                    </a>
-
-                    <a
-                        href="{{ url_for('dashboard') }}"
-                        class="btn btn-secondary"
-                    >
-                        📊 View Dashboard
-                    </a>
-
-                </div>
+                    View Dashboard
+                </a>
 
             </div>
 
         </section>
 
-    </section>
+
+    </main>
 
 </div>
 
