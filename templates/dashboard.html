@@ -1,888 +1,605 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | NextStep</title>
 
-    <title>Career Dashboard</title>
-
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
     <style>
-
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-
 
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            background: #f4f6f9;
+            background: #f4f7fb;
             color: #1f2937;
+            line-height: 1.6;
         }
 
-
-        /* NAVIGATION */
-
         .navbar {
-            background: #1f2937;
+            background: #111827;
             color: white;
-            padding: 18px 30px;
-
+            padding: 16px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-
-            flex-wrap: wrap;
         }
 
-
-        .navbar h2 {
-            margin: 0;
+        .navbar h1 {
+            font-size: 24px;
         }
 
-
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-
-
-        .nav-links a {
+        .navbar a {
             color: white;
             text-decoration: none;
+            margin-left: 20px;
         }
 
-
-        .nav-links a:hover {
+        .navbar a:hover {
             text-decoration: underline;
         }
 
-
-        /* MAIN CONTAINER */
-
         .container {
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 20px;
+            width: 90%;
+            max-width: 1200px;
+            margin: 35px auto;
         }
-
-
-        /* WELCOME */
 
         .welcome {
             background: white;
-            padding: 30px;
-            border-radius: 12px;
+            padding: 25px;
+            border-radius: 14px;
             margin-bottom: 25px;
-
-            box-shadow:
-                0 3px 10px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         }
 
-
-        .welcome h1 {
-            margin-top: 0;
+        .welcome h2 {
+            margin-bottom: 8px;
         }
 
+        .button {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 11px 18px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
 
-        /* CARDS */
+        .button:hover {
+            background: #1d4ed8;
+        }
 
-        .cards {
+        .grid {
             display: grid;
-
-            grid-template-columns:
-                repeat(auto-fit, minmax(220px, 1fr));
-
-            gap: 20px;
-
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
             margin-bottom: 25px;
         }
-
 
         .card {
             background: white;
             padding: 25px;
-            border-radius: 12px;
-
-            box-shadow:
-                0 3px 10px rgba(0, 0, 0, 0.08);
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         }
-
 
         .card h3 {
-            margin-top: 0;
+            margin-bottom: 18px;
+            color: #111827;
         }
-
-
-        .career {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-
-        /* SECTIONS */
-
-        .section {
-            background: white;
-            padding: 25px;
-            margin-top: 25px;
-            border-radius: 12px;
-
-            box-shadow:
-                0 3px 10px rgba(0, 0, 0, 0.08);
-        }
-
-
-        /* SKILL BARS */
 
         .score {
-            margin: 18px 0;
+            margin-bottom: 15px;
         }
 
-
-        .score-title {
+        .score-header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 7px;
+            margin-bottom: 6px;
+            font-size: 14px;
         }
 
-
-        .bar {
+        .progress {
+            width: 100%;
+            height: 10px;
             background: #e5e7eb;
-            height: 14px;
             border-radius: 10px;
             overflow: hidden;
         }
 
-
-        .fill {
-            background: #2563eb;
+        .progress-bar {
             height: 100%;
-            border-radius: 10px;
-        }
-
-
-        /* HISTORY */
-
-        .history-card {
-            border: 1px solid #e5e7eb;
-            padding: 18px;
-            border-radius: 10px;
-            margin-top: 15px;
-        }
-
-
-        .history-card h3 {
-            margin-top: 0;
-        }
-
-
-        /* BUTTON */
-
-        .button {
-            display: inline-block;
-
-            padding: 12px 20px;
-
             background: #2563eb;
+            border-radius: 10px;
+        }
 
-            color: white;
-
-            text-decoration: none;
-
+        .career-box {
+            background: #eff6ff;
+            border-left: 5px solid #2563eb;
+            padding: 18px;
             border-radius: 8px;
-
-            margin-top: 15px;
+            margin-bottom: 20px;
         }
 
-
-        .button:hover {
-            opacity: 0.9;
+        .career-box h4 {
+            color: #1d4ed8;
+            margin-bottom: 5px;
         }
 
+        .history {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
 
-        /* EMPTY STATE */
+        .history th,
+        .history td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: left;
+        }
+
+        .history th {
+            background: #f9fafb;
+        }
 
         .empty {
+            padding: 25px;
             text-align: center;
-            padding: 40px;
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         }
-
-
-        /* CHART */
 
         .chart-container {
             position: relative;
-
             width: 100%;
-
-            max-width: 900px;
-
-            height: 400px;
-
-            margin: auto;
+            height: 350px;
         }
 
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #6b7280;
+            font-size: 14px;
+        }
 
-        /* MOBILE */
-
-        @media (max-width: 600px) {
-
-            .navbar {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
+        @media (max-width: 800px) {
+            .grid {
+                grid-template-columns: 1fr;
             }
 
-
-            .nav-links {
+            .navbar {
+                padding: 15px 20px;
                 flex-direction: column;
                 gap: 10px;
             }
 
+            .navbar a {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
 
             .container {
-                padding: 10px;
+                width: 94%;
             }
-
-
-            .welcome {
-                padding: 20px;
-            }
-
-
-            .section {
-                padding: 20px;
-            }
-
-
-            .chart-container {
-                height: 300px;
-            }
-
         }
-
     </style>
-
 </head>
-
 
 <body>
 
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+    <nav class="navbar">
+        <h1>NextStep</h1>
 
-    <!-- ============================== -->
-    <!-- NAVIGATION -->
-    <!-- ============================== -->
-
-    <div class="navbar">
-
-        <h2>
-            🤖 AI Career Advisor
-        </h2>
-
-
-        <div class="nav-links">
-
-            <a href="/">
-                Home
-            </a>
-
-            <a href="/assessment">
-                Assessment
-            </a>
-
-            <a href="/logout">
-                Logout
-            </a>
-
+        <div>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('assessment') }}">Assessment</a>
+            <a href="{{ url_for('arcade') }}">Arcade</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
         </div>
-
-    </div>
-
-
-    <!-- ============================== -->
-    <!-- MAIN -->
-    <!-- ============================== -->
-
-    <div class="container">
+    </nav>
 
 
-        <!-- ============================== -->
-        <!-- WELCOME -->
-        <!-- ============================== -->
+    <main class="container">
 
-        <div class="welcome">
+        <!-- =========================
+             WELCOME SECTION
+        ========================== -->
+        <section class="welcome">
 
-            <h1>
+            <h2>
                 Welcome,
-                {{ session.get("user_name") }}! 👋
-            </h1>
-
+                {{ session.get("user_name", "User") }}!
+            </h2>
 
             <p>
-                Track your career recommendations,
-                skills, assessments and learning progress.
+                Here you can view your career assessment results,
+                skill scores and recommended career.
             </p>
 
+            {% if assessments %}
 
-            <a
-                href="/assessment"
-                class="button"
-            >
-                🚀 Take New Assessment
-            </a>
+                <a
+                    href="{{ url_for(
+                        'career_details',
+                        career_name=assessments[0]['recommended_career']
+                    ) }}"
+                    class="button"
+                >
+                    View Career Details
+                </a>
 
-        </div>
+            {% endif %}
 
+        </section>
 
-        <!-- ============================== -->
-        <!-- CHECK ASSESSMENTS -->
-        <!-- ============================== -->
 
         {% if assessments %}
 
+            <!-- =========================
+                 CURRENT RECOMMENDATION
+            ========================== -->
+            <section class="card" style="margin-bottom: 25px;">
 
-            <!-- ============================== -->
-            <!-- SUMMARY CARDS -->
-            <!-- ============================== -->
+                <h3>Recommended Career</h3>
 
-            <div class="cards">
+                <div class="career-box">
 
+                    <h4>
+                        {{ assessments[0]["recommended_career"] }}
+                    </h4>
 
-                <!-- CAREER -->
-
-                <div class="card">
-
-                    <h3>
-                        🎯 Latest Career
-                    </h3>
-
-                    <p class="career">
-
-                        {{ assessments[0].recommended_career }}
-
-                    </p>
-                    <a
-                   href="{{ url_for('career_details', career_name=assessments[0].recommended_career) }}"
-                   class="button"
->
-                🔎 View Career Details
-                  </a>
-
-                </div>
-
-
-                <!-- ASSESSMENT COUNT -->
-
-                <div class="card">
-
-                    <h3>
-                        📊 Total Assessments
-                    </h3>
-
-                    <p class="career">
-
-                        {{ assessments|length }}
-
+                    <p>
+                        This career was recommended based on your
+                        latest assessment results.
                     </p>
 
                 </div>
 
+                <a
+                    href="{{ url_for(
+                        'career_details',
+                        career_name=assessments[0]['recommended_career']
+                    ) }}"
+                    class="button"
+                >
+                    Explore Career
+                </a>
 
-                <!-- PYTHON -->
+            </section>
 
+
+            <!-- =========================
+                 SCORE + CHART
+            ========================== -->
+            <section class="grid">
+
+                <!-- Skill Scores -->
                 <div class="card">
 
-                    <h3>
-                        🐍 Python
-                    </h3>
+                    <h3>Your Latest Skill Scores</h3>
 
-                    <p class="career">
 
-                        {{ assessments[0].python_score }}/10
+                    <div class="score">
 
-                    </p>
+                        <div class="score-header">
+                            <span>Python</span>
+                            <span>
+                                {{ assessments[0]["python_score"] }}/10
+                            </span>
+                        </div>
+
+                        <div class="progress">
+                            <div
+                                class="progress-bar"
+                                style="width: {{ assessments[0]['python_score'] * 10 }}%;"
+                            ></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="score">
+
+                        <div class="score-header">
+                            <span>SQL</span>
+                            <span>
+                                {{ assessments[0]["sql_score"] }}/10
+                            </span>
+                        </div>
+
+                        <div class="progress">
+                            <div
+                                class="progress-bar"
+                                style="width: {{ assessments[0]['sql_score'] * 10 }}%;"
+                            ></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="score">
+
+                        <div class="score-header">
+                            <span>Web Development</span>
+                            <span>
+                                {{ assessments[0]["web_score"] }}/10
+                            </span>
+                        </div>
+
+                        <div class="progress">
+                            <div
+                                class="progress-bar"
+                                style="width: {{ assessments[0]['web_score'] * 10 }}%;"
+                            ></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="score">
+
+                        <div class="score-header">
+                            <span>Data</span>
+                            <span>
+                                {{ assessments[0]["data_score"] }}/10
+                            </span>
+                        </div>
+
+                        <div class="progress">
+                            <div
+                                class="progress-bar"
+                                style="width: {{ assessments[0]['data_score'] * 10 }}%;"
+                            ></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="score">
+
+                        <div class="score-header">
+                            <span>AI</span>
+                            <span>
+                                {{ assessments[0]["ai_score"] }}/10
+                            </span>
+                        </div>
+
+                        <div class="progress">
+                            <div
+                                class="progress-bar"
+                                style="width: {{ assessments[0]['ai_score'] * 10 }}%;"
+                            ></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="score">
+
+                        <div class="score-header">
+                            <span>Communication</span>
+                            <span>
+                                {{ assessments[0]["communication_score"] }}/10
+                            </span>
+                        </div>
+
+                        <div class="progress">
+                            <div
+                                class="progress-bar"
+                                style="width: {{ assessments[0]['communication_score'] * 10 }}%;"
+                            ></div>
+                        </div>
+
+                    </div>
 
                 </div>
 
 
-                <!-- SQL -->
-
+                <!-- Chart -->
                 <div class="card">
 
-                    <h3>
-                        🗄️ SQL
-                    </h3>
+                    <h3>Skill Overview</h3>
 
-                    <p class="career">
-
-                        {{ assessments[0].sql_score }}/10
-
-                    </p>
-
-                </div>
-
-
-            </div>
-
-
-            <!-- ============================== -->
-            <!-- SKILL BARS -->
-            <!-- ============================== -->
-
-            <div class="section">
-
-                <h2>
-                    📈 Latest Skill Assessment
-                </h2>
-
-
-                <!-- PYTHON -->
-
-                <div class="score">
-
-                    <div class="score-title">
-
-                        <strong>
-                            Python
-                        </strong>
-
-                        <span>
-                            {{ assessments[0].python_score }}/10
-                        </span>
-
-                    </div>
-
-
-                    <div class="bar">
-
-                        <div
-                            class="fill"
-                            style="width: {{ assessments[0].python_score * 10 }}%;"
-                        ></div>
-
+                    <div class="chart-container">
+                        <canvas id="skillChart"></canvas>
                     </div>
 
                 </div>
 
+            </section>
 
-                <!-- SQL -->
 
-                <div class="score">
+            <!-- =========================
+                 ASSESSMENT HISTORY
+            ========================== -->
+            <section class="card">
 
-                    <div class="score-title">
+                <h3>Assessment History</h3>
 
-                        <strong>
-                            SQL
-                        </strong>
+                <table class="history">
 
-                        <span>
-                            {{ assessments[0].sql_score }}/10
-                        </span>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Recommended Career</th>
+                            <th>Python</th>
+                            <th>SQL</th>
+                            <th>Web</th>
+                            <th>Data</th>
+                            <th>AI</th>
+                            <th>Communication</th>
+                        </tr>
+                    </thead>
 
-                    </div>
+                    <tbody>
 
+                        {% for assessment in assessments %}
 
-                    <div class="bar">
+                            <tr>
 
-                        <div
-                            class="fill"
-                            style="width: {{ assessments[0].sql_score * 10 }}%;"
-                        ></div>
+                                <td>
+                                    {{ assessment["created_at"] }}
+                                </td>
 
-                    </div>
+                                <td>
+                                    {{ assessment["recommended_career"] }}
+                                </td>
 
-                </div>
+                                <td>
+                                    {{ assessment["python_score"] }}/10
+                                </td>
 
+                                <td>
+                                    {{ assessment["sql_score"] }}/10
+                                </td>
 
-                <!-- WEB -->
+                                <td>
+                                    {{ assessment["web_score"] }}/10
+                                </td>
 
-                <div class="score">
+                                <td>
+                                    {{ assessment["data_score"] }}/10
+                                </td>
 
-                    <div class="score-title">
+                                <td>
+                                    {{ assessment["ai_score"] }}/10
+                                </td>
 
-                        <strong>
-                            Web Development
-                        </strong>
+                                <td>
+                                    {{ assessment["communication_score"] }}/10
+                                </td>
 
-                        <span>
-                            {{ assessments[0].web_score }}/10
-                        </span>
+                            </tr>
 
-                    </div>
+                        {% endfor %}
 
+                    </tbody>
 
-                    <div class="bar">
+                </table>
 
-                        <div
-                            class="fill"
-                            style="width: {{ assessments[0].web_score * 10 }}%;"
-                        ></div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- DATA -->
-
-                <div class="score">
-
-                    <div class="score-title">
-
-                        <strong>
-                            Data Analysis
-                        </strong>
-
-                        <span>
-                            {{ assessments[0].data_score }}/10
-                        </span>
-
-                    </div>
-
-
-                    <div class="bar">
-
-                        <div
-                            class="fill"
-                            style="width: {{ assessments[0].data_score * 10 }}%;"
-                        ></div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- AI -->
-
-                <div class="score">
-
-                    <div class="score-title">
-
-                        <strong>
-                            Artificial Intelligence
-                        </strong>
-
-                        <span>
-                            {{ assessments[0].ai_score }}/10
-                        </span>
-
-                    </div>
-
-
-                    <div class="bar">
-
-                        <div
-                            class="fill"
-                            style="width: {{ assessments[0].ai_score * 10 }}%;"
-                        ></div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- COMMUNICATION -->
-
-                <div class="score">
-
-                    <div class="score-title">
-
-                        <strong>
-                            Communication
-                        </strong>
-
-                        <span>
-                            {{ assessments[0].communication_score }}/10
-                        </span>
-
-                    </div>
-
-
-                    <div class="bar">
-
-                        <div
-                            class="fill"
-                            style="width: {{ assessments[0].communication_score * 10 }}%;"
-                        ></div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- ============================== -->
-            <!-- CHART -->
-            <!-- ============================== -->
-
-            <div class="section">
-
-                <h2>
-                    📊 Your Skill Profile
-                </h2>
-
-
-                <div class="chart-container">
-
-                    <canvas id="skillChart"></canvas>
-
-                </div>
-
-            </div>
-
-
-            <!-- ============================== -->
-            <!-- ASSESSMENT HISTORY -->
-            <!-- ============================== -->
-
-            <div class="section">
-
-                <h2>
-                    📋 Assessment History
-                </h2>
-
-
-                {% for assessment in assessments %}
-
-
-                    <div class="history-card">
-
-                        <h3>
-                            🎯
-                            {{ assessment.recommended_career }}
-                        </h3>
-
-
-                        <p>
-                            <strong>
-                                Assessment ID:
-                            </strong>
-
-                            {{ assessment.id }}
-                        </p>
-
-
-                        <p>
-                            <strong>
-                                Date:
-                            </strong>
-
-                            {{ assessment.created_at }}
-                        </p>
-
-
-                        <p>
-                            Python:
-                            {{ assessment.python_score }}/10
-                        </p>
-
-
-                        <p>
-                            SQL:
-                            {{ assessment.sql_score }}/10
-                        </p>
-
-
-                        <p>
-                            Data Analysis:
-                            {{ assessment.data_score }}/10
-                        </p>
-
-
-                        <p>
-                            AI:
-                            {{ assessment.ai_score }}/10
-                        </p>
-
-
-                    </div>
-
-
-                {% endfor %}
-
-
-            </div>
+            </section>
 
 
         {% else %}
 
+            <!-- =========================
+                 NO ASSESSMENT
+            ========================== -->
+            <section class="empty">
 
-            <!-- ============================== -->
-            <!-- NO ASSESSMENTS -->
-            <!-- ============================== -->
-
-            <div class="section empty">
-
-                <h2>
-                    📋 No Assessments Yet
-                </h2>
-
+                <h3>No Assessment Found</h3>
 
                 <p>
-                    Complete your first career assessment
-                    to receive an AI career recommendation.
+                    You have not completed a career assessment yet.
                 </p>
 
-
                 <a
-                    href="/assessment"
+                    href="{{ url_for('assessment') }}"
                     class="button"
                 >
-                    🚀 Start Assessment
+                    Take Assessment
                 </a>
 
-            </div>
-
+            </section>
 
         {% endif %}
 
+    </main>
 
-    </div>
+
+    <footer>
+        <p>
+            NextStep Career Recommendation System
+        </p>
+    </footer>
 
 
-    <!-- ============================== -->
-    <!-- CHART.JS SCRIPT -->
-    <!-- ============================== -->
+    <!-- =========================
+         CHART SCRIPT
+    ========================== -->
 
     {% if assessments %}
 
     <script>
-
         const skillLabels = [
-
             "Python",
-
             "SQL",
-
-            "Web Development",
-
-            "Data Analysis",
-
+            "Web",
+            "Data",
             "AI",
-
             "Communication"
-
         ];
 
-
-        const skillScores = [
-
-            {{ assessments[0].python_score }},
-
-            {{ assessments[0].sql_score }},
-
-            {{ assessments[0].web_score }},
-
-            {{ assessments[0].data_score }},
-
-            {{ assessments[0].ai_score }},
-
-            {{ assessments[0].communication_score }}
-
+        const skillValues = [
+            {{ assessments[0]["python_score"] | int }},
+            {{ assessments[0]["sql_score"] | int }},
+            {{ assessments[0]["web_score"] | int }},
+            {{ assessments[0]["data_score"] | int }},
+            {{ assessments[0]["ai_score"] | int }},
+            {{ assessments[0]["communication_score"] | int }}
         ];
 
-
-        const chartData = {
-
-            labels: skillLabels,
-
-            datasets: [
-
-                {
-
-                    label: "Skill Score",
-
-                    data: skillScores,
-
-                    borderWidth: 2
-
-                }
-
-            ]
-
-        };
-
-
-        const chartConfig = {
-
-            type: "bar",
-
-            data: chartData,
-
-            options: {
-
-                responsive: true,
-
-                maintainAspectRatio: false,
-
-                scales: {
-
-                    y: {
-
-                        beginAtZero: true,
-
-                        max: 10,
-
-                        ticks: {
-
-                            stepSize: 1
-
-                        },
-
-                        title: {
-
-                            display: true,
-
-                            text: "Score (0 - 10)"
-
-                        }
-
-                    }
-
-                },
-
-                plugins: {
-
-                    legend: {
-
-                        display: true
-
-                    }
-
-                }
-
-            }
-
-        };
-
-
-        const skillChartElement =
+        const chartElement =
             document.getElementById("skillChart");
 
+        if (chartElement) {
 
-        new Chart(
+            new Chart(chartElement, {
+                type: "bar",
 
-            skillChartElement,
+                data: {
+                    labels: skillLabels,
 
-            chartConfig
+                    datasets: [
+                        {
+                            label: "Skill Score",
+                            data: skillValues
+                        }
+                    ]
+                },
 
-        );
+                options: {
+                    responsive: true,
 
+                    maintainAspectRatio: false,
+
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            min: 0,
+                            max: 10,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    },
+
+                    plugins: {
+                        legend: {
+                            display: true
+                        }
+                    }
+                }
+            });
+
+        }
     </script>
 
     {% endif %}
 
-
 </body>
-
 </html>

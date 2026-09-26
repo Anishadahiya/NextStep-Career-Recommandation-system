@@ -25,6 +25,9 @@
         rel="stylesheet"
         href="{{ url_for('static', filename='css/style.css') }}"
     >
+     
+     {% block extra_css %}
+ {% endblock %} 
 
 </head>
 
@@ -46,8 +49,8 @@
                 class="logo"
             >
 
-                <span class="logo-icon">
-                    🚀
+                <span class="logo-icon"> 
+                    🧭
                 </span>
 
                 Next<span>Step</span>
@@ -173,7 +176,7 @@
                 <div>
 
                     <h3>
-                        🚀 NextStep
+                         NextStep
                     </h3>
 
                     <p>

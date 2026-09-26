@@ -1,82 +1,145 @@
 # ml/career_model.py
 
-from sklearn.tree import DecisionTreeClassifier
+import numpy as np
+from sklearn.ensemble import RandomForestClassifier
 
 
-# ==========================================
-# TRAINING DATA
-# ==========================================
-
-X = [
-    [9, 9, 8, 9, 5, 8],   # Data Analyst
-    [8, 9, 7, 9, 9, 7],   # Data Scientist
-    [9, 6, 8, 6, 10, 7],  # AI Engineer
-    [9, 5, 10, 4, 6, 8],  # Web Developer
-    [6, 6, 4, 5, 8, 6],   # Cybersecurity
-    [5, 10, 3, 6, 4, 5],  # Database Administrator
-    [3, 2, 8, 2, 2, 9]    # UI/UX Designer
-]
-
-
-y = [
+CAREERS = [
     "Data Analyst",
     "Data Scientist",
-    "AI / Machine Learning Engineer",
+    "AI/ML Engineer",
     "Web Developer",
+    "Software Developer",
     "Cybersecurity Analyst",
-    "Database Administrator",
+    "Cloud Engineer",
     "UI/UX Designer"
 ]
 
 
-# ==========================================
-# CREATE MODEL
-# ==========================================
+# Career profiles used to create a small training dataset.
+CAREER_PROFILES = {
+    "Data Analyst": [
+        7, 9, 3, 10, 5, 8,
+        9, 3, 2, 4, 6, 8
+    ],
 
-model = DecisionTreeClassifier(
+    "Data Scientist": [
+        9, 7, 2, 10, 10, 6,
+        10, 2, 2, 5, 8, 10
+    ],
+
+    "AI/ML Engineer": [
+        10, 5, 2, 9, 10, 5,
+        10, 2, 3, 6, 10, 10
+    ],
+
+    "Web Developer": [
+        5, 5, 10, 3, 3, 6,
+        3, 9, 4, 6, 9, 8
+    ],
+
+    "Software Developer": [
+        8, 6, 7, 4, 5, 6,
+        5, 4, 4, 5, 10, 10
+    ],
+
+    "Cybersecurity Analyst": [
+        6, 5, 3, 5, 4, 6,
+        6, 2, 10, 8, 7, 9
+    ],
+
+    "Cloud Engineer": [
+        7, 5, 4, 4, 4, 6,
+        5, 2, 8, 10, 8, 9
+    ],
+
+    "UI/UX Designer": [
+        2, 2, 7, 3, 2, 8,
+        3, 10, 1, 2, 4, 7
+    ]
+}
+
+
+def create_training_data():
+    """
+    Create training examples from the career profiles.
+    """
+
+    X = []
+    y = []
+
+    for career, profile in CAREER_PROFILES.items():
+
+        # Original profile
+        X.append(profile)
+        y.append(career)
+
+        # Slight variations of the profile
+        for _ in range(20):
+
+            variation = []
+
+            for value in profile:
+                change = np.random.randint(-2, 3)
+                new_value = max(1, min(10, value + change))
+                variation.append(new_value)
+
+            X.append(variation)
+            y.append(career)
+
+    return np.array(X), np.array(y)
+
+
+# Create training data
+X_train, y_train = create_training_data()
+
+
+# Create and train the model
+model = RandomForestClassifier(
+    n_estimators=100,
     random_state=42
 )
 
-
-# ==========================================
-# TRAIN MODEL
-# ==========================================
-
-model.fit(X, y)
+model.fit(X_train, y_train)
 
 
-# ==========================================
-# PREDICT CAREER
-# ==========================================
+def predict_career(user_scores):
+    """
+    Predict the most suitable career using the ML model.
 
-def predict_career(
-    python_score,
-    sql_score,
-    web_score,
-    data_score,
-    ai_score,
-    communication_score
-):
+    user_scores must contain the 12 assessment fields.
+    """
 
-    user_data = [[
-        python_score,
-        sql_score,
-        web_score,
-        data_score,
-        ai_score,
-        communication_score
-    ]]
+    feature_names = [
+        "python_score",
+        "sql_score",
+        "web_score",
+        "data_score",
+        "ai_score",
+        "communication_score",
+        "statistics_interest",
+        "design_interest",
+        "security_interest",
+        "cloud_interest",
+        "programming_interest",
+        "problem_solving"
+    ]
 
-    prediction = model.predict(
-        user_data
-    )
+    values = [
+        user_scores.get(field, 0)
+        for field in feature_names
+    ]
 
-    return prediction[0]
+    prediction = model.predict([values])[0]
 
+    probabilities = model.predict_proba([values])[0]
 
-# ==========================================
-# GET CONFIDENCE
-# ==========================================
+    confidence = max(probabilities) * 100
+
+    return {
+        "career": prediction,
+        "confidence": round(confidence, 2)
+    }
 
 def get_prediction_confidence(
     python_score,
@@ -86,60 +149,21 @@ def get_prediction_confidence(
     ai_score,
     communication_score
 ):
-
-    user_data = [[
+    scores = [
         python_score,
         sql_score,
         web_score,
         data_score,
         ai_score,
         communication_score
-    ]]
+    ]
 
-    probabilities = model.predict_proba(
-        user_data
-    )[0]
+    if not scores:
+        return 0
 
-    confidence = max(
-        probabilities
-    ) * 100
+    average_score = sum(scores) / len(scores)
 
-    return round(
-        confidence,
-        2
-    )
+    confidence = (average_score / 10) * 100
 
-
-# ==========================================
-# TEST MODEL
-# ==========================================
-
-if __name__ == "__main__":
-
-    career = predict_career(
-        9,
-        9,
-        4,
-        9,
-        5,
-        8
-    )
-
-    confidence = get_prediction_confidence(
-        9,
-        9,
-        4,
-        9,
-        5,
-        8
-    )
-
-    print(
-        "Predicted Career:",
-        career
-    )
-
-    print(
-        "Confidence:",
-        str(confidence) + "%"
-    )
+    return round(confidence, 2)
+    
