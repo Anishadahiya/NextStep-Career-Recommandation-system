@@ -497,7 +497,10 @@ def home():
     return render_template(
         "index.html"
     )
-
+    
+@app.route("/learning-resources")
+def learning_resources():
+    return render_template("learning_resources.html")
 
 # =========================================================
 # REGISTER
