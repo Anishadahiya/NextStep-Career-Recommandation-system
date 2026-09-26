@@ -40,10 +40,7 @@ from utils.learning_roadmap import get_learning_roadmap
 
 from utils.learning_resources import get_learning_resources
 
-from ml.career_model import (
-    predict_career,
-    get_prediction_confidence
-)
+from ml.career_model import predict_career
 
 
 # =========================================================
@@ -498,9 +495,14 @@ def home():
         "index.html"
     )
 
+
 @app.route("/learning-resources")
 def learning_resources():
-    return render_template("learning_resources.html")
+
+    return render_template(
+        "learning_resources.html"
+    )
+
 
 # =========================================================
 # REGISTER
@@ -1333,23 +1335,13 @@ def assessment():
     # ML PREDICTION
     # =====================================================
 
-    ml_career = predict_career(
-        python_score,
-        sql_score,
-        web_score,
-        data_score,
-        ai_score,
-        communication_score
+    ml_prediction = predict_career(
+        user_scores
     )
 
-    ml_confidence = get_prediction_confidence(
-        python_score,
-        sql_score,
-        web_score,
-        data_score,
-        ai_score,
-        communication_score
-    )
+    ml_career = ml_prediction["career"]
+
+    ml_confidence = ml_prediction["confidence"]
 
     # =====================================================
     # PROCESS RECOMMENDATION
