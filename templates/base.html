@@ -25,86 +25,764 @@
         rel="stylesheet"
         href="{{ url_for('static', filename='css/style.css') }}"
     >
-     
-     {% block extra_css %}
- {% endblock %} 
+
+    {% block extra_css %}
+    {% endblock %}
+
+    <!-- =====================================================
+         LOGGED-IN SIDEBAR CSS
+         This only affects the sidebar layout after login.
+         ===================================================== -->
+
+    {% if session.get("user_id") %}
+
+    <style>
+
+        /* =====================================================
+           LOGGED-IN LAYOUT
+           ===================================================== */
+
+        .logged-in-layout {
+            min-height: 100vh;
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+           ===================================================== */
+
+        .nextstep-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 245px;
+            height: 100vh;
+
+            background: #ffffff;
+
+            border-right: 1px solid #e5e7eb;
+
+            display: flex;
+            flex-direction: column;
+
+            z-index: 1000;
+
+            box-shadow: 3px 0 15px rgba(0, 0, 0, 0.04);
+        }
+
+
+        /* =====================================================
+           SIDEBAR LOGO
+           ===================================================== */
+
+        .sidebar-logo {
+            height: 78px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 25px;
+
+            border-bottom: 1px solid #eeeeee;
+
+            text-decoration: none;
+
+            color: #222222;
+
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .sidebar-logo-icon {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-right: 10px;
+
+            border-radius: 10px;
+
+            background: #f1f3f5;
+
+            font-size: 21px;
+        }
+
+        .sidebar-logo span:last-child {
+            color: #555555;
+        }
+
+
+        /* =====================================================
+           SIDEBAR NAVIGATION
+           ===================================================== */
+
+        .sidebar-nav {
+            flex: 1;
+
+            padding: 25px 14px;
+
+            overflow-y: auto;
+        }
+
+
+        .sidebar-section-title {
+            padding: 0 13px;
+            margin: 0 0 10px;
+
+            color: #9a9da1;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+
+            gap: 13px;
+
+            width: 100%;
+
+            padding: 12px 14px;
+
+            margin-bottom: 5px;
+
+            border-radius: 9px;
+
+            color: #555b61;
+
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 500;
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+
+        .sidebar-link:hover {
+            background: #f3f4f6;
+
+            color: #222222;
+
+            transform: translateX(2px);
+        }
+
+
+        .sidebar-link-icon {
+            width: 25px;
+
+            text-align: center;
+
+            font-size: 18px;
+        }
+
+
+        .sidebar-link-text {
+            flex: 1;
+        }
+
+
+        /* =====================================================
+           LOGOUT
+           ===================================================== */
+
+        .sidebar-logout {
+            margin-top: 20px;
+
+            border-top: 1px solid #eeeeee;
+
+            padding-top: 18px;
+        }
+
+
+        .sidebar-logout .sidebar-link {
+            color: #666666;
+        }
+
+
+        .sidebar-logout .sidebar-link:hover {
+            background: #f5f5f5;
+
+            color: #222222;
+        }
+
+
+        /* =====================================================
+           MAIN CONTENT AFTER LOGIN
+           ===================================================== */
+
+        .logged-in-main {
+            margin-left: 245px;
+
+            min-height: 100vh;
+
+            width: calc(100% - 245px);
+        }
+
+
+        /* =====================================================
+           FLASH MESSAGES
+           ===================================================== */
+
+        .logged-in-main .flash-container {
+            margin: 20px auto;
+
+            width: 92%;
+        }
+
+
+        /* =====================================================
+           MOBILE SIDEBAR BUTTON
+           ===================================================== */
+
+        .sidebar-mobile-header {
+            display: none;
+        }
+
+
+        .sidebar-overlay {
+            display: none;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+           ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .nextstep-sidebar {
+                width: 220px;
+            }
+
+            .logged-in-main {
+                margin-left: 220px;
+
+                width: calc(100% - 220px);
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .nextstep-sidebar {
+                left: -250px;
+
+                width: 245px;
+
+                transition: left 0.25s ease;
+            }
+
+
+            .nextstep-sidebar.sidebar-open {
+                left: 0;
+            }
+
+
+            .logged-in-main {
+                margin-left: 0;
+
+                width: 100%;
+            }
+
+
+            .sidebar-mobile-header {
+                height: 60px;
+
+                display: flex;
+
+                align-items: center;
+
+                justify-content: space-between;
+
+                padding: 0 18px;
+
+                background: #ffffff;
+
+                border-bottom: 1px solid #e5e7eb;
+
+                position: sticky;
+
+                top: 0;
+
+                z-index: 900;
+            }
+
+
+            .sidebar-mobile-title {
+                font-size: 18px;
+
+                font-weight: 700;
+
+                color: #222222;
+            }
+
+
+            .sidebar-menu-button {
+                width: 40px;
+                height: 40px;
+
+                border: 1px solid #dddddd;
+
+                border-radius: 8px;
+
+                background: #ffffff;
+
+                cursor: pointer;
+
+                font-size: 20px;
+            }
+
+
+            .sidebar-overlay {
+                position: fixed;
+
+                top: 0;
+                left: 0;
+
+                width: 100%;
+                height: 100%;
+
+                background: rgba(0, 0, 0, 0.35);
+
+                z-index: 999;
+            }
+
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+
+        }
+
+    </style>
+
+    {% endif %}
 
 </head>
 
 
 <body>
 
+
     <!-- =====================================================
-         NAVBAR
+         LOGGED-IN USER LAYOUT
          ===================================================== -->
 
-    <header class="navbar">
-
-        <div class="navbar-container">
-
-            <!-- LOGO -->
-
-            <a
-                href="{{ url_for('home') }}"
-                class="logo"
-            >
-
-                <span class="logo-icon"> 
-                    🧭
-                </span>
-
-                Next<span>Step</span>
-
-            </a>
+    {% if session.get("user_id") %}
 
 
-            <!-- NAVIGATION -->
+        <div class="logged-in-layout">
 
-            <nav class="nav-links">
+
+            <!-- =================================================
+                 SIDEBAR
+                 ================================================= -->
+
+            <aside class="nextstep-sidebar" id="nextstepSidebar">
+
+
+                <!-- LOGO -->
 
                 <a
                     href="{{ url_for('home') }}"
+                    class="sidebar-logo"
                 >
-                    Home
+
+                    <span class="sidebar-logo-icon">
+                        🧭
+                    </span>
+
+                    Next<span>Step</span>
+
                 </a>
 
-                <a 
-                     href="{{ url_for('learning_resources') }}" 
-> 
-                    📚 Resources 
-                </a>
+
+                <!-- NAVIGATION -->
+
+                <nav class="sidebar-nav">
 
 
-                {% if session.get("user_id") %}
+                    <div class="sidebar-section-title">
+                        Navigation
+                    </div>
+
+
+                    <!-- HOME -->
+
+                    <a
+                        href="{{ url_for('home') }}"
+                        class="sidebar-link"
+                    >
+
+                        <span class="sidebar-link-icon">
+                            🏠
+                        </span>
+
+                        <span class="sidebar-link-text">
+                            Home
+                        </span>
+
+                    </a>
+
+
+                    <!-- LEARNING RESOURCES -->
+
+                    <a
+                        href="{{ url_for('learning_resources') }}"
+                        class="sidebar-link"
+                    >
+
+                        <span class="sidebar-link-icon">
+                            📚
+                        </span>
+
+                        <span class="sidebar-link-text">
+                            Learning
+                        </span>
+
+                    </a>
+
+
+                    <!-- ASSESSMENT -->
 
                     <a
                         href="{{ url_for('assessment') }}"
+                        class="sidebar-link"
                     >
-                        🎯 Assessment
+
+                        <span class="sidebar-link-icon">
+                            🎯
+                        </span>
+
+                        <span class="sidebar-link-text">
+                            Assessment
+                        </span>
+
                     </a>
 
+
+                    <!-- ARCADE -->
 
                     <a
                         href="{{ url_for('arcade') }}"
+                        class="sidebar-link"
                     >
-                        🎮 Arcade
+
+                        <span class="sidebar-link-icon">
+                            🎮
+                        </span>
+
+                        <span class="sidebar-link-text">
+                            Career Arcade
+                        </span>
+
                     </a>
 
+
+                    <!-- DASHBOARD -->
 
                     <a
                         href="{{ url_for('dashboard') }}"
+                        class="sidebar-link"
                     >
-                        📊 Dashboard
+
+                        <span class="sidebar-link-icon">
+                            📊
+                        </span>
+
+                        <span class="sidebar-link-text">
+                            Dashboard
+                        </span>
+
+                    </a>
+
+
+                    <!-- LOGOUT -->
+
+                    <div class="sidebar-logout">
+
+                        <a
+                            href="{{ url_for('logout') }}"
+                            class="sidebar-link"
+                        >
+
+                            <span class="sidebar-link-icon">
+                                🚪
+                            </span>
+
+                            <span class="sidebar-link-text">
+                                Logout
+                            </span>
+
+                        </a>
+
+                    </div>
+
+
+                </nav>
+
+            </aside>
+
+
+            <!-- =================================================
+                 MOBILE HEADER
+                 ================================================= -->
+
+            <div class="sidebar-mobile-header">
+
+                <div class="sidebar-mobile-title">
+                    🧭 NextStep
+                </div>
+
+
+                <button
+                    type="button"
+                    class="sidebar-menu-button"
+                    id="sidebarMenuButton"
+                    aria-label="Open navigation menu"
+                >
+                    ☰
+                </button>
+
+            </div>
+
+
+            <!-- MOBILE OVERLAY -->
+
+            <div
+                class="sidebar-overlay"
+                id="sidebarOverlay"
+            ></div>
+
+
+            <!-- =================================================
+                 MAIN CONTENT
+                 ================================================= -->
+
+            <div class="logged-in-main">
+
+
+                <!-- FLASH MESSAGES -->
+
+                {% with messages = get_flashed_messages() %}
+
+                    {% if messages %}
+
+                        <div class="flash-container">
+
+                            {% for message in messages %}
+
+                                <div class="alert">
+                                    {{ message }}
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+                    {% endif %}
+
+                {% endwith %}
+
+
+                <!-- PAGE CONTENT -->
+
+                <main>
+
+                    {% block content %}
+
+                    {% endblock %}
+
+                </main>
+
+
+                <!-- FOOTER -->
+
+                <footer class="footer">
+
+                    <div class="container">
+
+                        <div class="footer-grid">
+
+
+                            <!-- ABOUT -->
+
+                            <div>
+
+                                <h3>
+                                    NextStep
+                                </h3>
+
+                                <p>
+                                    Discover your career direction,
+                                    understand your skill gaps, and
+                                    build your next step.
+                                </p>
+
+                            </div>
+
+
+                            <!-- PLATFORM -->
+
+                            <div>
+
+                                <h3>
+                                    Platform
+                                </h3>
+
+                                <p>
+                                    <a
+                                        href="{{ url_for('assessment') }}"
+                                    >
+                                        Career Assessment
+                                    </a>
+                                </p>
+
+                                <p>
+                                    <a
+                                        href="{{ url_for('learning_resources') }}"
+                                    >
+                                        📚 Learning Resources
+                                    </a>
+                                </p>
+
+                                <p>
+                                    <a
+                                        href="{{ url_for('arcade') }}"
+                                    >
+                                        🎮 Career Arcade
+                                    </a>
+                                </p>
+
+                                <p>
+                                    <a
+                                        href="{{ url_for('dashboard') }}"
+                                    >
+                                        📊 Dashboard
+                                    </a>
+                                </p>
+
+                            </div>
+
+
+                            <!-- FEATURES -->
+
+                            <div>
+
+                                <h3>
+                                    Features
+                                </h3>
+
+                                <p>
+                                    🤖 Career Recommendation
+                                </p>
+
+                                <p>
+                                    🔍 Skill Gap Analysis
+                                </p>
+
+                                <p>
+                                    🗺️ Learning Roadmap
+                                </p>
+
+                                <p>
+                                    📚 Learning Resources
+                                </p>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- FOOTER BOTTOM -->
+
+                        <div class="footer-bottom">
+
+                            ©
+
+                            <span data-current-year>
+                                2026
+                            </span>
+
+                            NextStep
+                            · Career Recommendation Platform
+
+                        </div>
+
+
+                    </div>
+
+                </footer>
+
+
+            </div>
+
+        </div>
+
+
+    {% else %}
+
+
+        <!-- =====================================================
+             BEFORE LOGIN
+             YOUR ORIGINAL NAVBAR
+             ===================================================== -->
+
+        <header class="navbar">
+
+            <div class="navbar-container">
+
+
+                <!-- LOGO -->
+
+                <a
+                    href="{{ url_for('home') }}"
+                    class="logo"
+                >
+
+                    <span class="logo-icon">
+                        🧭
+                    </span>
+
+                    Next<span>Step</span>
+
+                </a>
+
+
+                <!-- NAVIGATION -->
+
+                <nav class="nav-links">
+
+
+                    <a
+                        href="{{ url_for('home') }}"
+                    >
+                        Home
                     </a>
 
 
                     <a
-                        href="{{ url_for('logout') }}"
+                        href="{{ url_for('learning_resources') }}"
                     >
-                        Logout
+                        📚 Resources
                     </a>
 
-                {% else %}
 
                     <a
                         href="{{ url_for('login') }}"
@@ -120,166 +798,181 @@
                         Get Started
                     </a>
 
-                {% endif %}
 
-            </nav>
-
-        </div>
-
-    </header>
+                </nav>
 
 
-    <!-- =====================================================
-         FLASH MESSAGES
-         ===================================================== -->
+            </div>
 
-    {% with messages = get_flashed_messages() %}
+        </header>
 
-        {% if messages %}
 
-            <div class="flash-container">
+        <!-- =====================================================
+             FLASH MESSAGES BEFORE LOGIN
+             ===================================================== -->
 
-                {% for message in messages %}
+        {% with messages = get_flashed_messages() %}
 
-                    <div class="alert">
-                        {{ message }}
+            {% if messages %}
+
+                <div class="flash-container">
+
+                    {% for message in messages %}
+
+                        <div class="alert">
+                            {{ message }}
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        <!-- =====================================================
+             MAIN CONTENT BEFORE LOGIN
+             ===================================================== -->
+
+        <main>
+
+            {% block content %}
+
+            {% endblock %}
+
+        </main>
+
+
+        <!-- =====================================================
+             FOOTER BEFORE LOGIN
+             ===================================================== -->
+
+        <footer class="footer">
+
+            <div class="container">
+
+                <div class="footer-grid">
+
+
+                    <!-- ABOUT -->
+
+                    <div>
+
+                        <h3>
+                            NextStep
+                        </h3>
+
+                        <p>
+                            Discover your career direction,
+                            understand your skill gaps, and
+                            build your next step.
+                        </p>
+
                     </div>
 
-                {% endfor %}
 
-            </div>
+                    <!-- PLATFORM -->
 
-        {% endif %}
+                    <div>
 
-    {% endwith %}
+                        <h3>
+                            Platform
+                        </h3>
 
+                        <p>
 
-    <!-- =====================================================
-         MAIN CONTENT
-         ===================================================== -->
+                            <a
+                                href="{{ url_for('assessment') }}"
+                            >
+                                Career Assessment
+                            </a>
 
-    <main>
-
-        {% block content %}
-
-        {% endblock %}
-
-    </main>
+                        </p>
 
 
-    <!-- =====================================================
-         FOOTER
-         ===================================================== -->
+                        {% if session.get("user_id") %}
 
-    <footer class="footer">
+                        <p>
 
-        <div class="container">
+                            <a
+                                href="{{ url_for('arcade') }}"
+                            >
+                                🎮 Career Arcade
+                            </a>
 
-            <div class="footer-grid">
+                        </p>
 
-                <!-- ABOUT -->
 
-                <div>
+                        <p>
 
-                    <h3>
-                         NextStep
-                    </h3>
+                            <a
+                                href="{{ url_for('dashboard') }}"
+                            >
+                                📊 Dashboard
+                            </a>
 
-                    <p>
-                        Discover your career direction,
-                        understand your skill gaps, and
-                        build your next step.
-                    </p>
+                        </p>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- FEATURES -->
+
+                    <div>
+
+                        <h3>
+                            Features
+                        </h3>
+
+                        <p>
+                            🤖 Career Recommendation
+                        </p>
+
+                        <p>
+                            🔍 Skill Gap Analysis
+                        </p>
+
+                        <p>
+                            🗺️ Learning Roadmap
+                        </p>
+
+                        <p>
+                            📚 Learning Resources
+                        </p>
+
+                    </div>
+
 
                 </div>
 
 
-                <!-- PLATFORM -->
+                <!-- FOOTER BOTTOM -->
 
-                <div>
+                <div class="footer-bottom">
 
-                    <h3>
-                        Platform
-                    </h3>
+                    ©
 
-                    <p>
-                        <a
-                            href="{{ url_for('assessment') }}"
-                        >
-                            Career Assessment
-                        </a>
-                    </p>
+                    <span data-current-year>
+                        2026
+                    </span>
 
-                    {% if session.get("user_id") %}
-
-                    <p>
-                        <a
-                            href="{{ url_for('arcade') }}"
-                        >
-                            🎮 Career Arcade
-                        </a>
-                    </p>
-
-                    <p>
-                        <a
-                            href="{{ url_for('dashboard') }}"
-                        >
-                            📊 Dashboard
-                        </a>
-                    </p>
-
-                    {% endif %}
+                    NextStep
+                    · Career Recommendation Platform
 
                 </div>
 
 
-                <!-- FEATURES -->
-
-                <div>
-
-                    <h3>
-                        Features
-                    </h3>
-
-                    <p>
-                        🤖 Career Recommendation
-                    </p>
-
-                    <p>
-                        🔍 Skill Gap Analysis
-                    </p>
-
-                    <p>
-                        🗺️ Learning Roadmap
-                    </p>
-
-                 <p>
-                  📚 Learning Resources
-               </p>
-                
-
-                </div>
-
             </div>
 
+        </footer>
 
-            <!-- FOOTER BOTTOM -->
 
-            <div class="footer-bottom">
+    {% endif %}
 
-                ©
-                <span data-current-year>
-                    2026
-                </span>
-
-                NextStep
-                · Career Recommendation Platform
-
-            </div>
-
-        </div>
-
-    </footer>
 
 
     <!-- =====================================================
@@ -289,6 +982,84 @@
     <script
         src="{{ url_for('static', filename='js/main.js') }}"
     ></script>
+
+
+    <!-- =====================================================
+         SIDEBAR MOBILE JAVASCRIPT
+         ===================================================== -->
+
+    {% if session.get("user_id") %}
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const sidebar =
+                document.getElementById("nextstepSidebar");
+
+            const menuButton =
+                document.getElementById("sidebarMenuButton");
+
+            const overlay =
+                document.getElementById("sidebarOverlay");
+
+
+            if (!sidebar || !menuButton || !overlay) {
+                return;
+            }
+
+
+            function openSidebar() {
+
+                sidebar.classList.add("sidebar-open");
+
+                overlay.classList.add("active");
+
+            }
+
+
+            function closeSidebar() {
+
+                sidebar.classList.remove("sidebar-open");
+
+                overlay.classList.remove("active");
+
+            }
+
+
+            menuButton.addEventListener(
+                "click",
+                openSidebar
+            );
+
+
+            overlay.addEventListener(
+                "click",
+                closeSidebar
+            );
+
+
+            /* Close sidebar after selecting a link on mobile */
+
+            const sidebarLinks =
+                sidebar.querySelectorAll(".sidebar-link");
+
+
+            sidebarLinks.forEach(function (link) {
+
+                link.addEventListener(
+                    "click",
+                    closeSidebar
+                );
+
+            });
+
+        });
+
+    </script>
+
+    {% endif %}
+
 
 </body>
 
