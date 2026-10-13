@@ -1,961 +1,348 @@
-/* =========================================================
-   NEXTSTEP CAREER ARCADE
-   Colorful Hero + Minimal Black/Grey Content
-   ========================================================= */
 
-
-/* =========================================================
-   MAIN PAGE
-   ========================================================= */
+/* Career Arcade */
 
 .arcade-page {
-    width: 100%;
-    min-height: 100vh;
     background: #ffffff;
-    color: #202124;
+    color: #202b3c;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
 }
-
-
-/* =========================================================
-   COLORFUL HERO
-   ========================================================= */
 
 .arcade-hero {
-    width: 100%;
-    min-height: 310px;
-
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
-    justify-content: space-between;
-
-    padding: 45px 7%;
-
-    position: relative;
+    min-height: 245px;
+    margin: 14px;
+    background: #edf4fb;
+    border-radius: 5px;
     overflow: hidden;
-
-    background:
-        linear-gradient(
-            110deg,
-            #dff3ff 0%,
-            #e9e5ff 45%,
-            #fce5f2 100%
-        );
 }
-
-
-/* Decorative circles */
-
-.arcade-hero::before {
-    content: "";
-
-    position: absolute;
-
-    width: 180px;
-    height: 180px;
-
-    left: -90px;
-    top: -80px;
-
-    background: #73c7ff;
-
-    border-radius: 50%;
-
-    opacity: 0.75;
-}
-
-
-.arcade-hero::after {
-    content: "";
-
-    position: absolute;
-
-    width: 190px;
-    height: 190px;
-
-    right: -80px;
-    bottom: -100px;
-
-    background: #b69cff;
-
-    border-radius: 50%;
-
-    opacity: 0.65;
-}
-
-
-/* =========================================================
-   HERO CONTENT
-   ========================================================= */
 
 .hero-content {
-    position: relative;
-
-    z-index: 2;
-
-    max-width: 620px;
+    padding: 30px;
 }
 
-
-.hero-badge {
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    padding: 9px 16px;
-
-    margin-bottom: 18px;
-
-    border-radius: 25px;
-
-    background: rgba(255, 255, 255, 0.72);
-
-    color: #1677ff;
-
-    font-size: 14px;
-
+.hero-label {
+    margin: 0 0 12px;
+    font-size: 15px;
     font-weight: 600;
-
-    backdrop-filter: blur(8px);
 }
-
-
-/* =========================================================
-   HERO TITLE
-   ========================================================= */
 
 .hero-content h1 {
+    margin: 0 0 14px;
+    font-size: 40px;
+    line-height: 1.2;
+}
+
+.hero-content > p:last-child {
+    max-width: 480px;
     margin: 0;
-
-    font-size: clamp(
-        42px,
-        5vw,
-        66px
-    );
-
-    line-height: 1.05;
-
-    font-weight: 800;
-
-    letter-spacing: -2px;
+    color: #586b83;
+    font-size: 16px;
+    line-height: 1.7;
 }
 
-
-.hero-content h1 span {
-    display: inline-block;
-
-    background:
-        linear-gradient(
-            90deg,
-            #1687ff,
-            #6435d8,
-            #e63273
-        );
-
-    -webkit-background-clip: text;
-
-    background-clip: text;
-
-    -webkit-text-fill-color: transparent;
+.hero-image {
+    height: 245px;
 }
 
-
-.hero-content h1 span + span {
-    margin-left: 8px;
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
-
-
-/* =========================================================
-   HERO DESCRIPTION
-   ========================================================= */
-
-.hero-content p {
-    max-width: 580px;
-
-    margin: 20px 0 0;
-
-    color: #5d79a0;
-
-    font-size: 17px;
-
-    line-height: 1.65;
-}
-
-
-/* =========================================================
-   HERO VISUAL
-   ========================================================= */
-
-.hero-visual {
-    position: relative;
-
-    z-index: 2;
-
-    width: 45%;
-
-    min-height: 220px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-}
-
-
-.game-controller {
-    font-size: 105px;
-
-    transform: rotate(-5deg);
-
-    filter:
-        drop-shadow(
-            0 15px 20px
-            rgba(35, 66, 120, 0.25)
-        );
-}
-
-
-/* =========================================================
-   HERO STARS
-   ========================================================= */
-
-.hero-stars {
-    position: absolute;
-
-    top: 5px;
-
-    left: 10%;
-
-    display: flex;
-
-    gap: 35px;
-
-    font-size: 28px;
-}
-
-
-.hero-stars span:nth-child(1) {
-    color: #ffb400;
-}
-
-
-.hero-stars span:nth-child(2) {
-    color: #ff4f81;
-
-    transform: translateY(35px);
-}
-
-
-.hero-stars span:nth-child(3) {
-    color: #1687ff;
-
-    transform: translateY(65px);
-}
-
-
-/* =========================================================
-   SMALL STEPS / BIG DREAMS
-   ========================================================= */
-
-.hero-motivation {
-    position: absolute;
-
-    right: 0;
-
-    top: 40px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    color: #15427d;
-
-    font-size: 22px;
-
-    font-weight: 700;
-
-    font-style: italic;
-
-    transform: rotate(-5deg);
-}
-
-
-.hero-motivation span:last-of-type {
-    margin-left: 35px;
-}
-
-
-.motivation-line {
-    width: 135px;
-
-    height: 3px;
-
-    margin-top: 8px;
-
-    margin-left: 25px;
-
-    background: #15427d;
-
-    transform: rotate(-4deg);
-}
-
-
-/* =========================================================
-   MAIN CONTAINER
-   ========================================================= */
 
 .arcade-container {
-    width: 90%;
-
-    max-width: 1380px;
-
+    width: 94%;
+    max-width: 1250px;
     margin: 0 auto;
-
-    padding: 35px 0 70px;
+    padding: 16px 0 40px;
 }
 
-
-/* =========================================================
-   PLAYER STATS
-   ========================================================= */
-
-.stats-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 22px;
-
-    margin-bottom: 35px;
+.stats-section,
+.games-section,
+.achievements-section {
+    margin-bottom: 34px;
 }
 
-
-.stat-card {
-    min-height: 120px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 18px;
-
-    padding: 20px;
-
-    background: #ffffff;
-
-    border: 1px solid #dfe3e7;
-
-    border-radius: 12px;
-
-    box-shadow:
-        0 3px 12px
-        rgba(0, 0, 0, 0.04);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+.arcade-page h2 {
+    margin: 0 0 10px;
+    font-size: 24px;
 }
-
-
-.stat-card:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 10px 22px
-        rgba(0, 0, 0, 0.07);
-}
-
-
-/* =========================================================
-   STAT ICONS
-   BLACK/GREY ONLY
-   ========================================================= */
-
-.stat-icon {
-    width: 60px;
-    height: 60px;
-
-    flex-shrink: 0;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background: #eef0f2;
-
-    font-size: 29px;
-
-    filter: grayscale(100%);
-}
-
-
-.stat-content {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 4px;
-}
-
-
-.stat-title {
-    color: #4b5560;
-
-    font-size: 14px;
-}
-
-
-.stat-number {
-    color: #202124;
-
-    font-size: 30px;
-
-    font-weight: 700;
-}
-
-
-.stat-description {
-    color: #858b92;
-
-    font-size: 13px;
-}
-
-
-/* =========================================================
-   FEATURED GAMES
-   ========================================================= */
-
-.games-section {
-    margin-top: 30px;
-}
-
 
 .section-heading {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
-
-
-.section-heading h2 {
-    margin: 0 0 5px;
-
-    color: #202124;
-
-    font-size: 28px;
-
-    font-weight: 750;
-}
-
 
 .section-heading p {
     margin: 0;
-
-    color: #7a828a;
-
-    font-size: 15px;
+    color: #65758b;
+    font-size: 14px;
 }
 
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #d8e0e8;
+    border-radius: 5px;
+    background: #ffffff;
+}
+
+.stat-card img {
+    width: 78px;
+    height: 88px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.stat-card p {
+    margin: 0 0 8px;
+    font-size: 14px;
+}
+
+.stat-card h3 {
+    margin: 0 0 8px;
+    font-size: 25px;
+}
+
+.stat-card small {
+    color: #65758b;
+    font-size: 12px;
+}
 
 .games-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 25px;
-}
-
-
-/* =========================================================
-   GAME CARDS
-   ========================================================= */
-
-.game-card {
-    min-height: 250px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    padding: 25px;
-
-    background: #ffffff;
-
-    border: 1px solid #dfe3e7;
-
-    border-radius: 12px;
-
-    box-shadow:
-        0 3px 10px
-        rgba(0, 0, 0, 0.04);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-.game-card:hover {
-    transform: translateY(-4px);
-
-    box-shadow:
-        0 12px 25px
-        rgba(0, 0, 0, 0.08);
-}
-
-
-/* =========================================================
-   GAME CARD TOP
-   ========================================================= */
-
-.game-card-top {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    margin-bottom: 18px;
-}
-
-
-/* =========================================================
-   COLORFUL GAME SYMBOLS
-   ========================================================= */
-
-.game-icon {
-    width: 58px;
-    height: 58px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    font-size: 30px;
-
-    transition:
-        transform 0.2s ease;
-}
-
-
-.game-card:hover .game-icon {
-    transform: scale(1.08);
-}
-
-
-/* Skill Quiz */
-
-.game-card:nth-child(1) .game-icon {
-    background: #ede9fe;
-
-    color: #7c3aed;
-}
-
-
-/* Career Sprint */
-
-.game-card:nth-child(2) .game-icon {
-    background: #fff3cd;
-
-    color: #f59e0b;
-}
-
-
-/* Career Match */
-
-.game-card:nth-child(3) .game-icon {
-    background: #d9f7f4;
-
-    color: #00a89a;
-}
-
-
-/* =========================================================
-   XP BADGE
-   ========================================================= */
-
-.xp-badge {
-    padding: 7px 12px;
-
-    border-radius: 20px;
-
-    background: #f0f1f3;
-
-    color: #555c64;
-
-    font-size: 12px;
-
-    font-weight: 600;
-}
-
-
-/* =========================================================
-   GAME TEXT
-   ========================================================= */
-
-.game-card h3 {
-    margin: 0 0 8px;
-
-    color: #22262b;
-
-    font-size: 22px;
-
-    font-weight: 700;
-}
-
-
-.game-card p {
-    margin: 0 0 20px;
-
-    color: #777f87;
-
-    font-size: 14px;
-
-    line-height: 1.6;
-
-    flex-grow: 1;
-}
-
-
-/* =========================================================
-   PLAY BUTTON
-   ========================================================= */
-
-.play-button {
-    width: fit-content;
-
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    padding: 11px 20px;
-
-    border-radius: 25px;
-
-    background: #656b72;
-
-    color: #ffffff;
-
-    text-decoration: none;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-}
-
-
-.play-button:hover {
-    background: #41464b;
-
-    color: #ffffff;
-
-    transform: translateY(-2px);
-}
-
-
-/* =========================================================
-   ACHIEVEMENTS
-   ========================================================= */
-
-.achievements-section {
-    margin-top: 45px;
-}
-
-
-.achievement-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(5, 1fr);
-
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 18px;
 }
 
+.game-card {
+    overflow: hidden;
+    border: 1px solid #d8e0e8;
+    border-radius: 5px;
+    background: #ffffff;
+}
+
+.game-image {
+    display: block;
+    width: 100%;
+    height: 125px;
+    object-fit: cover;
+}
+
+.game-content {
+    padding: 15px 16px 18px;
+}
+
+.game-content h3 {
+    margin: 0 0 8px;
+    font-size: 19px;
+}
+
+.game-content p {
+    min-height: 42px;
+    margin: 0 0 16px;
+    color: #5d6e83;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.play-button {
+    display: inline-block;
+    padding: 10px 18px;
+    background: #1479df;
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.play-button:hover {
+    background: #0f62b8;
+}
+
+.achievement-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
 
 .achievement-card {
-    min-height: 90px;
-
     display: flex;
-
     align-items: center;
-
-    gap: 13px;
-
-    padding: 15px;
-
+    gap: 14px;
+    min-width: 0;
+    padding: 14px;
+    border: 1px solid #d8e0e8;
+    border-radius: 5px;
     background: #ffffff;
-
-    border: 1px solid #dfe3e7;
-
-    border-radius: 10px;
 }
 
-
-.achievement-card.unlocked {
-    background: #fafafa;
-
-    border-color: #c5c9ce;
-}
-
-
-.achievement-icon {
-    width: 50px;
-    height: 50px;
-
+.achievement-card img {
+    width: 80px;
+    height: 80px;
     flex-shrink: 0;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
+    object-fit: cover;
     border-radius: 50%;
-
-    background: #eef0f2;
-
-    font-size: 25px;
-
-    filter: grayscale(100%);
 }
 
-
-.achievement-content {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 5px;
-}
-
-
-.achievement-content strong {
-    color: #30353a;
-
-    font-size: 14px;
-}
-
-
-.achievement-content span {
-    color: #858b92;
-
-    font-size: 11px;
-
-    line-height: 1.4;
-}
-
-
-/* =========================================================
-   BOTTOM MOTIVATION
-   ========================================================= */
-
-.bottom-motivation {
-    margin-top: 55px;
-
-    padding: 45px 20px;
-
-    text-align: center;
-
-    border-top: 1px solid #e1e4e7;
-}
-
-
-.bottom-motivation h2 {
-    margin: 0 0 10px;
-
-    color: #24282d;
-
-    font-size: 27px;
-}
-
-
-.bottom-motivation p {
-    margin: 0;
-
-    color: #777f87;
-
+.achievement-content h3 {
+    margin: 0 0 8px;
     font-size: 15px;
 }
 
+.achievement-content p {
+    margin: 0 0 12px;
+    color: #65758b;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+}
+
+.status.unlocked {
+    color: #216b35;
+    background: #e5f5e8;
+}
+
+.status.locked {
+    color: #586779;
+    background: #edf0f3;
+}
+
+.bottom-motivation {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 24px;
+    border-radius: 5px;
+    background: #edf4fb;
+}
+
+.bottom-image {
+    height: 145px;
+}
+
+.bottom-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bottom-content {
+    padding: 20px 24px;
+    text-align: center;
+}
+
+.bottom-content h2 {
+    margin: 0 0 10px;
+    font-size: 22px;
+}
+
+.bottom-content p {
+    margin: 0 0 16px;
+    color: #586b83;
+    font-size: 14px;
+}
 
 .bottom-buttons {
     display: flex;
-
-    justify-content: center;
-
-    gap: 12px;
-
-    margin-top: 22px;
-
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
 }
-
 
 .secondary-button {
-    display: inline-flex;
-
-    align-items: center;
-
-    padding: 10px 18px;
-
-    border: 1px solid #bfc4c9;
-
-    border-radius: 25px;
-
+    display: inline-block;
+    padding: 10px 14px;
+    border: 1px solid #9aaabd;
+    border-radius: 4px;
+    color: #26364a;
     background: #ffffff;
-
-    color: #454a50;
-
-    text-decoration: none;
-
     font-size: 13px;
-
-    font-weight: 600;
+    text-decoration: none;
 }
-
 
 .secondary-button:hover {
-    background: #f1f2f3;
-
-    color: #22262b;
+    background: #f4f6f8;
 }
 
+/* Tablet */
 
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media (max-width: 1100px) {
-
+@media (max-width: 900px) {
     .stats-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .achievement-grid {
-        grid-template-columns:
-            repeat(3, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .hero-content h1 {
+        font-size: 32px;
+    }
 }
 
+/* Mobile */
 
-@media (max-width: 850px) {
-
+@media (max-width: 600px) {
     .arcade-hero {
-        flex-direction: column;
-
-        text-align: center;
-
-        padding: 45px 6%;
-    }
-
-
-    .hero-content {
-        max-width: 700px;
-    }
-
-
-    .hero-content h1 span {
-        display: block;
-    }
-
-
-    .hero-content h1 span + span {
-        margin-left: 0;
-    }
-
-
-    .hero-content p {
-        margin-left: auto;
-
-        margin-right: auto;
-    }
-
-
-    .hero-visual {
-        width: 100%;
-
-        min-height: 190px;
-
-        margin-top: 15px;
-    }
-
-
-    .games-grid {
         grid-template-columns: 1fr;
     }
 
-}
+    .hero-content {
+        padding: 24px;
+    }
 
+    .hero-content h1 {
+        font-size: 29px;
+    }
 
-@media (max-width: 650px) {
+    .hero-image {
+        height: 180px;
+    }
 
     .arcade-container {
         width: 92%;
     }
 
-
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
-
-
+    .stats-grid,
+    .games-grid,
     .achievement-grid {
         grid-template-columns: 1fr;
     }
 
-
-    .hero-content h1 {
-        font-size: 42px;
+    .stat-card img {
+        width: 72px;
+        height: 76px;
     }
 
-
-    .hero-content p {
-        font-size: 15px;
+    .bottom-motivation {
+        grid-template-columns: 1fr;
     }
 
-
-    .game-controller {
-        font-size: 85px;
+    .bottom-image {
+        height: 150px;
     }
 
-
-    .hero-motivation {
-        right: 2%;
-
-        font-size: 17px;
+    .bottom-content {
+        padding: 22px 14px;
     }
-
-}
-
-
-/* =========================================================
-   ACCESSIBILITY
-   ========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-
-        animation: none !important;
-
-        transition: none !important;
-    }
-
 }

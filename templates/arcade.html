@@ -1,430 +1,210 @@
+
 {% extends "base.html" %}
 
-{% block title %}
-NextStep | Career Arcade
-{% endblock %}
+{% block title %}NextStep | Career Arcade{% endblock %}
 
 {% block extra_css %}
-
-<link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='css/arcade.css') }}?v=3"
->
-
+<link rel="stylesheet" href="{{ url_for('static', filename='css/arcade.css') }}?v=5">
 {% endblock %}
 
-
 {% block content %}
-
 <div class="arcade-page">
 
-    <!-- =====================================================
-         HERO SECTION
-         ===================================================== -->
-
+    <!-- Hero -->
     <section class="arcade-hero">
-
         <div class="hero-content">
-
-            <div class="hero-badge">
-                🎮 Career Arcade
-            </div>
-
-            <h1>
-                <span>Level Up</span>
-                <span>Your Future</span>
-            </h1>
-
+            <p class="hero-label">Career Arcade</p>
+            <h1>Level Up Your Future</h1>
             <p>
-                Play, learn and earn XP! Complete fun career games,
-                build new skills and unlock achievements on your
-                journey to the right career.
+                Play career games, practise your skills and earn XP
+                as you explore different career paths.
             </p>
-
         </div>
 
-
-        <div class="hero-visual">
-
-            <div class="hero-stars">
-                <span>✦</span>
-                <span>★</span>
-                <span>✦</span>
-            </div>
-
-            <div class="game-controller">
-                🎮
-            </div>
-
-            <div class="hero-motivation">
-                <span>Small Steps</span>
-                <span>Big Dreams</span>
-
-                <div class="motivation-line"></div>
-            </div>
-
+        <div class="hero-image">
+            <img
+                src="https://images.unsplash.com/photo- books"
+                alt="Books and study materials"
+                onerror="this.style.display='none'">
         </div>
-
     </section>
-
-
-    <!-- =====================================================
-         MAIN CONTENT
-         ===================================================== -->
 
     <main class="arcade-container">
 
+        <!-- Statistics -->
+        <section class="stats-section">
+            <h2>Your Stats</h2>
 
-        <!-- =================================================
-             PLAYER STATS
-             ================================================= -->
-
-        <section class="stats-grid">
-
-
-            <!-- XP -->
-
-            <div class="stat-card">
-
-                <div class="stat-icon grayscale-icon">
-                    ⭐
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=180&q=80"
+                         alt="Notebook and pen">
+                    <div>
+                        <p>XP</p>
+                        <h3>{{ game_stats.xp }}</h3>
+                        <small>Total XP earned</small>
+                    </div>
                 </div>
 
-                <div class="stat-content">
-
-                    <span class="stat-title">
-                        XP
-                    </span>
-
-                    <strong class="stat-number">
-                        {{ game_stats.xp }}
-                    </strong>
-
-                    <span class="stat-description">
-                        Total XP Earned
-                    </span>
-
+                <div class="stat-card">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=180&q=80"
+                         alt="Laptop">
+                    <div>
+                        <p>Level</p>
+                        <h3>{{ game_stats.level }}</h3>
+                        <small>Keep going!</small>
+                    </div>
                 </div>
 
+                <div class="stat-card">
+                    <img src="https://images.unsplash.com/photo-1501139083538-0139583c060f?auto=format&fit=crop&w=180&q=80"
+                         alt="Desk clock">
+                    <div>
+                        <p>Current streak</p>
+                        <h3>{{ game_stats.streak }}</h3>
+                        <small>Days in a row</small>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=180&q=80"
+                         alt="Award medal">
+                    <div>
+                        <p>Badges</p>
+                        <h3>{{ game_stats.badges|length }}</h3>
+                        <small>Unlocked</small>
+                    </div>
+                </div>
             </div>
-
-
-            <!-- LEVEL -->
-
-            <div class="stat-card">
-
-                <div class="stat-icon grayscale-icon">
-                    📊
-                </div>
-
-                <div class="stat-content">
-
-                    <span class="stat-title">
-                        Level
-                    </span>
-
-                    <strong class="stat-number">
-                        {{ game_stats.level }}
-                    </strong>
-
-                    <span class="stat-description">
-                        Keep going!
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <!-- STREAK -->
-
-            <div class="stat-card">
-
-                <div class="stat-icon grayscale-icon">
-                    🔥
-                </div>
-
-                <div class="stat-content">
-
-                    <span class="stat-title">
-                        Current Streak
-                    </span>
-
-                    <strong class="stat-number">
-                        {{ game_stats.streak }}
-                    </strong>
-
-                    <span class="stat-description">
-                        Days in a row
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <!-- BADGES -->
-
-            <div class="stat-card">
-
-                <div class="stat-icon grayscale-icon">
-                    🏅
-                </div>
-
-                <div class="stat-content">
-
-                    <span class="stat-title">
-                        Badges
-                    </span>
-
-                    <strong class="stat-number">
-                        {{ game_stats.badges|length }}
-                    </strong>
-
-                    <span class="stat-description">
-                        Unlocked
-                    </span>
-
-                </div>
-
-            </div>
-
         </section>
 
-
-        <!-- =================================================
-             FEATURED GAMES
-             ================================================= -->
-
+        <!-- Games -->
         <section class="games-section">
-
             <div class="section-heading">
-
-                <h2>
-                    Featured Games
-                </h2>
-
-                <p>
-                    Choose a game, test your knowledge and earn XP!
-                </p>
-
+                <h2>Featured Games</h2>
+                <p>Choose a game, test your knowledge and earn XP.</p>
             </div>
-
 
             <div class="games-grid">
-
-
-                <!-- =================================================
-                     SKILL QUIZ
-                     ================================================= -->
-
                 <article class="game-card">
+                    <img class="game-image"
+                         src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=700&q=80"
+                         alt="Open books and study materials">
 
-                    <div class="game-card-top">
-
-                        <div class="game-icon grayscale-icon">
-                            🧠
-                        </div>
-
-                        <span class="xp-badge">
-                            +10–40 XP
-                        </span>
-
+                    <div class="game-content">
+                        <h3>Skill Quiz</h3>
+                        <p>
+                            Answer multiple-choice questions and see
+                            what you know.
+                        </p>
+                        <a href="{{ url_for('skill_quiz') }}" class="play-button">
+                            Play Now →
+                        </a>
                     </div>
-
-                    <h3>
-                        Skill Quiz
-                    </h3>
-
-                    <p>
-                        Test your knowledge with fun multiple
-                        choice questions and earn XP.
-                    </p>
-
-                    <a
-                        href="{{ url_for('skill_quiz') }}"
-                        class="play-button"
-                    >
-                        Play Now
-                        <span>→</span>
-                    </a>
-
                 </article>
 
-
-                <!-- =================================================
-                     CAREER SPRINT
-                     ================================================= -->
-
                 <article class="game-card">
+                    <img class="game-image"
+                         src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=80"
+                         alt="Laptop used for learning">
 
-                    <div class="game-card-top">
-
-                        <div class="game-icon grayscale-icon">
-                            ⚡
-                        </div>
-
-                        <span class="xp-badge">
-                            +15–75 XP
-                        </span>
-
+                    <div class="game-content">
+                        <h3>Career Sprint</h3>
+                        <p>Take a quick five-question challenge.</p>
+                        <a href="{{ url_for('career_sprint') }}" class="play-button">
+                            Play Now →
+                        </a>
                     </div>
-
-                    <h3>
-                        Career Sprint
-                    </h3>
-
-                    <p>
-                        Quick 5-question challenge.
-                        How fast can you get it right?
-                    </p>
-
-                    <a
-                        href="{{ url_for('career_sprint') }}"
-                        class="play-button"
-                    >
-                        Play Now
-                        <span>→</span>
-                    </a>
-
                 </article>
 
-
-                <!-- =================================================
-                     CAREER MATCH
-                     ================================================= -->
-
                 <article class="game-card">
+                    <img class="game-image"
+                         src="https://images.unsplash.com/photo-1453738773917-9c3eff1db985?auto=format&fit=crop&w=700&q=80"
+                         alt="Learning and problem-solving materials">
 
-                    <div class="game-card-top">
-
-                        <div class="game-icon grayscale-icon">
-                            🧩
-                        </div>
-
-                        <span class="xp-badge">
-                            +15–75 XP
-                        </span>
-
+                    <div class="game-content">
+                        <h3>Career Match</h3>
+                        <p>
+                            Match skills to careers and learn where
+                            they can be used.
+                        </p>
+                        <a href="{{ url_for('career_match') }}" class="play-button">
+                            Play Now →
+                        </a>
                     </div>
-
-                    <h3>
-                        Career Match
-                    </h3>
-
-                    <p>
-                        Match the skills with the right career
-                        and discover your strengths.
-                    </p>
-
-                    <a
-                        href="{{ url_for('career_match') }}"
-                        class="play-button"
-                    >
-                        Play Now
-                        <span>→</span>
-                    </a>
-
                 </article>
-
             </div>
-
         </section>
 
-
-        <!-- =================================================
-             ACHIEVEMENTS
-             ================================================= -->
-
+        <!-- Achievements -->
         <section class="achievements-section">
-
             <div class="section-heading">
-
-                <h2>
-                    Your Achievements
-                </h2>
-
-                <p>
-                    Collect badges and show off your progress!
-                </p>
-
+                <h2>Your Achievements</h2>
+                <p>See the badges you have earned and those still to unlock.</p>
             </div>
-
 
             <div class="achievement-grid">
-
                 {% for badge in all_badges %}
+                    {% set unlocked = badge.id in game_stats.badges %}
 
-                {% set unlocked = badge.id in game_stats.badges %}
+                    <div class="achievement-card">
+                        {% if badge.id == 'first_steps' %}
+                            <img src="https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?auto=format&fit=crop&w=200&q=80"
+                                 alt="Award trophy">
+                        {% elif badge.id == 'quiz_master' %}
+                            <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=200&q=80"
+                                 alt="Quiz notes">
+                        {% elif badge.id == 'sprint_champion' %}
+                            <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=200&q=80"
+                                 alt="Sports and achievement">
+                        {% elif badge.id == 'career_explorer' %}
+                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=200&q=80"
+                                 alt="Exploring the world">
+                        {% elif badge.id == 'xp_collector' %}
+                            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=200&q=80"
+                                 alt="Computer learning">
+                        {% else %}
+                            <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=200&q=80"
+                                 alt="Achievement planning">
+                        {% endif %}
 
+                        <div class="achievement-content">
+                            <h3>{{ badge.name }}</h3>
+                            <p>{{ badge.description }}</p>
 
-                <div
-                    class="achievement-card {% if unlocked %}unlocked{% endif %}"
-                >
-
-                    <div class="achievement-icon grayscale-icon">
-                        {{ badge.icon }}
+                            {% if unlocked %}
+                                <span class="status unlocked">Unlocked</span>
+                            {% else %}
+                                <span class="status locked">Locked</span>
+                            {% endif %}
+                        </div>
                     </div>
-
-                    <div class="achievement-content">
-
-                        <strong>
-                            {{ badge.name }}
-                        </strong>
-
-                        <span>
-                            {{ badge.description }}
-                        </span>
-
-                    </div>
-
-                </div>
-
                 {% endfor %}
-
             </div>
-
         </section>
 
-
-        <!-- =================================================
-             MOTIVATION
-             ================================================= -->
-
+        <!-- Bottom section -->
         <section class="bottom-motivation">
-
-            <h2>
-                Keep Going. Keep Growing.
-            </h2>
-
-            <p>
-                Every challenge you complete takes you
-                one step closer to your career goals.
-            </p>
-
-            <div class="bottom-buttons">
-
-                <a
-                    href="{{ url_for('assessment') }}"
-                    class="secondary-button"
-                >
-                    Retake Assessment
-                </a>
-
-                <a
-                    href="{{ url_for('dashboard') }}"
-                    class="secondary-button"
-                >
-                    View Dashboard
-                </a>
-
+            <div class="bottom-image">
+                <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=500&q=80"
+                     alt="Books in a library">
             </div>
 
-        </section>
+            <div class="bottom-content">
+                <h2>Keep Going, Keep Growing</h2>
+                <p>Every challenge is a chance to learn something new.</p>
 
+                <div class="bottom-buttons">
+                    <a href="{{ url_for('assessment') }}" class="secondary-button">
+                        Retake Assessment
+                    </a>
+                    <a href="{{ url_for('dashboard') }}" class="secondary-button">
+                        View Dashboard
+                    </a>
+                </div>
+            </div>
+        </section>
 
     </main>
-
 </div>
-
 {% endblock %}
