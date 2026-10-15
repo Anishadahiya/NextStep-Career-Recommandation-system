@@ -2925,3 +2925,187 @@ footer.footer .footer-bottom {
     color: #bfdbfe !important;
     border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
 }
+
+/* Simple NextStep homepage */
+
+.home-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 40px;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 55px 35px 45px;
+}
+
+.home-text {
+    max-width: 520px;
+}
+
+.home-label {
+    color: #3976ad;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+.home-text h1 {
+    color: #202b38;
+    font-size: clamp(30px, 4vw, 43px);
+    line-height: 1.25;
+    margin: 0 0 18px;
+}
+
+.home-description {
+    color: #626d79;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.home-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.home-primary-btn,
+.home-secondary-btn {
+    display: inline-block;
+    padding: 11px 19px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s ease;
+}
+
+.home-primary-btn {
+    background: #3976ad;
+    color: #ffffff;
+    border: 1px solid #3976ad;
+}
+
+.home-primary-btn:hover {
+    background: #2d618f;
+}
+
+.home-secondary-btn {
+    color: #34465a;
+    border: 1px solid #d5dce4;
+    background: #ffffff;
+}
+
+.home-secondary-btn:hover {
+    background: #f3f7fb;
+}
+
+.home-photo {
+    height: 330px;
+    overflow: hidden;
+    border: 1px solid #e1e6eb;
+    border-radius: 8px;
+    background: #f3f6f9;
+}
+
+.home-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.home-options {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 30px 35px 45px;
+}
+
+.home-section-heading {
+    margin-bottom: 23px;
+}
+
+.home-section-heading h2 {
+    color: #202b38;
+    font-size: 27px;
+    margin: 0 0 8px;
+}
+
+.home-section-heading p {
+    color: #697582;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.home-options-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.home-option {
+    padding: 22px;
+    border: 1px solid #e0e6ed;
+    border-radius: 7px;
+    background: #ffffff;
+}
+
+.home-option h3 {
+    color: #2b4055;
+    font-size: 18px;
+    margin: 0 0 10px;
+}
+
+.home-option p {
+    color: #65717e;
+    font-size: 14px;
+    line-height: 1.75;
+    margin: 0;
+}
+
+.home-note {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 35px 35px;
+    color: #697582;
+    font-size: 14px;
+}
+
+/* Make the homepage fit beside the sidebar */
+body.nextstep-logged-in .home-intro,
+body.nextstep-logged-in .home-options,
+body.nextstep-logged-in .home-note {
+    max-width: 1150px;
+}
+
+@media (max-width: 850px) {
+    .home-intro {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding-top: 40px;
+    }
+
+    .home-photo {
+        height: 280px;
+    }
+
+    .home-options-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-intro,
+    .home-options {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .home-note {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .home-photo {
+        height: 220px;
+    }
+}
