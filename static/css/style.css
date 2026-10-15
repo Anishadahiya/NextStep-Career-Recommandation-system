@@ -3109,3 +3109,214 @@ body.nextstep-logged-in .home-note {
         height: 220px;
     }
 }
+/* =========================================
+   NEXTSTEP FOOTER
+   ========================================= */
+
+.ns-footer {
+    margin-top: 48px;
+    background: #f2f7fc;
+    color: #344256;
+    border-top: 1px solid #dce7f3;
+    font-family: inherit;
+}
+
+/* Footer layout */
+.ns-footer-main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 48px 38px 42px;
+    display: grid;
+    grid-template-columns: 1.15fr 0.9fr 1fr 1.35fr;
+    gap: 32px;
+    align-items: start;
+    box-sizing: border-box;
+}
+
+/* Brand */
+.ns-brand-name {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: #25364a;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    text-decoration: none;
+}
+
+.ns-brand-name span {
+    color: #4385c5;
+}
+
+.ns-footer-brand p {
+    max-width: 270px;
+    margin: 0 0 18px;
+    color: #65758a;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.ns-contact-link {
+    color: #3478b8;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.ns-contact-link:hover {
+    text-decoration: underline;
+}
+
+/* Link columns */
+.ns-footer-column {
+    padding-left: 20px;
+    border-left: 1px solid #d8e4f1;
+}
+
+.ns-footer-column h3 {
+    margin: 4px 0 20px;
+    color: #26384d;
+    font-size: 16px;
+    font-weight: 650;
+}
+
+.ns-footer-column a {
+    display: block;
+    width: fit-content;
+    margin-bottom: 15px;
+    color: #61748b;
+    font-size: 14px;
+    line-height: 1.5;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.ns-footer-column a:hover {
+    color: #3478b8;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+/* Footer image */
+.ns-footer-visual {
+    overflow: hidden;
+    border-radius: 9px;
+    background: #e5edf6;
+}
+
+.ns-footer-visual img {
+    display: block;
+    width: 100%;
+    height: 165px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.ns-image-caption {
+    padding: 16px 17px 18px;
+}
+
+.ns-image-caption h3 {
+    margin: 0 0 8px;
+    color: #26384d;
+    font-size: 16px;
+    font-weight: 650;
+    line-height: 1.5;
+}
+
+.ns-image-caption p {
+    margin: 0;
+    color: #65758a;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* Copyright bar */
+.ns-footer-bottom {
+    min-height: 64px;
+    padding: 16px 38px;
+    border-top: 1px solid #dce7f3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    box-sizing: border-box;
+}
+
+.ns-footer-bottom p {
+    margin: 0;
+    color: #718096;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.ns-footer-bottom a {
+    color: #61748b;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.ns-footer-bottom a:hover {
+    color: #3478b8;
+    text-decoration: underline;
+}
+
+/* Space for the logged-in sidebar */
+body.nextstep-logged-in .ns-footer {
+    margin-left: 240px;
+}
+
+/* Tablet */
+@media (max-width: 1050px) {
+    .ns-footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        padding: 38px 28px;
+    }
+
+    .ns-footer-column {
+        padding-left: 18px;
+    }
+
+    .ns-footer-visual img {
+        height: 190px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    body.nextstep-logged-in .ns-footer {
+        margin-left: 0;
+    }
+
+    .ns-footer {
+        margin-top: 30px;
+    }
+
+    .ns-footer-main {
+        grid-template-columns: 1fr;
+        gap: 27px;
+        padding: 32px 22px;
+    }
+
+    .ns-footer-column {
+        padding-left: 0;
+        padding-top: 20px;
+        border-left: none;
+        border-top: 1px solid #d8e4f1;
+    }
+
+    .ns-footer-column h3 {
+        margin-top: 0;
+    }
+
+    .ns-footer-visual img {
+        height: 200px;
+    }
+
+    .ns-footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 18px 22px;
+        gap: 10px;
+    }
+}
