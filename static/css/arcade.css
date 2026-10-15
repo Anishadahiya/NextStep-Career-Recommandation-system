@@ -346,3 +346,153 @@
         padding: 22px 14px;
     }
 }
+/* ===== Updated Your Stats section ===== */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 22px 20px;
+    background: #ffffff;
+    border: 1px solid #e7eaf0;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(24, 39, 75, 0.04);
+}
+
+/* Keep the existing stat images, but make them smaller */
+.stat-card img {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.stat-card p {
+    margin: 0 0 5px;
+    color: #697386;
+    font-size: 13px;
+}
+
+.stat-card h3 {
+    margin: 0 0 4px;
+    color: #17243b;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.stat-card small {
+    color: #8992a3;
+    font-size: 12px;
+}
+
+
+/* ===== Updated Your Achievements section ===== */
+
+.achievement-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.achievement-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #e7eaf0;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(24, 39, 75, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.achievement-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(24, 39, 75, 0.08);
+}
+
+/* Replaces the achievement photos with simple letter icons */
+.achievement-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.achievement-icon.earned {
+    background: #e8f5ee;
+    color: #218653;
+}
+
+.achievement-icon.not-earned {
+    background: #f0f2f6;
+    color: #8992a3;
+}
+
+.achievement-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.achievement-content h3 {
+    margin: 2px 0 7px;
+    color: #17243b;
+    font-size: 16px;
+    font-weight: 650;
+}
+
+.achievement-content p {
+    margin: 0 0 12px;
+    color: #697386;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.status.unlocked {
+    background: #e8f5ee;
+    color: #218653;
+}
+
+.status.locked {
+    background: #f0f2f6;
+    color: #737d8e;
+}
+
+
+/* Responsive layout */
+@media (max-width: 900px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .achievement-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .stats-grid,
+    .achievement-grid {
+        grid-template-columns: 1fr;
+    }
+}
