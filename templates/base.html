@@ -58,12 +58,9 @@
 
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.04);
 
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
 
     box-sizing: border-box;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
 }
 
 
@@ -74,6 +71,7 @@
             height: 75px;
 
             display: flex;
+            flex-shrink:0;
             align-items: center;
 
             padding: 0 22px;
@@ -100,6 +98,12 @@
 
         .nextstep-sidebar-nav {
             padding: 22px 12px;
+            flex:1;
+            min-height:0;
+            overflow-y:auto;
+            overflow-x:hidden;
+            overscroll-behavior-y: contain;
+            -webkit-overflow-scrolling: touch;
         }
 
 
@@ -168,13 +172,10 @@
         /* LOGOUT */
 
         .nextstep-sidebar-logout {
-            position: absolute;
-
-            bottom: 20px;
-
-            left: 12px;
-
-            right: 12px;
+            position: static;
+            flex-shrink: 0;
+    
+            margin:0 12px 12px;
 
             border-top: 1px solid #eeeeee;
 
@@ -267,7 +268,6 @@
             >
 
                 <span class="nextstep-sidebar-icon">
-                    🏠
                 </span>
 
                 <span>
@@ -285,7 +285,6 @@
             >
 
                 <span class="nextstep-sidebar-icon">
-                    📚
                 </span>
 
                 <span>
@@ -303,7 +302,6 @@
             >
 
                 <span class="nextstep-sidebar-icon">
-                    🎯
                 </span>
 
                 <span>
@@ -321,7 +319,6 @@
             >
 
                 <span class="nextstep-sidebar-icon">
-                    🎮
                 </span>
 
                 <span>
@@ -339,7 +336,6 @@
             >
 
                 <span class="nextstep-sidebar-icon">
-                    📊
                 </span>
 
                 <span>
@@ -362,7 +358,6 @@
             >
 
                 <span class="nextstep-sidebar-icon">
-                    🚪
                 </span>
 
                 <span>
